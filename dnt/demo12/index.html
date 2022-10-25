@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Cube</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon"/>
+</head>
+<body style="background-color:#808080">
+    <script src="../demo11/wind.js"></script>
+    <div style=" text-align:center;"><canvas id="myCanvas4" height="500" width="700" style="background-color:black;">Your browser does not support the canvas element. </canvas><br/>
+        <input style="width: 135px;" onclick="rotate4Async().start();" value="运行" type="button">
+    </div>
+      <div style="text-align:center;">
+       <p>@2013-2113 create by <a href="http://weibo.com/iamleizhang" target="_blank">当耐特</a></p>     
+    </div>
+<script type="text/javascript">
+    var c4 = document.getElementById("myCanvas4");
+    var cxt4 = c4.getContext("2d");
+    cxt4.lineWidth = 3;
+    var Points4 = new Array();
+    var startX4 = 250;
+    var startY4 = 250;
+    var distance3 = 500;
+    var eyePosition4 = { x: 0, y: 0, z: 700 };
+    function init4() {
+        Points4[0] = { x: 100, y: 100, z: 100 };
+        Points4[1] = { x: 100, y: 100, z: -100 };
+        Points4[2] = { x: -100, y: 100, z: -100 };
+        Points4[3] = { x: -100, y: 100, z: 100 };
+        Points4[4] = { x: 100, y: -100, z: 100 };
+        Points4[5] = { x: 100, y: -100, z: -100 };
+        Points4[6] = { x: -100, y: -100, z: -100 };
+        Points4[7] = { x: -100, y: -100, z: 100 };
+    }
+    function changedistance4() {
+        for (var i = 0; i < Points4.length; i++) {
+            Points4[i].x = Points4[i].x * distance3 / Math.abs(eyePosition4.z - Points4[i].z);
+            Points4[i].y = Points4[i].y * distance3 / Math.abs(eyePosition4.z - Points4[i].z);
+        }
+    }
+    var currentAngle4 = 0;
+    var drawCube4 = function () {
+        cxt4.clearRect(0, 0, 1200, 1200);
+        init4();
+        rotate4(degToRad(currentAngle4))
+        changedistance4();
+        cxt4.strokeStyle = randomColor();
+        cxt4.beginPath();
+        cxt4.moveTo(startX4 + Points4[0].x, startY4 - Points4[0].y);
+        cxt4.lineTo(startX4 + Points4[1].x, startY4 - Points4[1].y);
+        cxt4.lineTo(startX4 + Points4[2].x, startY4 - Points4[2].y);
+        cxt4.lineTo(startX4 + Points4[3].x, startY4 - Points4[3].y);
+        cxt4.lineTo(startX4 + Points4[0].x, startY4 - Points4[0].y);
+        cxt4.moveTo(startX4 + Points4[4].x, startY4 - Points4[4].y);
+        cxt4.lineTo(startX4 + Points4[5].x, startY4 - Points4[5].y);
+        cxt4.lineTo(startX4 + Points4[6].x, startY4 - Points4[6].y);
+        cxt4.lineTo(startX4 + Points4[7].x, startY4 - Points4[7].y);
+        cxt4.lineTo(startX4 + Points4[4].x, startY4 - Points4[4].y);
+        cxt4.moveTo(startX4 + Points4[1].x, startY4 - Points4[1].y);
+        cxt4.lineTo(startX4 + Points4[5].x, startY4 - Points4[5].y);
+        cxt4.moveTo(startX4 + Points4[0].x, startY4 - Points4[0].y);
+        cxt4.lineTo(startX4 + Points4[4].x, startY4 - Points4[4].y);
+        cxt4.moveTo(startX4 + Points4[2].x, startY4 - Points4[2].y);
+        cxt4.lineTo(startX4 + Points4[6].x, startY4 - Points4[6].y);
+        cxt4.moveTo(startX4 + Points4[3].x, startY4 - Points4[3].y);
+        cxt4.lineTo(startX4 + Points4[7].x, startY4 - Points4[7].y);
+        cxt4.stroke();
+    }
+    drawCube4()
+    var rotate4Async = eval(Wind.compile("async", function () {
+        //当摄像机到显示屏的距离大于750，退出循环
+        while (true) {
+            currentAngle4 += 5;
+            drawCube4();
+            $await(Wind.Async.sleep(100));
+        }
+    }));
+    function degToRad(a) {
+        return (a / (360 / (2 * Math.PI)));
+    }
+    //旋转
+    function rotate4(angle) {
+        for (var i = 0; i < Points4.length; i++) {
+            var tempX = Points4[i].x;
+            var tempZ = Points4[i].z;
+            Points4[i].x = Points4[i].x * Math.cos(angle) - Points4[i].z * Math.sin(angle);
+            Points4[i].z = Points4[i].z * Math.cos(angle) + tempX * Math.sin(angle);
+        }
+        for (var i = 0; i < Points4.length; i++) {
+            var tempY = Points4[i].y;
+            Points4[i].y = Points4[i].z * Math.sin(angle) - Points4[i].y * Math.cos(angle);
+            Points4[i].z = tempY * Math.sin(angle) + Points4[i].z * Math.cos(angle);
+        }
+    }
+    function randomColor() {
+        //16进制方式表示颜色0-F	
+        var arrHex = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]; var strHex = "#";
+        var index;
+        for (var i = 0; i < 6; i++) {
+            //取得0-15之间的随机整数	
+            index = Math.round(Math.random() * 15);
+            strHex += arrHex[index];
+        }
+        return strHex;
+    }
+      </script>
+
+</body>
+</html>

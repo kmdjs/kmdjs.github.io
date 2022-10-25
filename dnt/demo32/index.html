@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>在线图片转透明背景</title>
+     <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon"/>
+    <style>
+        .center {
+            text-align: center;
+        }
+
+        .boxcenter {
+            -webkit-box-pack: center;
+            -moz-box-pack: center;
+            box-pack: center;
+        }
+
+        .vbox {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-box-align: stretch;
+            display: -moz-box;
+            -moz-box-orient: vertical;
+            -moz-box-align: stretch;
+            display: box;
+            box-orient: vertical;
+            box-align: stretch;
+        }
+
+        #dropzone {
+            height: 150px;
+            width: 100%;
+            -webkit-border-radius: 10px;
+            -khtml-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            border: 2px dashed #0687FF;
+        }
+
+            #dropzone.rounded {
+                -webkit-box-shadow: inset 0px 0px 50px #777;
+                -moz-box-shadow: inset 0px 0px 50px #777;
+                -o-box-shadow: inset 0px 0px 50px #777;
+                box-shadow: inset 0px 0px 50px #777;
+            }
+
+        #dnd-thumbnails {
+            height: 125px;
+            margin-top: 10px;
+        }
+
+            #dnd-thumbnails img {
+                width: 75px;
+                height: 75px;
+                border: 1px solid black;
+                margin-right: 10px;
+                -webkit-transition: -webkit-transform 0.2s ease-in, margin-left 0.7s ease-in-out, margin-right 0.7s ease-in-out;
+                -moz-transition: -moz-transform 1s ease-in-out, margin-left 0.7s ease-in-out, margin-right 0.7s ease-in-out;
+                -o-transition: -o-transform 1s ease-in-out, margin-left 1s ease-in-out, margin-left 0.7s ease-in-out, margin-right 0.7s ease-in-out;
+            }
+
+                #dnd-thumbnails img:hover {
+                    -webkit-transform: scale(3.0) rotate(10deg);
+                    -webkit-transform-origin: 50% 75px;
+                    -moz-transform: scale(3.0) rotate(10deg);
+                    -moz-transform-origin: 50% 75px;
+                    margin: 0 100px;
+                }
+    </style>
+</head>
+<body>
+    <h1>在线图片转透明背景</h1>
+
+    <div class="example">
+        <div id="dropzone" class="vbox boxcenter center">
+            拖拽你电脑的图片到这个区域
+        </div>
+    </div>
+    <div id="dnd-thumbnails" style="display: none;" class="center"></div>
+    <h3>步骤如下:</h3>
+    <p>1.使用现代浏览器打开本网页（如：必须支持Desktop Drag-In ）</p>
+    <p>2.拖拽需要转换的图片至上面的圆角矩形区域</p>
+    <p>3.这个时候自动下载了一个没有后缀的文件，自己重命名并且添加.png的后缀</p>
+    <p>4.现在就可以放心使用该png图片</p>
+    <canvas style="display: none"></canvas>
+    <div style="text-align:center"> create by <a href="http://weibo.com/iamleizhang" target="_blank">当耐特</a></div>
+    <script>
+        function DNDFileController(n, t) { var i = document.getElementById(n), r = document.getElementById(t); this.dragenter = function (n) { n.stopPropagation(), n.preventDefault(), i.classList.add("rounded") }, this.dragover = function (n) { n.stopPropagation(), n.preventDefault() }, this.dragleave = function (n) { n.stopPropagation(), n.preventDefault(), i.classList.remove("rounded") }, this.drop = function (n) { var e, f, t, o, u; for (n.stopPropagation(), n.preventDefault(), i.classList.remove("rounded"), e = n.dataTransfer.files, f = 0; t = e[f]; f++) (o = /image.*/, t.type.match(o)) && (u = new FileReader, u.onerror = function (n) { var t = "Error " + n.target.error.code; switch (n.target.error.code) { case FileError.NOT_READABLE_ERR: t += ": NOT_READABLE_ERR" } alert(t) }, u.onload = function (n) { return function (t) { var f, s, i, e, h, o, c, u; if (t.target.readyState == FileReader.DONE) { for (r.insertAdjacentHTML("afterBegin", '<img id="dropImg" src="' + t.target.result + '" alt="' + n.name + '" title="' + n.name + '" />'), f = document.getElementById("dropImg"), canvas.width = f.width, canvas.height = f.height, ctx.drawImage(f, 0, 0), s = ctx.getImageData(0, 0, canvas.width, canvas.height), i = s.data, e = 0, h = canvas.height; e < h; e++) for (o = 0, c = canvas.width; o < c; o++) u = (o + e * canvas.width) * 4, i[u] + i[u + 1] + i[u + 2] + i[u + 3] === 1020 && (i[u] = i[u + 1] = i[u + 2] = i[u + 3] = 0); ctx.putImageData(s, 0, 0), Canvas2Image.saveAsPNG(canvas) } } }(t), u.readAsDataURL(t)); return !1 }, i.addEventListener("dragenter", this.dragenter, !1), i.addEventListener("dragover", this.dragover, !1), i.addEventListener("dragleave", this.dragleave, !1), i.addEventListener("drop", this.drop, !1) } (function () { function i(t) { var i, r, e, u, f, o; for (e = t.length, r = 0, i = ""; r < e;) { if (u = t.charCodeAt(r++) & 255, r == e) { i += n.charAt(u >> 2), i += n.charAt((u & 3) << 4), i += "=="; break } if (f = t.charCodeAt(r++), r == e) { i += n.charAt(u >> 2), i += n.charAt((u & 3) << 4 | (f & 240) >> 4), i += n.charAt((f & 15) << 2), i += "="; break } o = t.charCodeAt(r++), i += n.charAt(u >> 2), i += n.charAt((u & 3) << 4 | (f & 240) >> 4), i += n.charAt((f & 15) << 2 | (o & 192) >> 6), i += n.charAt(o & 63) } return i } function r(n) { var s, o, r, u, i, e, f; for (e = n.length, i = 0, f = ""; i < e;) { do s = t[n.charCodeAt(i++) & 255]; while (i < e && s == -1); if (s == -1) break; do o = t[n.charCodeAt(i++) & 255]; while (i < e && o == -1); if (o == -1) break; f += String.fromCharCode(s << 2 | (o & 48) >> 4); do { if (r = n.charCodeAt(i++) & 255, r == 61) return f; r = t[r] } while (i < e && r == -1); if (r == -1) break; f += String.fromCharCode((o & 15) << 4 | (r & 60) >> 2); do { if (u = n.charCodeAt(i++) & 255, u == 61) return f; u = t[u] } while (i < e && u == -1); if (u == -1) break; f += String.fromCharCode((r & 3) << 6 | u) } return f } var n = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", t = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 62, -1, -1, -1, 63, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, -1, -1, -1, -1, -1, -1, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, -1, -1, -1, -1, -1, -1, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, -1, -1, -1, -1, -1]; window.btoa || (window.btoa = i), window.atob || (window.atob = r) })(); var Canvas2Image = function () { var f = !1, n = document.createElement("canvas"); if (n.getContext("2d") && (f = !0), !f) return { saveAsBMP: function () { }, saveAsPNG: function () { }, saveAsJPEG: function () { } }; var h = !!n.getContext("2d").getImageData, e = !!n.toDataURL, c = !!window.btoa, t = "image/octet-stream", l = function (n) { var t = parseInt(n.width), i = parseInt(n.height); return n.getContext("2d").getImageData(0, 0, t, i) }, o = function (n) { var i = "", r, t; if (typeof n == "string") i = n; else for (r = n, t = 0; t < r.length; t++) i += String.fromCharCode(r[t]); return btoa(i) }, a = function (n) { var i = [], s = n.width, c = n.height, r, t, u, f, e, y, l, h, a, v, w; for (i.push(66), i.push(77), r = s * c * 3 + 54, i.push(r % 256), r = Math.floor(r / 256), i.push(r % 256), r = Math.floor(r / 256), i.push(r % 256), r = Math.floor(r / 256), i.push(r % 256), i.push(0), i.push(0), i.push(0), i.push(0), i.push(54), i.push(0), i.push(0), i.push(0), t = [], t.push(40), t.push(0), t.push(0), t.push(0), u = s, t.push(u % 256), u = Math.floor(u / 256), t.push(u % 256), u = Math.floor(u / 256), t.push(u % 256), u = Math.floor(u / 256), t.push(u % 256), f = c, t.push(f % 256), f = Math.floor(f / 256), t.push(f % 256), f = Math.floor(f / 256), t.push(f % 256), f = Math.floor(f / 256), t.push(f % 256), t.push(1), t.push(0), t.push(24), t.push(0), t.push(0), t.push(0), t.push(0), t.push(0), e = s * c * 3, t.push(e % 256), e = Math.floor(e / 256), t.push(e % 256), e = Math.floor(e / 256), t.push(e % 256), e = Math.floor(e / 256), t.push(e % 256), y = 0; y < 16; y++) t.push(0); var d = (4 - s * 3 % 4) % 4, p = n.data, b = "", k = c; do { for (l = s * (k - 1) * 4, h = "", a = 0; a < s; a++) v = 4 * a, h += String.fromCharCode(p[l + v + 2]), h += String.fromCharCode(p[l + v + 1]), h += String.fromCharCode(p[l + v]); for (w = 0; w < d; w++) h += String.fromCharCode(0); b += h } while (--k); return o(i.concat(t)) + o(b) }, i = function (n) { document.location.href = n }, s = function (n, t) { return "data:" + t + ";base64," + n }, r = function (n) { var t = document.createElement("img"); return t.src = n, t }, u = function (n, t, i) { var r, u; return t && i ? (r = document.createElement("canvas"), r.width = t, r.height = i, r.style.width = t + "px", r.style.height = i + "px", u = r.getContext("2d"), u.drawImage(n, 0, 0, n.width, n.height, 0, 0, t, i), r) : n }; return { saveAsPNG: function (n, f, o, s) { if (!e) return !1; var c = u(n, o, s), h = c.toDataURL("image/png"); return f ? r(h) : (i(h.replace("image/png", t)), !0) }, saveAsJPEG: function (n, f, o, s) { if (!e) return !1; var l = u(n, o, s), h = "image/jpeg", c = l.toDataURL(h); return c.indexOf(h) != 5 ? !1 : f ? r(c) : (i(c.replace(h, t)), !0) }, saveAsBMP: function (n, f, e, o) { if (!(h && c)) return !1; var y = u(n, e, o), p = l(y), v = a(p); return f ? r(s(v, "image/bmp")) : (i(s(v, t)), !0) } } }(), canvas = document.querySelector("canvas"), ctx = canvas.getContext("2d"); window.addEventListener("load", function () { var n = new DNDFileController("dropzone", "dnd-thumbnails") }, !1)
+    </script>
+</body>
+</html>

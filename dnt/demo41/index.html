@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script>
+        window.location.href = "http://alloyteam.github.io/Nuclear/";
+    </script>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon" />
+    <link href="css/jqtree.css" rel="stylesheet" />
+    <style>
+        body {
+            background: url(../img/topbg.png) repeat;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav {
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            vertical-align: top;
+            width: 15%;
+           
+            overflow-y:scroll;
+            position:relative;
+        }
+
+        .column {
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            vertical-align: top;
+            width: 84%;
+            background-color: gray;
+        }
+
+        .header {
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            height: 40px;
+            width: 100%;
+            background-color: black;
+        }
+
+        .column iframe {
+            width: 100%;
+            border: 0;
+            margin: 0;
+            padding: 0;
+        }
+        .nav h4 {
+            margin-left: 3px;
+            padding: 0;
+            margin-top: 10px;
+            margin-bottom: 4px;
+        }
+        .tree1 {
+            margin-left: 19px;
+            margin-top: -14px;
+        }
+        .al-ct{text-align:center}
+    </style>
+  
+</head>
+<body>
+    <!-- <div class="header"></div>-->
+    <div>
+        <div class="nav" id="nav">
+            <h4 class="al-ct">SCJ Framework</h4>
+            <div  class="al-ct" style="font-size:10px;">create by <a href="http://weibo.com/iamleizhang" target="_blank">当耐特</a></div>
+            <div id="tree1" class="tree1"></div>
+            
+        </div>
+        <div class="column">
+            <iframe src="../demo33/index.html" width="100%" height="100%" id="iframe1" marginheight="0" frameborder="0" ></iframe>
+        </div>
+    </div>
+
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/tree.jquery.js"></script>
+    <script>
+        ; (function () {
+            function initHeight() {
+                var newheight = 0;
+                var d = document.documentElement, b = document.body;
+                var vp = d && d.clientWidth && d.clientWidth != 0 ?
+                    { width: d.clientWidth, height: d.clientHeight } :
+                    { width: b.clientWidth, height: b.clientHeight };
+
+                if (newheight < vp.height) newheight = vp.height - 10;
+
+
+                document.getElementById("iframe1").height = (newheight) + "px";
+                $("#nav").height(newheight);
+
+            }
+            initHeight();
+            $(window).bind("resize.xxx", function () {
+                initHeight();
+            })
+            var data = [
+                {
+                    label: 'Core',
+                    children: [
+                         { label: 'dom', url: 'dom.html' },
+                         { label: 'ajax', url: 'ajax.html' },
+                         { label: 'animate', url: 'animate.html' },
+                         { label: 'josnp', url: 'jsonp.html' },
+                         { label: 'class', url: 'class.html' },
+                          { label: 'promise', url: 'promise.html' },
+                         { label: 'store', url: 'store.html' },
+                           { label: 'remoteLog', url: 'remoteLog.html' }
+                    ]
+                },
+                {
+                    label: 'UI',
+                    children: [
+                         { label: 'button', url: "../demo35/index.html" },
+                          { label: 'adjust', url: 'adjust.html' },
+                          //{ label: "colorPicker" },
+                         { label: "drag", url: "../demo38/index.html" },
+                         { label: 'mask', url: 'mask.html' },
+                         { label: 'dialog', url: 'dialog.html' },
+                         { label: 'pop', url: 'pop.html' },
+                         { label: "dropDown", url: "../demo37/dropDown.html" },
+                        { label: "imageMagnifier", url: "imageMagnifier.html" },
+                         { label: "rotate3d", url: "../demo36/index.html" },
+                         { label: "slider", url: "../demo40/index.html" },
+                         { label: "calendar", url: "calendar.html" }
+                    ]
+                },
+                {
+                    label: 'Canvas',
+                    children: [
+                         {
+                             label: 'Structure', children: [
+                                { label: 'Statements', url: "statements.html" },
+                                { label: 'Coordinates', url: "canvas/coordinates.html" },
+                                { label: 'WidthHeight', url: "canvas/widthheight.html" },
+                                { label: 'Tick', url: "canvas/tick.html" },
+                                { label: 'No Loop', url: "canvas/noloop.html" },
+                                { label: 'Loop', url: "canvas/loop.html" },
+                                { label: 'Next Tick', url: "canvas/nextTick.html" },
+                                { label: 'Functions', url: "canvas/functions.html" },
+                                { label: 'Recursion', url: "canvas/recursion.html" },
+                                { label: 'Recursion2', url: "canvas/recursion2.html" },
+                                { label: 'CreateGraphics', url: "canvas/createGraphics.html" }
+                             ]
+                         }
+                    ]
+                },
+                {
+                    label: 'Canvas Component',
+                    children: [
+                         { label: 'pieChart', url: "canvas/pie.html" },
+                         { label: 'lineChart', url: "canvas/lineChart.html" }
+                    ]
+                }
+            ];
+            $tree = $('#tree1').tree({
+                data: data
+                //autoOpen: true
+            });
+
+            $tree.bind('tree.click', function (e) {
+                var ifm = document.getElementById("iframe1");
+                if (e.node.url) {
+                    ifm.src = e.node.url;
+                } else {
+                    $tree.tree('toggle', e.node);
+                }
+            });
+
+        })();       
+    </script>
+</body>
+</html>

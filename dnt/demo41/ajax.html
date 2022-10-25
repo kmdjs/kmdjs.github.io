@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+         <title>SCJ Framework-AJAX</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon" />
+    <style>
+        .code {
+            background: silver;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 16px;
+            margin:0px;
+            margin-top:1px;
+            margin-bottom:1px;
+        }
+
+
+
+        h1 {
+            background: none repeat scroll 0 0 darkSlateBlue;
+            border-radius: 3px 3px 3px 3px;
+            color: white;
+            font-size: 18pt;
+            font-weight: bold;
+            letter-spacing: 1px;
+           margin:0px;
+            padding-left: 20px;
+            height:40px;
+            line-height:40px;
+        }
+    </style>
+        <style>
+        body {
+            background: url(../img/topbg.png) repeat;
+        }
+    </style>
+</head>
+<body>
+    <h1 >使用方式</h1>
+    <pre class="code"><span style="color:black;background:silver">require([</span><span style="color:#a31515;background:silver">"SCJ"</span><span style="color:black;background:silver">, </span><span style="color:#a31515;background:silver">"core/ajax"</span><span style="color:black;background:silver">], </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">(SCJ) {
+    SCJ.createAJAX({
+        type: </span><span style="color:#a31515;background:silver">"POST"</span><span style="color:black;background:silver">,
+        url: </span><span style="color:#a31515;background:silver">"some.php"</span><span style="color:black;background:silver">,
+        data: </span><span style="color:#a31515;background:silver">"name=John&amp;location=Boston"</span><span style="color:black;background:silver">,
+        success: </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">(msg) {
+            alert(</span><span style="color:#a31515;background:silver">"Data Saved: " </span><span style="color:black;background:silver">+ msg);
+        }
+    });
+    </span><span style="color:green;background:silver">//-----------or-----------
+    </span><span style="color:black;background:silver">SCJ.ca({
+        type: </span><span style="color:#a31515;background:silver">"POST"</span><span style="color:black;background:silver">,
+        url: </span><span style="color:#a31515;background:silver">"some.php"</span><span style="color:black;background:silver">,
+        data: </span><span style="color:#a31515;background:silver">"name=John&amp;location=Boston"</span><span style="color:black;background:silver">,
+        success: </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">(msg) {
+            alert(</span><span style="color:#a31515;background:silver">"Data Saved: " </span><span style="color:black;background:silver">+ msg);
+        }
+    });
+})</span></pre>
+</body>
+</html>

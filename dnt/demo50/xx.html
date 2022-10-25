@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>模块依赖可视化</title>
+        <link rel="shortcut icon" href="../../img/dang.ico" type="image/x-icon" />
+    <style>
+        .code {
+            background: silver;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 16px;
+            margin: 0px;
+            margin-top: 1px;
+            margin-bottom: 1px;
+            display:inline-block;
+        }
+
+        h1 {
+            background: none repeat scroll 0 0 darkSlateBlue;
+            border-radius: 3px 3px 3px 3px;
+            color: white;
+            font-size: 18pt;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin: 0px;
+            padding-left: 20px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        body {
+            background: url(../img/topbg.png) repeat;
+        }
+
+        h4 {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+  <div style="display:inline-block;"> <canvas width="300" height="300" style="border:1px solid #ccc"></canvas><br /><input id="refresh" type="button" value="尼玛看不清刷新一下" style="width:200px;" /></div> 
+    <pre class="code"><span style="color:black;background:silver">        define(</span><span style="color:#a31515;background:silver">"bb"</span><span style="color:black;background:silver">,  </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() {
+            </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">bb = { a: 1, b: 2 };
+            </span><span style="color:blue;background:silver">return </span><span style="color:black;background:silver">bb;
+        })
+        define(</span><span style="color:#a31515;background:silver">"pig"</span><span style="color:black;background:silver">, </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() {
+            </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">Pig = </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">(name,age) {
+                </span><span style="color:blue;background:silver">this</span><span style="color:black;background:silver">.age = age||0;
+                </span><span style="color:blue;background:silver">this</span><span style="color:black;background:silver">.name = name;
+            }
+            Pig.prototype.say = </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() {              
+            }
+            </span><span style="color:blue;background:silver">return </span><span style="color:black;background:silver">Pig;
+        })
+        define(</span><span style="color:#a31515;background:silver">"cc"</span><span style="color:black;background:silver">, [</span><span style="color:#a31515;background:silver">"bb"</span><span style="color:black;background:silver">,</span><span style="color:#a31515;background:silver">"pig"</span><span style="color:black;background:silver">], </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">(B,Pig) {           
+            </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">pig = </span><span style="color:blue;background:silver">new </span><span style="color:black;background:silver">Pig(</span><span style="color:#a31515;background:silver">"aa"</span><span style="color:black;background:silver">, 10);
+            </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">x = B.a + 3+pig.age;
+            </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">bb = { a: x, b: 4 };
+            </span><span style="color:blue;background:silver">return </span><span style="color:black;background:silver">bb;
+        })
+        define(</span><span style="color:#a31515;background:silver">"aa"</span><span style="color:black;background:silver">, [</span><span style="color:#a31515;background:silver">"cc"</span><span style="color:black;background:silver">], </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">(C) {
+            </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">x = C.a + 6;
+            </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">aa = { a: x, b: 4 };
+            </span><span style="color:blue;background:silver">return </span><span style="color:black;background:silver">aa;
+        })    
+        define(</span><span style="color:#a31515;background:silver">"dd"</span><span style="color:black;background:silver">, [</span><span style="color:#a31515;background:silver">"bb"</span><span style="color:black;background:silver">,</span><span style="color:#a31515;background:silver">"aa"</span><span style="color:black;background:silver">], </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">(B,A) {
+            </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">x = B.a + A.b;
+            </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">aa = { a: x, b: 4 };
+            </span><span style="color:blue;background:silver">return </span><span style="color:black;background:silver">aa;
+        })
+ 
+        require([</span><span style="color:#a31515;background:silver">"bb"</span><span style="color:black;background:silver">, </span><span style="color:#a31515;background:silver">"aa"</span><span style="color:black;background:silver">, </span><span style="color:#a31515;background:silver">"dd"</span><span style="color:black;background:silver">, </span><span style="color:#a31515;background:silver">"pig"</span><span style="color:black;background:silver">], </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">(B, A, D, Pig) {
+
+        })
+
+        define._renderRelation(document.querySelector(</span><span style="color:#a31515;background:silver">"canvas"</span><span style="color:black;background:silver">));</span></pre>
+    <script>
+
+        var define, require;
+        ; (function () {
+            var modules = {}, _relation = [];
+            require = function (deps, callback) {
+                _excuCallback(deps, callback);
+            }
+
+            define = function (name, deps, callback) {
+                if (arguments.length === 1) throw "the module must take a name";
+                if (arguments.length === 2) {
+                    _relation.push({ name: name });
+                    modules[name] = deps();
+                } else {
+                    _relation.push({ name: name, deps: deps });
+                    modules[name] = _excuCallback(deps, callback);
+                }
+            }
+
+            _excuCallback = function (deps, callback) {
+                var len = deps.length, moduleArr = [];
+                for (var i = 0; i < len; i++) {
+                    moduleArr.push(modules[deps[i]]);
+                }
+                return callback.apply(null, moduleArr);
+            }
+
+            define._relation = _relation;
+            define._renderRelation = function (canvas) {
+                var i = 0, len = _relation.length, ctx = canvas.getContext("2d"), width = canvas.width; height = canvas.height;
+                ctx.clearRect(0, 0, width, height);
+                var center = { x: width / 2, y: height / 2 };
+                var beginAngle = define._random(0, 360), average = 360 / len, r = center.x - 40;
+                ctx.font = "bold 20px Arial";
+                for (; i < len; i++) {
+                    var item = _relation[i];
+                    ctx.fillStyle = define._randomColor();
+                    item.x = center.x + r * Math.cos((beginAngle / 360) * Math.PI * 2);
+                    item.y = center.y + r * Math.sin((beginAngle / 360) * Math.PI * 2);
+
+
+
+                    ctx.fillText(item.name, item.x, item.y);
+                    item.x = center.x + (r - 30) * Math.cos((beginAngle / 360) * Math.PI * 2);
+                    item.y = center.y + (r - 30) * Math.sin((beginAngle / 360) * Math.PI * 2);
+                    beginAngle += average;
+
+                }
+
+                for (i = 0; i < len; i++) {
+                    var currentItem = _relation[i], deps = currentItem.deps;
+                    if (deps) {
+
+                        j = 0, dLen = deps.length;
+                        for (; j < dLen; j++) {
+                            var name = deps[j];
+                            for (var k = 0; k < len; k++) {
+                                var item = _relation[k];
+                                if (name === item.name) {
+                                    ctx.beginPath();
+                                    var color = define._randomColor();
+                                    ctx.strokeStyle = color;
+                                    ctx.fillStyle = color;
+                                    var x = item.x + define._random(-15, 15), y = item.y + define._random(-15, 15);
+                                    ctx.moveTo(x, y)
+                                    ctx.lineTo(currentItem.x + define._random(-15, 15), currentItem.y + define._random(-15, 15));
+
+                                    ctx.stroke();
+                                    ctx.beginPath();
+                                    ctx.arc(x, y, 4, 0, Math.PI * 2, true);
+                                    ctx.closePath();
+                                    ctx.fill();
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+
+            }
+
+            define._random = function (min, max) {
+                return min + Math.floor(Math.random() * (max - min + 1));
+            }
+
+
+            define._randomColor = function () {
+                //var arr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
+                //var result = "#";
+                //for (var i = 0; i < 6; i++) {
+                //    result += arr[define._random(0, 15)];
+                //}
+                //return result;
+
+                return ["#15D3E7", "#55D343", "#8F5C33", "#5DA2D7", "#FA5426", "#E8867B", "#0AF4B6", "#79BEF1", "#1F9361", "#49ADC7"][define._random(0, 9)];
+            }
+        })();
+
+        define("bb", function () {
+            var bb = { a: 1, b: 2 };
+            return bb;
+        })
+        define("pig", function () {
+            var Pig = function (name, age) {
+                this.age = age || 0;
+                this.name = name;
+            }
+            Pig.prototype.say = function () {
+            }
+            return Pig;
+        })
+        define("cc", ["bb", "pig"], function (B, Pig) {
+            var pig = new Pig("aa", 10);
+            var x = B.a + 3 + pig.age;
+            var bb = { a: x, b: 4 };
+            return bb;
+        })
+        define("aa", ["cc"], function (C) {
+            var x = C.a + 6;
+            var aa = { a: x, b: 4 };
+            return aa;
+        })
+        define("dd", ["bb", "aa"], function (B, A) {
+            var x = B.a + A.b;
+            var aa = { a: x, b: 4 };
+            return aa;
+        })
+
+        require(["bb", "aa", "dd", "pig"], function (B, A, D, Pig) {
+            var btn = document.querySelector("#refresh");
+            btn.addEventListener("click", function () {
+                define._renderRelation(document.querySelector("canvas"));
+            }, false);          
+        })
+
+        define._renderRelation(document.querySelector("canvas"));
+       
+    </script>
+</body>
+</html>

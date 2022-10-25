@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <canvas id="ourCanvas" width="200"  height="200" ></canvas>
+
+
+    <script>
+        var canvas=document.getElementById("ourCanvas");
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "rgb(0,0,0)"; //bg_color_string;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#ffffff"
+        ctx.font = "30px Times New Roman ";
+        ctx.fillText("aaa", 100, 100);
+        var image_src = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var image_flame = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var image_data_len = canvas.width * canvas.height * 4;
+        var linePixCount=canvas.width*4;
+        for (var pos = 0; pos < image_data_len; pos += 4) {
+            //if (image_src.data[pos] == 255) {
+          
+            //    image_flame.data[pos] = Math.floor(Math.random() * 256);
+            //}
+            if (Math.ceil( pos / linePixCount )== 180) {
+
+                image_flame.data[pos] = Math.floor(Math.random() * 256);
+            }
+        }
+        ctx.putImageData(image_flame, 0, 0);
+        for (var i=0; i<320; i++){
+        
+        }
+
+        function burn() {
+            for (var i = 0; i < image_data_len - linePixCount; i += 4) {
+                var x = (i / 4) % canvas.width;
+                var y = parseInt((i / 4) / canvas.width);
+
+
+              //  x,y   x-1,y+1    x,y+1    x+1,y+1
+                var r = (image_flame.data[i] + image_flame.data[i + linePixCount - 4] + image_flame.data[i + linePixCount] + image_flame.data[i + linePixCount + 4]) / 4;
+                var g = (image_flame.data[i + 1] + image_flame.data[i + linePixCount - 4 + 1] + image_flame.data[i + linePixCount + 1] + image_flame.data[i + linePixCount + 4 + 1]) / 4;
+                var b = (image_flame.data[i + 2] + image_flame.data[i + linePixCount - 4 + 2] + image_flame.data[i + linePixCount + 2] + image_flame.data[i + linePixCount + 4 + 2]) / 4;
+                var a = (image_flame.data[i + 3] + image_flame.data[i + linePixCount - 4 + 3] + image_flame.data[i + linePixCount + 3] + image_flame.data[i + linePixCount + 4 + 3]) / 4;
+                image_flame.data[i] = r;
+                image_flame.data[i+1] = g;
+                image_flame.data[i+2] = b;
+                image_flame.data[i+3] = a;
+            }
+            ctx.putImageData(image_flame, 0, 0);
+        }
+
+
+        setInterval(function () {
+
+            burn();
+        }, 15)
+    </script>
+</body>
+</html>

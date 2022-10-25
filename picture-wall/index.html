@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>照片墙</title>
+	   <link rel="shortcut icon" href="http://kmdjs.github.io/dang.ico" type="image/x-icon" />
+    <style>
+          body {
+            background: url(topbg.png) repeat;			
+            font: 14px/1.5 arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="tipDiv" style="position:absolute;right:0px;bottom:0px;padding:2px; border:2px solid #ccc;color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;">          
+        <div>鼠标放在【矩形区域】滚动滚轮放大缩小</div>
+             <div>鼠标放在【中心圆圈】内滚动滚轮可旋转</div>
+               <div>鼠标直接【点击】中心圆圈取消编辑状态</div>      
+         <div>非背景图片可直接从电脑【拖拽】至上方</div></div>
+    <div style="text-align:center;"><span style="font-size:20px;">照片墙</span> </div>
+  <div style="text-align:center;margin-top:3px;">  <canvas id="pwCanvas" width="768" height="512" style="border:2px solid #ccc;"></canvas></div>
+         <div style="text-align:center;">
+        <div>
+            <input type="button"  value="上传背景" onclick="document.getElementById('uploadBg').click()" /><input  id="uploadBg" type="file" style="display:none;"  value="上传背景" /><input type="button" value="上传图片" onclick="    document.getElementById('uploadImg').click();" /><input  style="display:none;"  id="uploadImg" type="file" value="上传图片" /><button id="exportBtn">下载图片</button>
+        </div>
+      <div > <span>powered by <a target="_blank" href="https://github.com/AlloyTeam/AlloyGameEngine">AlloyGameEngine</a></span></div>
+       
+
+    </div>
+  <script src="release.js"></script>
+
+</body>
+</html>

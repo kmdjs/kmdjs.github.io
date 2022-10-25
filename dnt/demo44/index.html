@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>SCJ Framework-Canvas with Jscex</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon" />
+    <style>
+        .code {
+            background: silver;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 16px;
+            margin: 0px;
+            margin-top: 1px;
+            margin-bottom: 1px;
+        }
+
+        h1 {
+            background: none repeat scroll 0 0 darkSlateBlue;
+            border-radius: 3px 3px 3px 3px;
+            color: white;
+            font-size: 18pt;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin: 0px;
+            padding-left: 20px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        body {
+            background: url(../img/topbg.png) repeat;
+        }
+
+        p,h4 {
+            margin: 0;
+            padding: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>集成Jscex缘由</h1>
+    <p>Jscex现已经更名为<a href="http://windjs.org/cn/">Windjs</a>，但是还是喜欢叫其Jscex。在使用图形类库程序辅助展示的时候，基本上没法使用step、promise等类库。</p>
+    <p>比如展示画一个圆形的过程，step需要这样子：  </p>
+    <pre class="code"><span style="color:black;background:silver">    </span><span style="color:blue;background:silver">&lt;</span><span style="color:maroon;background:silver">script</span><span style="color:blue;background:silver">&gt;
+        </span><span style="color:black;background:silver">step(
+            </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() },
+            </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() },
+            </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() },
+            </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() },
+            </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() },
+            </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() },
+            </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() },
+            </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() },
+            </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() },
+            </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() },
+            </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() },
+            </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() },
+            </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() }
+            </span><span style="color:green;background:silver">//...
+            //...
+            </span><span style="color:black;background:silver">)
+    </span><span style="color:blue;background:silver">&lt;/</span><span style="color:maroon;background:silver">script</span><span style="color:blue;background:silver">&gt;</span></pre>
+    <p>promise需要这样子：  </p>
+    <pre class="code"><span style="color:black;background:silver">    </span><span style="color:blue;background:silver">&lt;</span><span style="color:maroon;background:silver">script</span><span style="color:blue;background:silver">&gt;
+        </span><span style="color:black;background:silver">lineTo()
+            .then(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() })
+            .then(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() })
+            .then(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() })
+            .then(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() })
+            .then(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() })
+            .then(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() })
+            .then(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() })
+            .then(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() })
+            .then(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() })
+            .then(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() })
+            .then(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() { lineTo() })
+        </span><span style="color:green;background:silver">//...
+        //...        
+    </span><span style="color:blue;background:silver">&lt;/</span><span style="color:maroon;background:silver">script</span><span style="color:blue;background:silver">&gt;</span></pre>
+    <p>什么都不用需要这样子：  </p>
+    <pre class="code"><span style="color:black;background:silver">   </span><span style="color:blue;background:silver">&lt;</span><span style="color:maroon;background:silver">script</span><span style="color:blue;background:silver">&gt;
+        </span><span style="color:black;background:silver">lineTo(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() {
+            lineTo(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() {
+                lineTo(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() {
+                    lineTo(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() {
+                        lineTo(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() {
+                            </span><span style="color:green;background:silver">//....
+                            //....
+                        </span><span style="color:black;background:silver">})
+                    })
+                })
+            })
+        })
+    </span><span style="color:blue;background:silver">&lt;/</span><span style="color:maroon;background:silver">script</span><span style="color:blue;background:silver">&gt;</span></pre>
+    <p>带来的影响还不仅仅是这样子，比如step里function、promise的then、还有callback方式的数据、逻辑、结构等等都会被拆分得支离破碎。而Jscex只需要这样子：<a href="http://www.cnblogs.com/iamzhanglei/archive/2011/08/16/2140113.html" target="_blank">用Jscex画圆</a>（好老的文章=  =！）  </p>
+
+    <h1>SCJ Framework 时钟代码</h1>
+    <pre class="code"><span style="color:black;background:silver">require([</span><span style="color:#a31515;background:silver">"SCJ"</span><span style="color:black;background:silver">, </span><span style="color:#a31515;background:silver">"canvas/structure"</span><span style="color:black;background:silver">], </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">(SCJ) {
+    </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">graphics = SCJ.createGraphics(200, 200, </span><span style="color:#a31515;background:silver">"#canvasCTT"</span><span style="color:black;background:silver">);
+    eval(graphics.runSync(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() {
+        </span><span style="color:blue;background:silver">while </span><span style="color:black;background:silver">(</span><span style="color:blue;background:silver">true</span><span style="color:black;background:silver">) {
+            graphics.background(0);
+            graphics.fill(80);
+            graphics.ellipse(100, 100, 160, 160);
+            </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">s = graphics.map(graphics.second(), 0, 60, 0, graphics.TWO_PI) - graphics.HALF_PI;
+            </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">m = graphics.map(graphics.minute(), 0, 60, 0, graphics.TWO_PI) - graphics.HALF_PI;
+            </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">h = graphics.map(graphics.hour() % 12, 0, 12, 0, graphics.TWO_PI) - graphics.HALF_PI;
+            graphics.stroke(255);
+            graphics.strokeWeight(1);
+            graphics.line(100, 100, graphics.cos(s) * 72 + 100, graphics.sin(s) * 72 + 100);
+            graphics.strokeWeight(2);
+            graphics.line(100, 100, graphics.cos(m) * 60 + 100, graphics.sin(m) * 60 + 100);
+            graphics.strokeWeight(4);
+            graphics.line(100, 100, graphics.cos(h) * 50 + 100, graphics.sin(h) * 50 + 100);
+
+            graphics.sleep(1000);
+        }
+    }))
+})</span></pre>
+    <h1>在线演示</h1>
+    <div id="canvasCTT"></div>
+  
+ <h1>其他</h1>
+    <p>当然时钟这种task之间没有联系的不能体现runSync的优势。因为它也可以使用这种方式:</p>
+    <pre class="code"><span style="color:black;background:silver">require([</span><span style="color:#a31515;background:silver">"SCJ"</span><span style="color:black;background:silver">, </span><span style="color:#a31515;background:silver">"canvas/structure"</span><span style="color:black;background:silver">], </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">(SCJ) {
+    </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">graphics = SCJ.createGraphics(200, 200, </span><span style="color:#a31515;background:silver">"#canvasCTT"</span><span style="color:black;background:silver">);
+    </span><span style="color:blue;background:silver">with </span><span style="color:black;background:silver">(graphics){
+        tick(</span><span style="color:blue;background:silver">function</span><span style="color:black;background:silver">(){
+            background(0);
+            fill(80);
+            ellipse(100, 100, 160, 160);
+            </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">s = map(second(), 0, 60, 0, TWO_PI) - HALF_PI;
+            </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">m = map(minute(), 0, 60, 0, TWO_PI) - HALF_PI;
+            </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">h = map(hour() % 12, 0, 12, 0, TWO_PI) - HALF_PI;
+            stroke(255);
+            strokeWeight(1);
+            line(100, 100, cos(s) * 72 + 100, sin(s) * 72 + 100);
+            strokeWeight(2);
+            line(100, 100, cos(m) * 60 + 100, sin(m) * 60 + 100);
+            strokeWeight(4);
+            line(100, 100, cos(h) * 50 + 100, sin(h) * 50 + 100);
+        });
+    }
+})</span></pre>
+       <p>然后通过<a href="http://weibo.com/iamleizhang/demo42/index.html" target="_blank">SCJ Framework-Compile With Statement</a>把with干掉。</p>
+          <p>什么地方能体现其优势？比如这里：<a href="http://weibo.com/iamleizhang/demo43/index.html">http://weibo.com/iamleizhang/demo43/index.html</a></p>
+     <h1>Bug</h1>
+        <p>在修改wind的过程中，发现逗号分隔的无法编译。这点使用UglifyJS压缩特别需要注意。</p>
+    <img src="bug2.png" />
+    <p>修改成分号则能正常编译，如：</p>
+    <img src="bug1.png" />
+      <div style="text-align:center;">create by <a href="http://weibo.com/iamleizhang/" target="_blank">当耐特</a></div>
+    <script src="clock2.js"></script>
+</body>
+</html>

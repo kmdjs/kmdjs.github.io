@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>JS爬虫</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon"/>
+    <script src="jquery.1.9.0.min.js"></script>
+    <script src="jquery.cdAjax.js"></script>
+</head>
+<body style=" background: url(../img/topbg.png) repeat;">
+    http://www.cnblogs.com/<button>开始抓数据</button>
+    <div id="loading" style="display:none;"><img  src="loading.gif" /></div>
+    <div id="fData"></div>
+    <div style="text-align:center;">
+       <p>create by <a href="http://weibo.com/iamleizhang" target="_blank">当耐特</a></p>     
+    </div>
+    <div id="content" style="display:none;"></div>
+   
+    <script>
+        function fetchData() {
+            $.ajax({
+                url: 'http://www.cnblogs.com' ,
+                type: 'GET',
+                success: function (res) {
+                    var $content = $('#content'), $fData = $('#fData');
+                    $content.html(res.responseText);
+                    $items = $content.find(".post_item");
+               
+                    $fData.append($items);
+                    $items.each(function () {
+                        $dg = $(this).find(".diggnum");
+                        $dg.html("推荐数：" + $dg.html());
+                    });
+                    $("#loading").hide();
+                }
+            });
+        }
+        $("button").click(function () {
+            $("#loading").show();
+            $('#fData').empty();
+            fetchData();
+        })
+
+    </script>
+</body>
+</html>

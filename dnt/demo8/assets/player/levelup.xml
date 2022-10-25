@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:c80ad7fdb62830e354d6e8b75e9ed11b$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="levelup.png" width="1012" height="986">
+    <sprite n="0" x="2" y="2" w="200" h="326"/>
+    <sprite n="1" x="204" y="2" w="200" h="326"/>
+    <sprite n="10" x="406" y="2" w="200" h="326"/>
+    <sprite n="11" x="608" y="2" w="200" h="326"/>
+    <sprite n="12" x="810" y="2" w="200" h="326"/>
+    <sprite n="13" x="2" y="330" w="200" h="326"/>
+    <sprite n="2" x="204" y="330" w="200" h="326"/>
+    <sprite n="3" x="406" y="330" w="200" h="326"/>
+    <sprite n="4" x="608" y="330" w="200" h="326"/>
+    <sprite n="5" x="810" y="330" w="200" h="326"/>
+    <sprite n="6" x="2" y="658" w="200" h="326"/>
+    <sprite n="7" x="204" y="658" w="200" h="326"/>
+    <sprite n="8" x="406" y="658" w="200" h="326"/>
+    <sprite n="9" x="608" y="658" w="200" h="326"/>
+</TextureAtlas>

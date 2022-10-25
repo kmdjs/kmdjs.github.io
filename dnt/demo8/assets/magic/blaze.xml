@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:a1dceb58bb1d352a29892690c775d14c$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="blaze.png" width="956" height="171">
+  <sprite n="d0" x="512" y="69" w="100" h="100"/>
+  <sprite n="d1" x="410" y="69" w="100" h="100"/>
+  <sprite n="d2" x="308" y="69" w="100" h="100"/>
+  <sprite n="d3" x="206" y="69" w="100" h="100"/>
+  <sprite n="d4" x="104" y="69" w="100" h="100"/>
+  <sprite n="d5" x="2" y="69" w="100" h="100"/>
+  <sprite n="d6" x="854" y="2" w="100" h="100"/>
+ 
+  <sprite n="s0" x="2" y="2" w="140" h="65"/>
+  <sprite n="s1" x="712" y="2" w="140" h="65"/>
+  <sprite n="s2" x="570" y="2" w="140" h="65"/>
+  <sprite n="s3" x="428" y="2" w="140" h="65"/>
+  <sprite n="s4" x="286" y="2" w="140" h="65"/>
+  <sprite n="s5" x="144" y="2" w="140" h="65"/>
+
+  <sprite n="ss" x="614" y="69" w="36" h="36"/>
+</TextureAtlas>

@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>封心</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon"/>
+    <style>
+    * { margin: 0; padding: 0; }
+ 
+   html, body { height: 100％; width: 100％; }
+ 
+ canvas { display: block; }
+        </style>
+</head>
+<body>
+   
+    <script src="wind.js"></script>
+    <canvas id="myCanvas">Your browser does not support the canvas element. </canvas>
+    <script type="text/javascript">
+
+        var debounce = function (func, wait, immediate) {
+            var timeout,
+            result;
+            return function () {
+                var context = this,
+                args = arguments;
+                var later = function () {
+                    timeout = null;
+                    if (!immediate) result = func.apply(context, args);
+
+                };
+                var callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) result = func.apply(context, args);
+                return result;
+
+            };
+
+        };
+        var canvas = document.getElementById("myCanvas");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        window.onresize = debounce(function () {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+        },
+        100)
+
+        var cxt = canvas.getContext("2d");
+        cxt.fillStyle = "#030303";
+        cxt.fillRect(0, 0, canvas.width, canvas.height);
+
+        var img = new Image();
+        img.src = "http://images.cnblogs.com/cnblogs_com/iamzhanglei/p1.png";
+        img.onload = function () {
+            cxt.drawImage(img, 600, 600);
+
+        }
+
+        var cyc = 10;
+        var a = 20;
+        var balls = [];
+        var ball = {
+            x: 640,
+            y: 520,
+            r: 28,
+            vx: 0,
+            vy: -1250
+
+        };
+        balls.push(ball);
+        var fireAsync = eval(Wind.compile("async",
+        function () {
+            while (ball.y > 220) {
+                cxt.fillStyle = "rgba(0, 0, 0, .3)";
+                cxt.fillRect(0, 0, canvas.width, canvas.height);
+                cxt.fillStyle = "#fff";
+                cxt.drawImage(img, 600, 540);
+                cxt.globalAlpha = 1;
+
+                for (i in balls) {
+                    cxt.beginPath();
+                    cxt.arc(balls[i].x, balls[i].y, balls[i].r, 0, Math.PI * 2, true);
+                    cxt.closePath();
+                    cxt.fill();
+                    balls[i].y += balls[i].vy * cyc / 1000;
+                    balls[i].x += balls[i].vx * cyc / 1000;
+                    if (balls[i].r + balls[i].y >= canvas.height) {
+                        if (balls[i].vy > 0) {
+                            balls[i].vy *= -0.7;
+
+                        }
+
+                    }
+                    else {
+                        balls[i].vy += a;
+
+                    }
+
+                }
+                $await(Wind.Async.sleep(cyc));
+
+            }
+
+        }))
+
+        function getRandomNumber(min, max) {
+            return (min + Math.floor(Math.random() * (max - min + 1)))
+
+        }
+
+        Vector2 = function (x, y) {
+
+            this.x = x || 0;
+            this.y = y || 0;
+
+
+        };
+
+        var ball2s = [];
+        for (var i = 0; i < 800; i++) {
+            var ball2 = {
+                position: new Vector2(630, 220),
+                r: getRandomNumber(1, 4),
+                vx: getRandomNumber(-200, 200),
+                vy: getRandomNumber(-200, 200)
+
+            };
+            ball2s.push(ball2);
+
+        }
+
+
+        var t = 0;
+        var heartR = 100;
+        var moveAsync = eval(Wind.compile("async",
+        function () {
+            while (true) {
+                try {
+                    if (t > 1200) {
+                        cxt.clearRect(0, 0, canvas.width, canvas.height);
+                        cxt.fillStyle = "#030303";
+                        cxt.fillRect(0, 0, canvas.width, canvas.height);
+                        cxt.drawImage(img, 600, 540);
+                        t = 0;
+                        break;
+
+                    }
+                    cxt.globalAlpha = 1;
+                    t += cyc;
+                    cxt.fillStyle = "rgba(0, 0, 0, .3)";
+                    cxt.fillRect(0, 0, canvas.width, canvas.height);
+                    cxt.fillStyle = "#fff";
+                    cxt.drawImage(img, 600, 540);
+                    cxt.globalAlpha = (1180 - t) / 1180;
+                    if (t > 1180) ball2s.length = 0;
+                    for (i in ball2s) {
+                        //                    (x^2 + y^2 - 1)^3 - x^2*y^3 < 0
+                        //                        630 220
+
+                        var x = ball2s[i].position.x - 630;
+                        var y = 220 - ball2s[i].position.y;
+                        var result = ((x / heartR) * (x / heartR) + (y / heartR) * (y / heartR) - 1) * ((x / heartR) * (x / heartR) + (y / heartR) * (y / heartR) - 1) * ((x / heartR) * (x / heartR) + (y / heartR) * (y / heartR) - 1) - (x / heartR) * (x / heartR) * (y / heartR) * (y / heartR) * (y / heartR);
+
+                        if (result < 0) {
+                            cxt.beginPath();
+                            cxt.arc(ball2s[i].position.x, ball2s[i].position.y, ball2s[i].r, 0, Math.PI * 2, true);
+                            cxt.closePath();
+                            cxt.fill();
+
+                        }
+                        else {
+                            ball2s[i].vx *= -1;
+                            ball2s[i].vy *= -1;
+
+                        }
+                        //反射
+                        if (ball2s[i].r + ball2s[i].position.x > canvas.width || ball2s[i].position.x < ball2s[i].r) ball2s[i].vx *= -1;
+                        if (ball2s[i].r + ball2s[i].position.y > canvas.height || ball2s[i].position.y < ball2s[i].r) ball2s[i].vy *= -1;
+                        ball2s[i].position.x += ball2s[i].vx * cyc / 1000;
+                        ball2s[i].position.y += ball2s[i].vy * cyc / 1000;
+
+                    }
+
+                }
+                catch (e) {
+                    alert(e);
+
+                }
+                $await(Wind.Async.sleep(cyc));
+
+            }
+
+
+
+        }))
+        // moveAsync().start();
+
+        var qAsync = eval(Wind.compile("async",
+       function () {
+           while (true) {
+               $await(fireAsync());
+               $await(moveAsync());
+               ball2s.length = 0;
+               for (var i = 0; i < 800; i++) {
+                   var ball2 = {
+                       position: new Vector2(630, 220),
+                       r: getRandomNumber(1, 4),
+                       vx: getRandomNumber(-200, 200),
+                       vy: getRandomNumber(-200, 200)
+
+                   };
+                   ball2s.push(ball2);
+
+               }
+               balls.length = 0;
+               ball = {
+                   x: 640,
+                   y: 520,
+                   r: 28,
+                   vx: 0,
+                   vy: -1250
+
+               };
+               balls.push(ball);
+               $await(Wind.Async.sleep(1000));
+
+           }
+
+       }))
+        qAsync().start();
+    </script>
+    <!--(x^2 + y^2 - 1)^3 - x^2*y^3 < 0-->
+</body>
+</html>

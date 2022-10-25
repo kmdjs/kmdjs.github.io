@@ -1,0 +1,574 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>光线追踪进阶</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon"/>
+    <script src="js/jquery-1.9.0.js"></script>
+    <script src="js/vector3.js"></script>
+    <script src="js/cube.js"></script>
+    <script src="js/ball.js"></script>
+    <script src="js/Ray3.js"></script>
+</head>
+<body style="background-color:#eaeaea;">
+        <style>
+            
+        .filter_input{width: 150px;min-height: 26px;padding: 3px 10px;font-size: 13px;border-radius: 12px;min-height: 34px;padding: 7px 8px;outline: none;color: #333;background-color: #fff;background-repeat: no-repeat;background-position: right center;border: 1px solid #ccc;box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);-moz-box-sizing: border-box;box-sizing: border-box;transition: all 0.15s ease-in;-webkit-transition: all 0.15s ease-in 0;vertical-align: middle;} 
+        .button, .minibutton {
+position: relative;
+display: inline-block;
+padding: 7px 15px;
+font-size: 13px;
+font-weight: bold;
+color: #333;
+text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+white-space: nowrap;
+background-color: #eaeaea;
+background-image: -moz-linear-gradient(#fafafa, #eaeaea);
+background-image: -webkit-linear-gradient(#fafafa, #eaeaea);
+background-image: linear-gradient(#fafafa, #eaeaea);
+background-repeat: repeat-x;
+border-radius: 3px;
+border: 1px solid #ddd;
+border-bottom-color: #c5c5c5;
+box-shadow: 0 1px 3px rgba(0,0,0,0.075);
+vertical-align: middle;
+cursor: pointer;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+-webkit-appearance: none;
+text-decoration: none;
+}
+
+         .button:hover, .button:active, .minibutton:hover, .minibutton:active {
+color: #fff;
+text-decoration: none;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+background-color: #3072b3;
+background-image: -moz-linear-gradient(#599bcd, #3072b3);
+background-image: -webkit-linear-gradient(#599bcd, #3072b3);
+background-image: linear-gradient(#599bcd, #3072b3);
+background-repeat: repeat-x;
+border-color: #2a65a0;
+}
+     </style>
+    <canvas width="400" height="400" style="border-style: groove; background-color: black;">请使用现代浏览器，你的浏览器过时了！下载地址<a href="http://dl.pconline.com.cn/download/51614.html">http://dl.pconline.com.cn/download/51614.html</a></canvas>
+    <script>
+        render1($("canvas")[0],
+                   new Vector3(150, 500, 450),
+                   new Ball(new Vector3(110, 100, -270), 100),
+                   new Cube(new Vector3(-180, 150, -270), 200));
+        function render1(canvas, cameraPosition, ball, cube) {
+
+            var ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var imgdata = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            var pixels = imgdata.data, i = 0, sideLength = 100, planeLength = 4400;
+
+            for (var y = 0; y < canvas.height; y++) {
+                for (var x = 0; x < canvas.width; x++) {
+                    var screenP = new Vector3(-canvas.width / 2 + x, canvas.height - y, 0);
+                    var cv = new Vector3(cameraPosition.y * screenP.x / (cameraPosition.y - screenP.y), 0, cameraPosition.z * screenP.y / (screenP.y - cameraPosition.y));
+                    var r3 = new Ray3(cameraPosition, screenP.sub(cameraPosition).normalize())
+                    var result1 = ball.intersect(r3);
+                    var result2 = cube.intersect(r3);
+
+                    if (result1) {
+                        pixels[i] = ((result1.z - ball.p.z) / ball.r) * 0
+                        pixels[i + 1] = Math.max(25, ((result1.z - ball.p.z) / ball.r) * 199);
+                        pixels[i + 2] = Math.max(25, ((result1.z - ball.p.z) / ball.r) * 140);
+                        pixels[i + 3] = 255;
+
+                    }
+
+                    else if (result2) {
+                        pixels[i] = Math.max(25, ((result2.z - cube.center.z + cube.hLength) / (2 * cube.length)) * 255);
+                        pixels[i + 1] = 0;
+                        pixels[i + 2] = Math.max(25, ((result2.z - cube.center.z + cube.hLength) / (2 * cube.length)) * 255);
+                        pixels[i + 3] = 255;
+
+                    }
+                    else if (cv.z > -planeLength && cv.z < 0) {
+                        pixels[i] = pixels[i + 1] = pixels[i + 2] = (Math.ceil(cv.x / sideLength) + Math.ceil(cv.z / sideLength)) % 2 === 0 ? 148 : 0;
+                        pixels[i + 3] = 255 * (planeLength - Math.abs(cv.z)) / planeLength;
+                    }
+                    i += 4;
+                }
+            }
+            ctx.putImageData(imgdata, 0, 0);
+        }
+    </script>
+    <br />
+    <textarea id="code1" rows="5" cols="90">
+render1(  $("canvas")[0],
+            new Vector3(150, 500, 450) ,
+            new  Ball(new Vector3(110, 100, -270), 100),
+            new Cube(new Vector3(-180, 150, -270), 200));
+</textarea>
+    <br />
+    修改球的半径、正方体的边长等参数==>
+    <a href="javascript:eval(document.getElementById('code1').value)" class="button minibutton "><span></span>Run</a> 
+    <br />
+    <hr />
+ 
+        <canvas width="200" height="200" style="border-style: dashed"></canvas>
+  
+    <script>
+
+        function render2(canvas, word, fontSize) {
+            var ctx = canvas.getContext("2d");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var linearText = ctx.createLinearGradient(0, 0, 200, 200);
+            linearText.addColorStop(0, "blue");
+            linearText.addColorStop(0.5, "yellow");
+            linearText.addColorStop(1, "red");
+            ctx.fillStyle = linearText;
+            var fontSize = fontSize || "200px";
+            ctx.font = "bold " + fontSize + " Arial";
+
+            ctx.textBaseline = "top";
+            ctx.fillText(word, 0, 0);
+        }
+        render2($("canvas")[1], "当");
+    </script>
+    <br />
+    <textarea id="code2" rows="2" cols="90">
+render2($("canvas")[1], "当","200px");
+</textarea>
+    <br />
+    修改显示的文字和字体大小==>
+    <a href="javascript:eval(document.getElementById('code2').value)" class="button minibutton "><span></span>Run</a> 
+    <br />
+   <hr />
+   
+
+
+    <canvas width="400" height="400" style="border-style: groove; background-color: black;">请使用现代浏览器，你的浏览器过时了！下载地址<a href="http://dl.pconline.com.cn/download/51614.html">http://dl.pconline.com.cn/download/51614.html</a></canvas>
+
+    <script type="text/javascript">
+
+
+        function createWordData(word) {
+            var canvas = document.createElement("canvas");
+            canvas.width = 90;
+            canvas.height = 90;
+            var ctx = canvas.getContext("2d");
+
+            //为文字创建一个渐变
+            var linearText = ctx.createLinearGradient(0, 0, 90, 90);
+            linearText.addColorStop(0, "blue");
+            linearText.addColorStop(0.5, "yellow");
+            linearText.addColorStop(1, "red");
+            ctx.fillStyle = linearText;
+            ctx.font = "bold 70px Arial";
+
+            ctx.textBaseline = "top";//文字对齐方式，在canxt中，要看实际效果
+            ctx.fillText(word, 20, 15);//参数表示文字x,y轴的位置
+
+
+            var imgdata = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            var pixels = imgdata.data, tempN = 0;
+            var wordData = [];
+            for (var y = 0; y < canvas.height; y++) {
+                for (var x = 0; x < canvas.width; x++) {
+                    if (pixels[tempN + 3] !== 0) {
+                        wordData.push({ position: { x: x, y: y }, color: [pixels[tempN], pixels[tempN + 1], pixels[tempN + 2], pixels[tempN + 3]] })
+                    }
+
+                    tempN += 4;
+                }
+            }
+
+            return wordData;
+        }
+        function render3(canvas, cameraPosition, ball, cube, words) {
+            var dangData = createWordData(words.charAt(0));
+            var naiData = createWordData(words.charAt(1));
+            var teData = createWordData(words.charAt(2));
+            var ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var imgdata = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            var pixels = imgdata.data, i = 0, sideLength = 100, planeLength = 4400;
+
+            for (var y = 0; y < canvas.height; y++) {
+                for (var x = 0; x < canvas.width; x++) {
+                    var screenP = new Vector3(-canvas.width / 2 + x, canvas.height - y, 0);
+                    var cv = new Vector3(cameraPosition.y * screenP.x / (cameraPosition.y - screenP.y), 0, cameraPosition.z * screenP.y / (screenP.y - cameraPosition.y));
+                    var r3 = new Ray3(cameraPosition, screenP.sub(cameraPosition).normalize())
+                    var result1 = ball.intersect(r3);
+                    var result2 = cube.intersect(r3);
+
+                    if (result1) {
+                        pixels[i] = ((result1.z - ball.p.z) / ball.r) * 0
+                        pixels[i + 1] = Math.max(25, ((result1.z - ball.p.z) / ball.r) * 199);
+                        pixels[i + 2] = Math.max(25, ((result1.z - ball.p.z) / ball.r) * 140);
+                        pixels[i + 3] = 255;
+
+                    }
+
+                    else if (result2) {
+                        var color = null;
+                        for (var k = 0, l = dangData.length; k < l; k++) {
+                            var dD = dangData[k];
+                            if (Math.round(result2.y) === cube.maxY && Math.round(result2.x - cube.minX) === dD.position.x && Math.round(result2.z - cube.minZ) === dD.position.y) {
+                                color = dD.color;
+                                break;
+
+                            }
+                        }
+                        if (!color) {
+                            for (var k = 0, l = naiData.length; k < l; k++) {
+                                var dD = naiData[k];
+                                if (Math.round(result2.z) === cube.maxZ && Math.round(result2.x - cube.minX) === dD.position.x && Math.round(cube.maxY - result2.y) === dD.position.y) {
+                                    color = dD.color;
+                                    break;
+
+                                }
+                            }
+                        }
+                        if (!color) {
+                            for (var k = 0, l = teData.length; k < l; k++) {
+                                var dD = teData[k];
+                                if (Math.round(result2.x) === cube.maxX && Math.round(cube.maxY - result2.y) === dD.position.y && Math.round(cube.maxZ - result2.z) === dD.position.x) {
+                                    color = dD.color;
+                                    break;
+
+                                }
+                            }
+                        }
+                        if (color) {
+                            pixels[i] = color[0];
+                            pixels[i + 1] = color[1];
+                            pixels[i + 2] = color[2];
+                            pixels[i + 3] = color[3];
+                        } else {
+                            pixels[i] = Math.max(25, ((result2.z - cube.center.z + cube.hLength) / (2 * cube.length)) * ((Math.round(result2.x) === cube.maxX) ? 125 : 255));
+                            pixels[i + 1] = 0;
+                            pixels[i + 2] = Math.max(25, ((result2.z - cube.center.z + cube.hLength) / (2 * cube.length)) * ((Math.round(result2.z) === cube.maxZ) ? 125 : 255));
+                            pixels[i + 3] = 255;
+                        }
+                    }
+                    else if (cv.z > -planeLength && cv.z < 0) {
+                        pixels[i] = pixels[i + 1] = pixels[i + 2] = (Math.ceil(cv.x / sideLength) + Math.ceil(cv.z / sideLength)) % 2 === 0 ? 148 : 0;
+                        pixels[i + 3] = 255 * (planeLength - Math.abs(cv.z)) / planeLength;
+                    }
+                    i += 4;
+                }
+            }
+            ctx.putImageData(imgdata, 0, 0);
+        }
+        //render3($("canvas")[2], new Vector3(150, 500, 450), new Ball(new Vector3(110, 100, -270), 100), new Cube(new Vector3(-180, 150, -160), 100), "当耐特");
+    </script>
+      <br />
+    <textarea id="code3" rows="7" cols="90">
+  render3($("canvas")[2], 
+        new Vector3(150, 500, 450), 
+        new Ball(new Vector3(110, 100, -270), 100), 
+        new Cube(new Vector3(-180, 150, -160), 100),
+         "当耐特");
+</textarea>
+    <br />
+    修改各个参数试试( 这个有点久，耐心等会儿，或者使用chrome浏览器)==>  <a href="javascript:eval(document.getElementById('code3').value)" class="button minibutton "><span></span>Run</a> 
+    <br />
+    <hr />
+  
+        <canvas id="myCanvas" width="400" height="450" style="border-style: ridge;">请使用现代浏览器，你的浏览器过时了！下载地址<a href="http://dl.pconline.com.cn/download/51614.html">http://dl.pconline.com.cn/download/51614.html</a></canvas>
+   <br />
+    <textarea id="code4" rows="7" cols="90">
+       data:image/png;base64,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
+</textarea>
+     <script  type="text/javascript">
+         //createImageData();
+         function createImageData() {
+             var canvas = document.createElement("canvas");
+             canvas.width = 90;
+             canvas.height = 90;
+             var ctx = canvas.getContext("2d");
+
+             var loadingImage = new Image();
+             if ($.trim(document.getElementById('code4').value)) {
+                 loadingImage.src = document.getElementById('code4').value;
+
+             } else {
+                 
+             }
+             loadingImage.onload = function () {
+
+                 ctx.drawImage(loadingImage, 20, 20);
+                 var imgdata = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                 var pixels = imgdata.data, tempN = 0;
+                 var wordData = [];
+                 for (var y = 0; y < canvas.height; y++) {
+                     for (var x = 0; x < canvas.width; x++) {
+                         if (pixels[tempN + 3] !== 0) {
+                             wordData.push({ position: { x: x, y: y }, color: [pixels[tempN], pixels[tempN + 1], pixels[tempN + 2], pixels[tempN + 3]] })
+                         }
+
+                         tempN += 4;
+                     }
+                 }
+
+                 render4(wordData)
+
+
+
+
+             }
+         }
+
+         function render4(wd) {
+
+
+             var ball = new Ball(new Vector3(110, 100, -270), 100);
+             var cube = new Cube(new Vector3(-180, 150, -160), 100);
+             var camera = { p: new Vector3(150, 500, 450) };
+             var canvas = document.getElementById('myCanvas');
+             var ctx = canvas.getContext('2d');
+             var imgdata = ctx.getImageData(0, 0, canvas.width, canvas.height);
+             var pixels = imgdata.data, i = 0, sideLength = 100, planeLength = 4400;
+
+             for (var y = 0; y < canvas.height; y++) {
+                 for (var x = 0; x < canvas.width; x++) {
+                     var screenP = new Vector3(-canvas.width / 2 + x, canvas.height - y, 0);
+                     var cv = new Vector3(camera.p.y * screenP.x / (camera.p.y - screenP.y), 0, camera.p.z * screenP.y / (screenP.y - camera.p.y));
+                     var r3 = new Ray3(camera.p, screenP.sub(camera.p).normalize())
+                     var result1 = ball.intersect(r3);
+                     var result2 = cube.intersect(r3);
+                     if (result1) {
+                         pixels[i] = ((result1.z - ball.p.z) / ball.r) * 0
+                         pixels[i + 1] = Math.max(25, ((result1.z - ball.p.z) / ball.r) * 199);
+                         pixels[i + 2] = Math.max(25, ((result1.z - ball.p.z) / ball.r) * 140);
+                         pixels[i + 3] = 255;
+
+                     }
+
+                     else if (result2) {
+                         var color = null;
+                         for (var k = 0, l = wd.length; k < l; k++) {
+                             var dD = wd[k];
+                             if (Math.round(result2.y) === cube.maxY && Math.round(result2.x - cube.minX) === dD.position.x && Math.round(result2.z - cube.minZ) === dD.position.y) {
+                                 color = dD.color;
+                                 break;
+
+                             }
+                         }
+                         if (!color) {
+                             for (var k = 0, l = wd.length; k < l; k++) {
+                                 var dD = wd[k];
+                                 if (Math.round(result2.z) === cube.maxZ && Math.round(result2.x - cube.minX) === dD.position.x && Math.round(cube.maxY - result2.y) === dD.position.y) {
+                                     color = dD.color;
+                                     break;
+
+                                 }
+                             }
+                         }
+                         if (!color) {
+                             for (var k = 0, l = wd.length; k < l; k++) {
+                                 var dD = wd[k];
+                                 if (Math.round(result2.x) === cube.maxX && Math.round(cube.maxY - result2.y) === dD.position.y && Math.round(cube.maxZ - result2.z) === dD.position.x) {
+                                     color = dD.color;
+                                     break;
+
+                                 }
+                             }
+                         }
+                         if (color) {
+                             pixels[i] = color[0];
+                             pixels[i + 1] = color[1];
+                             pixels[i + 2] = color[2];
+                             pixels[i + 3] = color[3];
+                         } else {
+                             pixels[i] = Math.max(25, ((result2.z - cube.center.z + cube.hLength) / (2 * cube.length)) * ((Math.round(result2.x) === cube.maxX) ? 125 : 255));
+                             pixels[i + 1] = 0;
+                             pixels[i + 2] = Math.max(25, ((result2.z - cube.center.z + cube.hLength) / (2 * cube.length)) * ((Math.round(result2.z) === cube.maxZ) ? 125 : 255));
+                             pixels[i + 3] = 255;
+                         }
+                     }
+                     else if (cv.z > -planeLength && cv.z < 0) {
+                         pixels[i] = pixels[i + 1] = pixels[i + 2] = (Math.ceil(cv.x / sideLength) + Math.ceil(cv.z / sideLength)) % 2 === 0 ? 148 : 0;
+                         pixels[i + 3] = 255 * (planeLength - Math.abs(cv.z)) / planeLength;
+                     }
+                     i += 4;
+                 }
+             }
+             ctx.putImageData(imgdata, 0, 0);
+         }
+</script>
+    
+    <br />
+    <hr />
+
+通过   <a href="http://imagetobase64.com/">这个网站</a> 把64*64的图标转成base64然后粘贴进来 (这个有点久，耐心等会儿，或者使用chrome浏览器)
+    <br/>（要以data:image/png;base64,开头,别把整个img粘贴进textarea） <a href="javascript:createImageData()" class="button minibutton "><span></span>Run</a> 
+    <br />
+   
+ 
+  
+        <canvas width="400" height="400" style="border-style: groove;background-color:black;">请使用现代浏览器，你的浏览器过时了！下载地址<a href="http://dl.pconline.com.cn/download/51614.html">http://dl.pconline.com.cn/download/51614.html</a></canvas>
+
+
+    
+
+      
+    <div>
+    <input type="text" id="your-words" class="filter_input"   placeholder="随便输入三个字" >
+   
+    <a href="javascript:createImage(1)" class="button minibutton "><span></span>Run</a>that's all.Have fun!
+        </div>
+    <script>
+        function createWordData2(word) {
+            var canvas = document.createElement("canvas");
+            canvas.width = 90;
+            canvas.height = 90;
+            var ctx = canvas.getContext("2d");
+
+            //为文字创建一个渐变
+            var linearText = ctx.createLinearGradient(0, 0, 90, 90);
+            linearText.addColorStop(0, "blue");
+            linearText.addColorStop(0.5, "yellow");
+            linearText.addColorStop(1, "red");
+            ctx.fillStyle = linearText;
+            ctx.font = "bold 60px Arial";
+            ctx.textBaseline = "top";//文字对齐方式，在canxt中，要看实际效果
+            ctx.fillText(word, 20, 15);//参数表示文字x,y轴的位置
+
+
+            var imgdata = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            var pixels = imgdata.data, tempN = 0;
+            var wordData = [];
+            for (var y = 0; y < canvas.height; y++) {
+                for (var x = 0; x < canvas.width; x++) {
+                    if ( pixels[tempN + 3] !== 0) {
+                        wordData.push({ position: { x: x, y: y }, color: [pixels[tempN], pixels[tempN + 1], pixels[tempN + 2], pixels[tempN + 3]] })
+                    }
+
+                    tempN += 4;
+                }
+            }
+
+            return wordData;
+        }
+        function createImage(index) {
+            var words = document.getElementById("your-words").value;
+            if (words.length < 3) {
+                alert("请输入3个字符");
+            } else {
+                var ball = new Ball(new Vector3(0, 70, -100), 70);
+                var cube = new Cube(new Vector3(60, 50, -100), 160);
+                render(words, ball, cube);
+            }
+        }
+        render("当耐特", new Ball(new Vector3(0, 70, -100), 70), new Cube(new Vector3(60, 50, -100), 160))
+        function render(ws, ball, cube) {
+
+            var a = createWordData2(ws.charAt(0));
+
+            var b = createWordData2(ws.charAt(1));
+            var c = createWordData2(ws.charAt(2));
+            var bca = generateWordToBall(a, b, c, ball, cube);
+            excuteRender(bca, ball, cube)
+        }
+
+        function generateWordToBall(a, b, c, ball, cube) {
+
+            var color = null;
+            var bca = [];
+
+            for (var k = 0, l = a.length; k < l; k++) {
+                var dD = a[k];
+
+                var r3 = new Ray3(new Vector3(cube.minX + dD.position.x - 20, cube.maxY - dD.position.y + 30, cube.maxZ), new Vector3(0, 0, -1));
+
+                var result3 = ball.intersect(r3);
+                if (result3)
+                    bca.push({ cp: result3.round(), cl: dD.color });
+
+            }
+
+            for (var k = 0, l = b.length; k < l; k++) {
+                var dD = b[k];
+
+                var r3 = new Ray3(new Vector3(cube.minX + dD.position.x - 60, cube.maxY - dD.position.y, cube.maxZ), new Vector3(0, 0, -1));
+
+                var result3 = ball.intersect(r3);
+                if (result3)
+                    bca.push({ cp: result3.round(), cl: dD.color });
+
+            }
+
+            for (var k = 0, l = c.length; k < l; k++) {
+                var dD = c[k];
+
+                var r3 = new Ray3(new Vector3(cube.minX + dD.position.x, cube.maxY - dD.position.y - 20, cube.maxZ), new Vector3(0, 0, -1));
+
+                var result3 = ball.intersect(r3);
+                if (result3)
+                    bca.push({ cp: result3.round(), cl: dD.color });
+
+            }
+
+            return bca;
+        }
+
+        function excuteRender(bca, ball, cube) {
+            var camera = { p: new Vector3(0, 500, 750) };
+            var canvas = $("canvas")[4];
+            var ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var imgdata = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            var pixels = imgdata.data, i = 0, sideLength = 100, planeLength = 1400;
+
+            for (var y = 0; y < canvas.height; y++) {
+                for (var x = 0; x < canvas.width; x++) {
+                    var screenP = new Vector3(-canvas.width / 2 + x, canvas.height - y, 0);
+                    var cv = new Vector3(camera.p.y * screenP.x / (camera.p.y - screenP.y), 0, camera.p.z * screenP.y / (screenP.y - camera.p.y));
+                    var r3 = new Ray3(camera.p, screenP.sub(camera.p).normalize())
+                    var result1 = ball.intersect(r3);
+                    if (result1) {
+                        var rr = result1.round();
+                        pixels[i] = ((rr.z - ball.p.z) / ball.r) * 0
+                        pixels[i + 1] = Math.max(25, ((rr.z - ball.p.z) / ball.r) * 199);
+                        pixels[i + 2] = Math.max(25, ((rr.z - ball.p.z) / ball.r) * 140);
+                        pixels[i + 3] = 255;
+                    }
+
+                    if (result1) {
+                        var rr = result1.round();
+                        for (var m = 0, n = bca.length; m < n; m++) {
+
+
+                            var cpData = bca[m];
+                            if (cpData.cp.x === rr.x && cpData.cp.y === rr.y && cpData.cp.z === rr.z) {
+
+                                pixels[i] = cpData.cl[0];
+                                pixels[i + 1] = cpData.cl[1];
+                                pixels[i + 2] = cpData.cl[2];
+                                pixels[i + 3] = cpData.cl[3];
+                            }
+                        }
+
+                    }
+                    else if (cv.z > -planeLength && cv.z < 0) {
+                        pixels[i] = pixels[i + 1] = pixels[i + 2] = (Math.ceil(cv.x / sideLength) + Math.ceil(cv.z / sideLength)) % 2 === 0 ? 148 : 0;
+                        pixels[i + 3] = 255 * (planeLength - Math.abs(cv.z)) / planeLength;
+                    }
+
+
+
+
+                    i += 4;
+                }
+            }
+            ctx.putImageData(imgdata, 0, 0);
+        }
+    </script>
+    <hr />
+    <div style="text-align:center;">
+       <p>©2013-2113 create by <a href="http://weibo.com/iamleizhang" target="_blank">当耐特</a></p> 
+    
+    </div>
+</body>
+</html>

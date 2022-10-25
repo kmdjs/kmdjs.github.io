@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Perlin Noise</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon"/>
+    <script src="../demo9/js/jquery-1.9.0.js"></script>
+    <script src="../demo9/js/vector3.js"></script>
+    <script src="../demo9/js/cube.js"></script>
+    <script src="../demo9/js/ball.js"></script>
+    <script src="../demo9/js/Ray3.js"></script>
+    <script src="../demo9/js/noise.js"></script>
+</head>
+<body style="background-color:#eaeaea;">
+     <h1>refresh your page!</h1>
+    <canvas width="400" height="400" style="border-style: groove; background-color: black;">请使用现代浏览器，你的浏览器过时了！下载地址<a href="http://dl.pconline.com.cn/download/51614.html">http://dl.pconline.com.cn/download/51614.html</a></canvas>
+    <script>
+        render1($("canvas")[0],
+                   new Vector3(150, 500, 450),
+                   new Ball(new Vector3(110, 100, -270), 100),
+                   new Cube(new Vector3(-180, 150, -270), 200));
+        function render1(canvas, cameraPosition, ball, cube) {
+
+            var ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var imgdata = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            var pixels = imgdata.data, i = 0, sideLength = 100, planeLength = 4400;
+
+            for (var y = 0; y < canvas.height; y++) {
+                for (var x = 0; x < canvas.width; x++) {
+                    var screenP = new Vector3(-canvas.width / 2 + x, canvas.height - y, 0);
+                    var cv = new Vector3(cameraPosition.y * screenP.x / (cameraPosition.y - screenP.y), 0, cameraPosition.z * screenP.y / (screenP.y - cameraPosition.y));
+                    var r3 = new Ray3(cameraPosition, screenP.sub(cameraPosition).normalize())
+                    var result1 = ball.intersect(r3);
+                    var result2 = cube.intersect(r3);
+
+                    if (result1) {
+                        var percent = noise(result1.x / 100, result1.y / 100, result1.z / 100);
+                     
+                        pixels[i] = percent*((result1.z - ball.p.z) / ball.r) * 0
+                        pixels[i + 1] = percent * Math.max(25, ((result1.z - ball.p.z) / ball.r) * 199);
+                        pixels[i + 2] = percent * Math.max(25, ((result1.z - ball.p.z) / ball.r) * 140);
+                        pixels[i + 3] =  255;
+
+                    }
+
+                    else if (result2) {
+                   
+                        var percent = noise(result2.x / 100, result2.y / 100, result2.z / 100);
+                        if (Math.round(result2.y) === 250) { percent = 1 };
+                        pixels[i] =percent* Math.max(25, ((result2.z - cube.center.z + cube.hLength) / (2 * cube.length)) * 255);
+                        pixels[i + 1] = 0;
+                        pixels[i + 2] =percent* Math.max(25, ((result2.z - cube.center.z + cube.hLength) / (2 * cube.length)) * 255);
+                        pixels[i + 3] = 255;
+
+                    }
+                    else if (cv.z > -planeLength && cv.z < 0) {
+                     
+                        var percent = noise(cv.x/50, cv.y/50, cv.z/50);
+                        pixels[i] = pixels[i + 1] = pixels[i + 2] = (Math.ceil(cv.x / sideLength) + Math.ceil(cv.z / sideLength)) % 2 === 0 ? 255 * percent : 0;
+                        pixels[i + 3] = 255 * (planeLength - Math.abs(cv.z)) / planeLength;
+                    }
+                    i += 4;
+                }
+            }
+            ctx.putImageData(imgdata, 0, 0);
+        }
+    </script>
+
+    
+    
+ 
+ <canvas width="400" height="400" style="border-style: groove; background-color: black;">请使用现代浏览器，你的浏览器过时了！下载地址<a href="http://dl.pconline.com.cn/download/51614.html">http://dl.pconline.com.cn/download/51614.html</a></canvas>
+  
+    <script>
+
+        render2($("canvas")[1],
+                   new Vector3(150, 500, 450),
+                   new Ball(new Vector3(110, 100, -270), 100),
+                   new Cube(new Vector3(-180, 150, -270), 200));
+        function render2(canvas, cameraPosition, ball, cube) {
+
+            var ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var imgdata = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            var pixels = imgdata.data, i = 0, sideLength = 100, planeLength = 4400;
+
+            for (var y = 0; y < canvas.height; y++) {
+                for (var x = 0; x < canvas.width; x++) {
+                    var screenP = new Vector3(-canvas.width / 2 + x, canvas.height - y, 0);
+                    var cv = new Vector3(cameraPosition.y * screenP.x / (cameraPosition.y - screenP.y), 0, cameraPosition.z * screenP.y / (screenP.y - cameraPosition.y));
+                    var r3 = new Ray3(cameraPosition, screenP.sub(cameraPosition).normalize())
+                    var result1 = ball.intersect(r3);
+                    var result2 = cube.intersect(r3);
+
+                    if (result1) {
+                        pixels[i] =  ((result1.z - ball.p.z) / ball.r) * 0
+                        pixels[i + 1] =  Math.max(25, ((result1.z - ball.p.z) / ball.r) * 199);
+                        pixels[i + 2] = Math.max(25, ((result1.z - ball.p.z) / ball.r) * 140);
+                        pixels[i + 3] = 255;
+
+                    }
+
+                    else if (result2) {
+                        pixels[i] =  Math.max(25, ((result2.z - cube.center.z + cube.hLength) / (2 * cube.length)) * 255);
+                        pixels[i + 1] = 0;
+                        pixels[i + 2] =  Math.max(25, ((result2.z - cube.center.z + cube.hLength) / (2 * cube.length)) * 255);
+                        pixels[i + 3] = 255;
+
+                    }
+                    else if (cv.z > -planeLength && cv.z < 0) {
+
+                        pixels[i] = pixels[i + 1] = pixels[i + 2] = (Math.ceil(cv.x / sideLength) + Math.ceil(cv.z / sideLength)) % 2 === 0 ? 148 : 0;
+                        pixels[i + 3] = 255 * (planeLength - Math.abs(cv.z)) / planeLength;
+                    }
+                    i += 4;
+                }
+            }
+            ctx.putImageData(imgdata, 0, 0);
+        }
+    </script>
+  
+    <hr />
+    <div style="text-align:center;">
+       <p> create by <a href="http://weibo.com/iamleizhang" target="_blank">当耐特</a></p> 
+    
+    </div>
+</body>
+</html>

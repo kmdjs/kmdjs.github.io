@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <title>SCJ Framework-Promise</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon" />
+    <style>
+        .code {
+            background: silver;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 16px;
+            margin:0px;
+            margin-top:1px;
+            margin-bottom:1px;
+        }
+
+
+
+        h1 {
+            background: none repeat scroll 0 0 darkSlateBlue;
+            border-radius: 3px 3px 3px 3px;
+            color: white;
+            font-size: 18pt;
+            font-weight: bold;
+            letter-spacing: 1px;
+           margin:0px;
+            padding-left: 20px;
+            height:40px;
+            line-height:40px;
+        }
+    </style>
+        <style>
+        body {
+            background: url(../img/topbg.png) repeat;
+        }
+    </style>
+</head>
+<body>
+    <h1>使用方式</h1>
+    <pre class="code"><span style="background: silver; color: black">require([</span><span style="background: silver; color: #a31515">&quot;SCJ&quot;</span><span style="background: silver; color: black">, </span><span style="background: silver; color: #a31515">&quot;core/promise&quot;</span><span style="background: silver; color: black">], </span><span style="background: silver; color: blue">function </span><span style="background: silver; color: black">(SCJ) {
+    
+    </span><span style="background: silver; color: blue">function </span><span style="background: silver; color: black">dosomething() {
+        </span><span style="background: silver; color: blue">var </span><span style="background: silver; color: black">prms = SCJ.createPromise();  
+        setTimeout(</span><span style="background: silver; color: blue">function </span><span style="background: silver; color: black">() {
+            prms.resolve(</span><span style="background: silver; color: #a31515">&quot;success&quot;</span><span style="background: silver; color: black">)
+        }, 3000);
+        </span><span style="background: silver; color: blue">return </span><span style="background: silver; color: black">prms;
+    }
+    
+    dosomething().then(</span><span style="background: silver; color: blue">function </span><span style="background: silver; color: black">(data) {
+        </span><span style="background: silver; color: green">//alert &quot;success&quot; here
+        </span><span style="background: silver; color: black">alert(data);
+    })
+})</span></pre>
+    <h1>JSONP with Promise</h1>
+    <pre class="code"><span style="color:black;background:silver">require([</span><span style="color:#a31515;background:silver">"SCJ"</span><span style="color:black;background:silver">, </span><span style="color:#a31515;background:silver">"core/jsonp"</span><span style="color:black;background:silver">], </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">(SCJ) {
+    SCJ.createJSONP({
+        </span><span style="color:green;background:silver">//jsonp接口，callback必须设置为？,SCJ会自动生成一个全球唯一的callback名称 
+        </span><span style="color:black;background:silver">url: </span><span style="color:#a31515;background:silver">"http://weibo.com/iamleizhang/Joke/getJoke.php?callback=?&amp;page=1"
+    </span><span style="color:black;background:silver">}).then(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">(json) {
+            </span><span style="color:green;background:silver">//可以在这里面使用json
+            //...
+    </span><span style="color:black;background:silver">});
+})</span></pre>
+        <div style="text-align:center;"><a href="http://www.cnblogs.com/iamzhanglei/archive/2013/05/03/3056763.html" style="text-decoration: none; display: inline-block;*display:inline;*zoom:1;width: 210px; height: 30px; line-height: 30px; text-align: center; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; background-color: #39bedc;font-weight:bold;font-family: Verdana, Geneva, sans-serif;">More about Promise</a></div>
+</body>
+</html>

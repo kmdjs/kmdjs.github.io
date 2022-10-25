@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>当耐特的游戏世界</title>
+    <link rel="stylesheet" type="text/css" href="Styles/buttons.css" />
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon"/>
+    <style type="text/css">
+        body
+        {
+            font-family: Monospace;
+            background-color: #f0f0f0;
+            margin: 0px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="showBlock" style="position: absolute; z-index: 11; display: none;">
+        <input class="button green glossy" type="button" value="显示按钮" onclick=" showBtn()" />
+        <a  style="font-size:larger"  href="http://www.cnblogs.com/iamzhanglei"
+            target="_blank">联系作者</a>
+    </div>
+    <script>
+        function hiddenBtn() {
+            document.getElementById("btns").style.display = "none";
+            document.getElementById("showBlock").style.display = "block";
+        }
+        function showBtn() {
+            document.getElementById("btns").style.display = "block";
+            document.getElementById("showBlock").style.display = "none";
+        }
+    </script>
+    <div id="btns" style="position: absolute; z-index: 10;">
+        <input id="btn_SetView" class="button green glossy" type="button" value="推荐视角" onclick="return btn_SetView_onclick()" />
+        <input id="btn1" class="button green glossy" type="button" value="光影开关" onclick="return addAndRemoveLight()" />
+        <input id="Button8" class="button green glossy" type="button" value="高速模式" onclick="return speedup()" />
+        <input id="Button9" class="button green glossy" type="button" value="低速模式" onclick="return speeddown()" />
+       
+        <input id="Button11" class="button green glossy" type="button" value="隐藏按钮" onclick=" hiddenBtn()" />
+         <a style="font-size:larger" href="http://www.cnblogs.com/iamzhanglei"
+            target="_blank">联系作者</a>
+        <br />
+        操作指南：【up down left right】控制方向【Shift】切换速度 【Ctrl】加速 【V】推荐视角 【L】开灯关灯 鼠标旋转视角【强烈推荐浏览器：
+        ChromePlus或者 Google Chrome】
+        <br />
+        <input id="Button1" onclick="return play_onclick(1)" onmousemove="moveOnPlayBtn()"
+            onmouseout="moveOutPlayBtn()" class="button green glossy" type="button" value="第一关" /><br />
+        <input id="Button2" onclick="return play_onclick(2)" class="button green glossy"
+            disabled="disabled" type="button" value="第二关" /><br />
+        <input id="Button3" onclick="return play_onclick(3)" class="button green glossy"
+            disabled="disabled" type="button" value="第三关" /><br />
+        <input id="Button4" onclick="return play_onclick(4)" class="button green glossy"
+            disabled="disabled" type="button" value="第四关" /><br />
+        <input id="Button5" onclick="return play_onclick(5)" class="button green glossy"
+            disabled="disabled" type="button" value="第五关" /><br />
+        <input id="Button6" onclick="return play_onclick(6)" class="button green glossy"
+            disabled="disabled" type="button" value="第六关" /><br />
+        <input id="Button7" onclick="return play_onclick(7)" class="button green glossy"
+            disabled="disabled" type="button" value="第七关" />
+    </div>
+    <script src="Scripts/Three.js" type="text/javascript"></script>
+    <script src="Scripts/helvetiker_regular.typeface.js" type="text/javascript"></script>
+    <script src="Scripts/jscex.min.js" type="text/javascript"></script>
+    <script src="Scripts/game.js" type="text/javascript"></script>
+</body>
+</html>

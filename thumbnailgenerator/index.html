@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        #preview {
+            width: auto;
+            height: auto;
+            min-height: 300px;
+            min-width: 300px;
+            background-color: #eee;
+            padding: 22px;
+            border: 3px dashed black;
+            text-align: center;
+            font-size: 40px;
+        }
+
+        #demo {
+            text-align: center;
+        }
+
+            #demo img {
+                margin-left: 5px;
+            }
+    </style>
+</head>
+<body>
+    <a href="https://github.com/AlloyTeam/AlloyGameEngine" target="_blank" style="position: absolute; right: 0; top: 0;">
+        <img src="http://alloyteam.github.io/AlloyRenderingEngine/asset/img/github.png" alt="" />
+    </a>
+    <div style="text-align: center;">
+      width:<span id="range1Txt"></span>  <input id="range1" type="range" name="range" min="20" max="800" step="20" value="160" />
+      height:<span id="range2Txt"></span> <input id="range2" type="range" name="range" min="20" max="800" step="20" value="160" />
+    </div>
+    <div id="preview">
+        <div>Drop image file here.</div>
+        <canvas id="canvas"></canvas>
+    </div>
+    <script src="CanvasToBlob.js"></script>
+    <script>
+        (function (n) { "use strict"; var t = n.HTMLCanvasElement && n.HTMLCanvasElement.prototype, r = n.Blob && function () { try { return Boolean(new Blob) } catch (n) { return !1 } }(), f = r && n.Uint8Array && function () { try { return new Blob([new Uint8Array(100)]).size === 100 } catch (n) { return !1 } }(), u = n.BlobBuilder || n.WebKitBlobBuilder || n.MozBlobBuilder || n.MSBlobBuilder, i = (r || u) && n.atob && n.ArrayBuffer && n.Uint8Array && function (n) { var i, e, o, t, s, h; for (i = n.split(",")[0].indexOf("base64") >= 0 ? atob(n.split(",")[1]) : decodeURIComponent(n.split(",")[1]), e = new ArrayBuffer(i.length), o = new Uint8Array(e), t = 0; t < i.length; t += 1) o[t] = i.charCodeAt(t); return (s = n.split(",")[0].split(":")[1].split(";")[0], r) ? new Blob([f ? o : e], { type: s }) : (h = new u, h.append(e), h.getBlob(s)) }; n.HTMLCanvasElement && !t.toBlob && (t.mozGetAsFile ? t.toBlob = function (n, r, u) { u && t.toDataURL && i ? n(i(this.toDataURL(r, u))) : n(this.mozGetAsFile("blob", r)) } : t.toDataURL && i && (t.toBlob = function (n, t, r) { n(i(this.toDataURL(t, r))) })); typeof define == "function" && define.amd ? define(function () { return i }) : n.dataURLtoBlob = i })(this), function () { function o() { canvas.width = t; canvas.height = i; ctx.drawImage(this, 0, 0, this.width, this.height, 0, 0, t, i); canvas.toBlob && canvas.toBlob(function (n) { s(n, name + ".png") }, "image/png") } function s(n, t) { if (window.URL.createObjectURL) { var r = window.URL.createObjectURL(n), i = document.createElement("a"); i.setAttribute("href", r); i.setAttribute("download", t); i.click() } } function r() { t = range1.value; i = range2.value; range1Txt.innerHTML = t; range2Txt.innerHTML = i } var n = {}, f, e; n.byId = function (n) { return document.getElementById(n) }; preview = n.byId("preview"); canvas = n.byId("canvas"); range1 = n.byId("range1"); range2 = n.byId("range2"); range1Txt = n.byId("range1Txt"); range2Txt = n.byId("range2Txt"); ctx = canvas.getContext("2d"); var u = window.location.href, t = range1.value, i = range2.value; range1Txt.innerHTML = t; range2Txt.innerHTML = i; f = function (n, t) { ctx.clearRect(0, 0, canvas.width, canvas.height); var i = new Image; i.onload = o; i.src = n; i.__name = t }; e = function (n) { if (!n.type.match(/image.*/)) { console.log("The dropped file is not an image: ", n.type); return } var t = new FileReader; t.onload = function (t) { f(t.target.result, n.name.split(".")[0]) }; t.readAsDataURL(n) }; preview.addEventListener("dragover", function (n) { n.preventDefault() }, !0); preview.addEventListener("drop", function (n) { (n.preventDefault(), u.indexOf("nailgen") != -1 && u.indexOf("ithu") != -1) && e(n.dataTransfer.files[0]) }, !0); range1.addEventListener("mouseup", r, !1); range2.addEventListener("mouseup", r, !1); range1.addEventListener("change", r, !1); range2.addEventListener("change", r, !1) }()
+    </script>
+
+</body>
+</html>

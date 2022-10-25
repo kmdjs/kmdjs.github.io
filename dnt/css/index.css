@@ -1,0 +1,21 @@
+﻿body {
+     background: url(../img/topbg.png) repeat;
+}
+
+
+/* 窗口宽度<960,设计宽度=768 */
+@media screen and (max-width:959px){
+      
+}
+/* 窗口宽度<768,设计宽度=640 */
+@media screen and (max-width:767px){
+      
+}
+/* 窗口宽度<640,设计宽度=480 */
+@media screen and (max-width:639px){
+      
+}
+/* 窗口宽度<480,设计宽度=320 */
+@media screen and (max-width:479px){
+      
+}

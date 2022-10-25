@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:ab9fdc321c9959b98bf665cdd48377bf$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="enemy1.png" width="1022" height="920">
+    <sprite n="0a" x="614" y="614" w="100" h="100"/>
+    <sprite n="0b" x="512" y="614" w="100" h="100"/>
+    <sprite n="0c" x="410" y="614" w="100" h="100"/>
+    <sprite n="0d" x="308" y="614" w="100" h="100"/>
+    <sprite n="0e" x="206" y="614" w="100" h="100"/>
+    <sprite n="0f" x="104" y="614" w="100" h="100"/>
+    <sprite n="0g" x="2" y="614" w="100" h="100"/>
+    <sprite n="0h" x="920" y="512" w="100" h="100"/>
+    <sprite n="0i" x="818" y="512" w="100" h="100"/>
+    <sprite n="0j" x="716" y="512" w="100" h="100"/>
+    <sprite n="0k" x="614" y="512" w="100" h="100"/>
+    <sprite n="0l" x="512" y="512" w="100" h="100"/>
+    <sprite n="0m" x="410" y="512" w="100" h="100"/>
+    <sprite n="0n" x="308" y="512" w="100" h="100"/>
+    <sprite n="0o" x="206" y="512" w="100" h="100"/>
+    <sprite n="0p" x="104" y="512" w="100" h="100"/>
+    <sprite n="0q" x="2" y="512" w="100" h="100"/>
+    <sprite n="1a" x="920" y="410" w="100" h="100"/>
+    <sprite n="1b" x="818" y="410" w="100" h="100"/>
+    <sprite n="1c" x="716" y="410" w="100" h="100"/>
+    <sprite n="1d" x="614" y="410" w="100" h="100"/>
+    <sprite n="1e" x="512" y="410" w="100" h="100"/>
+    <sprite n="1f" x="410" y="410" w="100" h="100"/>
+    <sprite n="1g" x="308" y="410" w="100" h="100"/>
+    <sprite n="1h" x="206" y="410" w="100" h="100"/>
+    <sprite n="1i" x="104" y="410" w="100" h="100"/>
+    <sprite n="1j" x="2" y="410" w="100" h="100"/>
+    <sprite n="1k" x="920" y="308" w="100" h="100"/>
+    <sprite n="1l" x="818" y="308" w="100" h="100"/>
+    <sprite n="1m" x="716" y="308" w="100" h="100"/>
+    <sprite n="1n" x="614" y="308" w="100" h="100"/>
+    <sprite n="1o" x="512" y="308" w="100" h="100"/>
+    <sprite n="1p" x="410" y="308" w="100" h="100"/>
+    <sprite n="1q" x="308" y="308" w="100" h="100"/>
+    <sprite n="2a" x="206" y="308" w="100" h="100"/>
+    <sprite n="2b" x="104" y="308" w="100" h="100"/>
+    <sprite n="2c" x="2" y="308" w="100" h="100"/>
+    <sprite n="2d" x="920" y="206" w="100" h="100"/>
+    <sprite n="2e" x="818" y="206" w="100" h="100"/>
+    <sprite n="2f" x="716" y="206" w="100" h="100"/>
+    <sprite n="2g" x="614" y="206" w="100" h="100"/>
+    <sprite n="2h" x="512" y="206" w="100" h="100"/>
+    <sprite n="2i" x="410" y="206" w="100" h="100"/>
+    <sprite n="2j" x="308" y="206" w="100" h="100"/>
+    <sprite n="2k" x="206" y="206" w="100" h="100"/>
+    <sprite n="2l" x="104" y="206" w="100" h="100"/>
+    <sprite n="2m" x="2" y="206" w="100" h="100"/>
+    <sprite n="2n" x="920" y="104" w="100" h="100"/>
+    <sprite n="2o" x="818" y="104" w="100" h="100"/>
+    <sprite n="2p" x="716" y="104" w="100" h="100"/>
+    <sprite n="2q" x="614" y="104" w="100" h="100"/>
+    <sprite n="3a" x="512" y="104" w="100" h="100"/>
+    <sprite n="3b" x="410" y="104" w="100" h="100"/>
+    <sprite n="3c" x="308" y="104" w="100" h="100"/>
+    <sprite n="3d" x="206" y="104" w="100" h="100"/>
+    <sprite n="3e" x="104" y="104" w="100" h="100"/>
+    <sprite n="3f" x="2" y="104" w="100" h="100"/>
+    <sprite n="3g" x="920" y="2" w="100" h="100"/>
+    <sprite n="3h" x="818" y="2" w="100" h="100"/>
+    <sprite n="3i" x="716" y="2" w="100" h="100"/>
+    <sprite n="3j" x="614" y="2" w="100" h="100"/>
+    <sprite n="3k" x="512" y="2" w="100" h="100"/>
+    <sprite n="3l" x="410" y="2" w="100" h="100"/>
+    <sprite n="3m" x="308" y="2" w="100" h="100"/>
+    <sprite n="3n" x="206" y="2" w="100" h="100"/>
+    <sprite n="3o" x="104" y="2" w="100" h="100"/>
+    <sprite n="3p" x="2" y="2" w="100" h="100"/>
+    <sprite n="3q" x="410" y="818" w="100" h="100"/>
+    <sprite n="4a" x="308" y="818" w="100" h="100"/>
+    <sprite n="4b" x="206" y="818" w="100" h="100"/>
+    <sprite n="4c" x="104" y="818" w="100" h="100"/>
+    <sprite n="4d" x="2" y="818" w="100" h="100"/>
+    <sprite n="4e" x="920" y="716" w="100" h="100"/>
+    <sprite n="4f" x="818" y="716" w="100" h="100"/>
+    <sprite n="4g" x="716" y="716" w="100" h="100"/>
+    <sprite n="4h" x="614" y="716" w="100" h="100"/>
+    <sprite n="4i" x="512" y="716" w="100" h="100"/>
+    <sprite n="4j" x="410" y="716" w="100" h="100"/>
+    <sprite n="4k" x="308" y="716" w="100" h="100"/>
+    <sprite n="4l" x="206" y="716" w="100" h="100"/>
+    <sprite n="4m" x="104" y="716" w="100" h="100"/>
+    <sprite n="4n" x="2" y="716" w="100" h="100"/>
+    <sprite n="4o" x="920" y="614" w="100" h="100"/>
+    <sprite n="4p" x="818" y="614" w="100" h="100"/>
+    <sprite n="4q" x="716" y="614" w="100" h="100"/>
+</TextureAtlas>

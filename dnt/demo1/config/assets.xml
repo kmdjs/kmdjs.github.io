@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<assets>
+  <player>
+    <asset id="hero-m" url="hero-m.png"  />
+    <asset id="footprint" url="footprint.png"  />
+   
+  </player>
+  <map>
+    <asset id="WallTextureSheet" url="WallTextureSheet.png" />
+    <asset id="shadowmap" url="shadowmap.png" />
+    <asset id="portcullis" url="portcullis.png" />
+  </map>
+  <other>
+    <asset id="blur" url="blur.png" />
+    <asset id="treasurechest" url="treasurechest.png" />
+    <asset id="Furniture" url="Furniture.png" />
+    <asset id="levelcomplete" url="levelcomplete.png" />
+    <asset id="levelfailed" url="levelfailed.png" />
+    <asset id="selectLevel" url="selectLevel.png" />
+    <asset id="restart" url="restart.png" />
+
+  </other>
+  <level>
+    <asset id="level1" url="level1.json" />
+    <asset id="level2" url="level2.json" />
+    <asset id="level3" url="level3.json" />
+    <asset id="level4" url="level4.json" />
+  </level>
+  <enemy>
+    <asset id="monk" url="monk.png" />
+    <asset id="monkJSON" url="monk.json" />
+    <asset id="knight" url="knight.png" />
+    <asset id="axe" url="axe.png" />
+    <asset id="knightJSON" url="knight.json" />
+
+  </enemy>
+  <levelPanel>
+    <asset id="bg1" url="bg1.jpg" />
+    <asset id="bg2" url="bg2.jpg" />
+    <asset id="ButtonBase0" url="ButtonBase0.jpg" />
+    <asset id="levelnumbers" url="levelnumbers.png" />
+    <asset id="padlock" url="padlock.png" />
+    </levelPanel>
+</assets>
+
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:e1fe07f1ace9694b11cf12b5431a3183$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="iceCone.png" width="1012" height="537">
+    <sprite n="0-0" x="2" y="2" w="200" h="251"/>
+    <sprite n="0-1" x="204" y="2" w="200" h="251"/>
+    <sprite n="0-2" x="406" y="2" w="200" h="251"/>
+    <sprite n="0-3" x="608" y="2" w="200" h="251"/>
+    <sprite n="0-4" x="810" y="2" w="200" h="251"/>
+    <sprite n="0-5" x="2" y="255" w="200" h="251"/>
+    <sprite n="0-6" x="204" y="255" w="200" h="251"/>
+    <sprite n="0-7" x="406" y="255" w="200" h="251"/>
+    <sprite n="0-8" x="608" y="255" w="200" h="251"/>
+    <sprite n="0-9" x="810" y="255" w="200" h="251"/>
+    <sprite n="0" x="2" y="508" w="27" h="27"/>
+</TextureAtlas>

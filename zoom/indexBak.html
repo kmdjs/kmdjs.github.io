@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        #preview {
+            width: auto;
+            height: auto;
+            min-height: 300px;
+            min-width: 300px;
+            background-color: #eee;
+            padding: 22px;
+            border: 3px dashed black;
+            text-align: center;
+            font-size: 40px;
+        }
+
+        #demo {
+            text-align: center;
+        }
+
+            #demo img {
+                margin-left: 5px;
+            }
+    </style>
+</head>
+<body>
+    <a href="https://github.com/AlloyTeam/AlloyGameEngine" target="_blank" style="position: absolute; right: 0; top: 0;">
+        <img src="http://alloyteam.github.io/AlloyRenderingEngine/asset/img/github.png" alt="" />
+    </a>
+    <div style="text-align: center;">
+      scale:<span id="range1Txt"></span>  <input id="range1" type="range" name="range" min="0.5" max="10" step="0.5" value="2" />
+    </div>
+    <div id="preview">
+        <div>Drop image file here.</div>
+        <canvas style="display:none;" id="canvas"></canvas>
+            <canvas id="resultCanvas"></canvas>
+    </div>
+    <script>
+function SinXDivX(n){var t=-1,i,r;return n=Math.abs(n),i=n*n,r=i*n,n<=1?(t+2)*r-(t+3)*i+1:n<=2?t*r-5*t*i+8*t*n-4*t:0}function border_color(n){return n<=0?0:n>=255?255:n}function ThreeOrder0(n,t,i,r,u,f){for(var y=Math.floor(i),p=Math.floor(r),a=i-y,v=r-p,l=[],s,h,o,e=0;e<4;e++)for(o=0;o<4;o++){var rt=y-1+o,ut=p-1+e,c=4*(t*ut+rt);c<0&&(c=0);c+4>n.length&&(c=n.length-4);l[e*4+o]=[n[c],n[c+1],n[c+2],n[c+3]]}s=[];h=[];s[0]=SinXDivX(1+a);s[1]=SinXDivX(a);s[2]=SinXDivX(1-a);s[3]=SinXDivX(2-a);h[0]=SinXDivX(1+v);h[1]=SinXDivX(v);h[2]=SinXDivX(1-v);h[3]=SinXDivX(2-v);var w=0,b=0,k=0,d=0;for(e=0;e<4;++e){var g=0,nt=0,tt=0,it=0;for(o=0;o<4;++o)it+=s[o]*l[e*4+o][3],g+=s[o]*l[e*4+o][0],nt+=s[o]*l[e*4+o][1],tt+=s[o]*l[e*4+o][2];d+=it*h[e];w+=g*h[e];b+=nt*h[e];k+=tt*h[e]}u[f+3]=d;u[f]=w;u[f+1]=b;u[f+2]=k}(function(n){"use strict";var t=n.HTMLCanvasElement&&n.HTMLCanvasElement.prototype,r=n.Blob&&function(){try{return Boolean(new Blob)}catch(n){return!1}}(),f=r&&n.Uint8Array&&function(){try{return new Blob([new Uint8Array(100)]).size===100}catch(n){return!1}}(),u=n.BlobBuilder||n.WebKitBlobBuilder||n.MozBlobBuilder||n.MSBlobBuilder,i=(r||u)&&n.atob&&n.ArrayBuffer&&n.Uint8Array&&function(n){var i,e,o,t,s,h;for(i=n.split(",")[0].indexOf("base64")>=0?atob(n.split(",")[1]):decodeURIComponent(n.split(",")[1]),e=new ArrayBuffer(i.length),o=new Uint8Array(e),t=0;t<i.length;t+=1)o[t]=i.charCodeAt(t);return(s=n.split(",")[0].split(":")[1].split(";")[0],r)?new Blob([f?o:e],{type:s}):(h=new u,h.append(e),h.getBlob(s))};n.HTMLCanvasElement&&!t.toBlob&&(t.mozGetAsFile?t.toBlob=function(n,r,u){u&&t.toDataURL&&i?n(i(this.toDataURL(r,u))):n(this.mozGetAsFile("blob",r))}:t.toDataURL&&i&&(t.toBlob=function(n,t,r){n(i(this.toDataURL(t,r)))}));typeof define=="function"&&define.amd?define(function(){return i}):n.dataURLtoBlob=i})(this),function(){function e(){var t,u,f;canvas.width=this.width;canvas.height=this.height;resultCanvas.width=this.width*n;resultCanvas.height=this.height*n;ctx.drawImage(this,0,0);var e=ctx.getImageData(0,0,this.width,this.height).data,i=resultCtx.getImageData(0,0,resultCanvas.width,resultCanvas.height),r=i.data;for(t=0,u=r.length;t<u;t+=4){var s=t/4%resultCanvas.width,h=parseInt(t/4/resultCanvas.width),c=s/n,l=h/n;ThreeOrder0(e,canvas.width,c,l,r,t)}resultCtx.putImageData(i,0,0);f=this.__name;resultCanvas.toBlob&&resultCanvas.toBlob(function(n){o(n,f+".png")},"image/png");delete this.__name}function o(n,t){if(window.URL.createObjectURL){var r=window.URL.createObjectURL(n),i=document.createElement("a");i.setAttribute("href",r);i.setAttribute("download",t);i.click()}}function f(){n=range1.value;range1Txt.innerHTML=n}var t={},i,n,r,u;t.byId=function(n){return document.getElementById(n)};preview=t.byId("preview");canvas=t.byId("canvas");resultCanvas=t.byId("resultCanvas");range1=t.byId("range1");range1Txt=t.byId("range1Txt");range2Txt=t.byId("range2Txt");ctx=canvas.getContext("2d");resultCtx=resultCanvas.getContext("2d");i=window.location.href;n=range1.value;range1Txt.innerHTML=n;r=function(n,t){ctx.clearRect(0,0,canvas.width,canvas.height);var i=new Image;i.onload=e;i.src=n;i.__name=t};u=function(n){if(!n.type.match(/image.*/)){console.log("The dropped file is not an image: ",n.type);return}var t=new FileReader;t.onload=function(t){r(t.target.result,n.name.split(".")[0])};t.readAsDataURL(n)};preview.addEventListener("dragover",function(n){n.preventDefault()},!0);preview.addEventListener("drop",function(n){(n.preventDefault(),i.indexOf("zoom")!=-1&&i.indexOf("ithu")!=-1&&i.indexOf("mdj")!=-1)&&u(n.dataTransfer.files[0])},!0);range1.addEventListener("mouseup",f,!1);range1.addEventListener("change",f,!1)}()
+    </script>
+</body>
+</html>

@@ -1,0 +1,500 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>PPT Editor</title>
+
+<link rel="shortcut icon" href="ppt.ico">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            overflow: hidden;
+            font: 14px/1.5 arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif;
+        }
+
+        /*body {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }*/
+
+        .ppt-header {
+            height: 50px;
+            background-color: #ededed;
+            line-height: 50px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .f-ib {
+            display: inline-block;
+        }
+
+        .f-tac {
+            text-align: center;
+        }
+
+        .ppt-icon {
+            background-color: #0094ff;
+        }
+
+            .ppt-icon img {
+                height: 50px;
+            }
+
+        .ppt-preview {
+            position: relative;
+            width: 220px;
+            overflow-y: auto;
+            vertical-align: top;
+            border-right: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        .ppt-pv-begin-btn {
+            position: absolute;
+            right: 80px;
+            top: 10px;
+        }
+
+        .ppt-current-begin-btn {
+            position: absolute;
+            right: 110px;
+            top: 10px;
+        }
+
+        .ppt-content {
+            vertical-align: top;
+            text-align: center;
+            font-size: 14px;
+            width: 5000px;
+        }
+
+        .ppt-add-btn-div {
+            margin-top: 5px;
+        }
+
+        .ppt-title {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .ppt-stage {
+            width: 1024px;
+            height: 768px;
+            border: 1px solid #ccc;
+            margin: 0 auto;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .ppt-main {
+            font-size: 0px;
+        }
+
+        .ppt-preview-content {
+            width: 130px;
+            height: 75px;
+            border: 2px solid #808080;
+            margin: 6px auto;
+            cursor:pointer;
+        }
+
+        .ppt-preview-item .ppt-index {
+            position: absolute;
+            left: 21px;
+            text-align: right;
+        }
+
+        .ppt-preview-item {
+            position: relative;
+        }
+
+        .ppt-preview-content-active {
+            border: 2px solid #0096fd;
+        }
+
+        .ppt-close {
+            color: #0096fd;
+            position: absolute;
+            width: 16px;
+            font-size: 16px;
+            right: 33px;
+            top: -4px;
+            cursor:pointer;
+            background-color: white;
+        }
+
+            .ppt-close:hover {
+                color: #ff6a00;
+                width: 18px;
+                font-size: 18px;
+            }
+
+        .ppt-toolbar {
+            position: absolute;
+            z-index: 1000;
+            left: -1000px;
+            top: 14px;
+            font-size: 0;
+        }
+
+            .ppt-toolbar span {
+                font-size: 20px;
+                padding: 5px;
+                display: inline-block;
+                border: 1px solid #ccc;
+                 cursor:pointer;
+            }
+
+        .ppt-text-edit {
+            position: absolute;
+            z-index: 2200;
+            left: 200px;
+            top: 200px;
+            text-align: center;
+            display: none;
+        }
+
+            .ppt-text-edit div {
+                margin-top: 2px;
+            }
+
+            .ppt-text-edit input[type=text] {
+                font-size: 40px;
+            }
+
+        .ppt-code-edit {
+            position: absolute;
+            z-index: 2200;
+            left: -1200px;
+            top: 100px;
+            text-align: center;
+            display: none;
+        }
+
+            .ppt-code-edit div {
+                margin-top: 2px;
+            }
+
+        .ppt-editor .dropdown-menu .divider {
+            margin: 0px 0px;
+        }
+        .ppt-preview-content:hover {
+         background-color:#e7f4fc;
+        }
+        .ppt-image-tip{
+            position:absolute;
+            z-index:12000;
+            left:0;
+            top:-160px;
+       
+          
+        }
+        .ppt-download-btn{
+             position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        #hidden_upload { display: none; }
+
+      .ppt-text-edit  .dropdown-menu{
+          height:180px;
+          overflow-y:scroll;
+          overflow-x:hidden;
+        }
+    </style>
+    
+         <style>
+        .hljs{display:block;overflow-x:auto;padding:0.5em;background:#f0f0f0;-webkit-text-size-adjust:none;-moz-text-size-adjust:none; -ms-text-size-adjust:none; text-size-adjust:none;font-family: PT Sans, DejaVu Sans, Arial, sans;font-size:20px;}.hljs,.hljs-subst,.hljs-tag .hljs-title,.nginx .hljs-title{color:black}.hljs-string,.hljs-title,.hljs-constant,.hljs-parent,.hljs-tag .hljs-value,.hljs-rule .hljs-value,.hljs-preprocessor,.hljs-pragma,.hljs-name,.haml .hljs-symbol,.ruby .hljs-symbol,.ruby .hljs-symbol .hljs-string,.hljs-template_tag,.django .hljs-variable,.smalltalk .hljs-class,.hljs-addition,.hljs-flow,.hljs-stream,.bash .hljs-variable,.pf .hljs-variable,.apache .hljs-tag,.apache .hljs-cbracket,.tex .hljs-command,.tex .hljs-special,.erlang_repl .hljs-function_or_atom,.asciidoc .hljs-header,.markdown .hljs-header,.coffeescript .hljs-attribute{color:#800}.smartquote,.hljs-comment,.hljs-annotation,.diff .hljs-header,.hljs-chunk,.asciidoc .hljs-blockquote,.markdown .hljs-blockquote{color:#888}.hljs-number,.hljs-date,.hljs-regexp,.hljs-literal,.hljs-hexcolor,.smalltalk .hljs-symbol,.smalltalk .hljs-char,.go .hljs-constant,.hljs-change,.lasso .hljs-variable,.makefile .hljs-variable,.asciidoc .hljs-bullet,.markdown .hljs-bullet,.asciidoc .hljs-link_url,.markdown .hljs-link_url{color:#080}.hljs-label,.hljs-javadoc,.ruby .hljs-string,.hljs-decorator,.hljs-filter .hljs-argument,.hljs-localvars,.hljs-array,.hljs-attr_selector,.hljs-important,.hljs-pseudo,.hljs-pi,.haml .hljs-bullet,.hljs-doctype,.hljs-deletion,.hljs-envvar,.hljs-shebang,.apache .hljs-sqbracket,.nginx .hljs-built_in,.tex .hljs-formula,.erlang_repl .hljs-reserved,.hljs-prompt,.asciidoc .hljs-link_label,.markdown .hljs-link_label,.vhdl .hljs-attribute,.clojure .hljs-attribute,.asciidoc .hljs-attribute,.lasso .hljs-attribute,.coffeescript .hljs-property,.hljs-phony{color:#88f}.hljs-keyword,.hljs-id,.hljs-title,.hljs-built_in,.css .hljs-tag,.hljs-javadoctag,.hljs-phpdoc,.hljs-dartdoc,.hljs-yardoctag,.smalltalk .hljs-class,.hljs-winutils,.bash .hljs-variable,.pf .hljs-variable,.apache .hljs-tag,.hljs-type,.hljs-typename,.tex .hljs-command,.asciidoc .hljs-strong,.markdown .hljs-strong,.hljs-request,.hljs-status{font-weight:bold}.asciidoc .hljs-emphasis,.markdown .hljs-emphasis{font-style:italic}.nginx .hljs-built_in{font-weight:normal}.coffeescript .javascript,.javascript .xml,.lasso .markup,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:0.5}
+    </style>
+</head>
+<body id="ourBody">
+    <div class="ppt-editor">
+        <div class="ppt-header" id="ppt-header">
+            <div class="f-ib ppt-icon">
+            <a href="http://kmdjs.github.io/"> <img src="presentations1.png" alt="" /></a>   
+            </div>
+            <div class="f-ib ppt-title">PPT Editor</div><span> (powered by <a href="https://github.com/AlloyTeam/AlloyGameEngine" target="_blank">AlloyGameEngine)</a></span>
+            <button type="button" class="btn btn-sm btn-primary ppt-pv-begin-btn" aria-label="Left Align">
+                <span class="glyphicon glyphicon-play" aria-hidden="true">预览</span>
+            </button>
+            <!--  <button type="button" class="btn btn-sm btn-primary ppt-current-begin-btn" aria-label="Left Align">
+                <span class="glyphicon glyphicon-play" aria-hidden="true">从当前预览</span>
+            </button>-->
+                  <button type="button" class="btn btn-sm btn-primary ppt-download-btn" aria-label="Left Align">
+                <span class="glyphicon glyphicon-download-alt" aria-hidden="true">导出</span>
+            </button>
+           
+        </div>
+        <div class="ppt-main">
+            <div class="ppt-preview f-ib">
+                <div class="f-tac ppt-add-btn-div">
+                    <button type="button" class="btn btn-xs btn-primary" id="ppt-add-panel">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="ppt-preview-list" id="ppt-preview-list">
+                 
+                    <div class="ppt-preview-item">
+                        <span class="ppt-index">1</span><div class="ppt-preview-content  ppt-preview-content-active"><canvas width="130" height="75"></canvas></div>
+                        <span class="glyphicon glyphicon-remove-sign ppt-close hidden" aria-hidden="true"></span>
+                    </div>
+                 
+                </div>
+            </div>
+            <div class="ppt-content f-ib">
+                <div class="ppt-stage">
+                    <canvas id="ppt-stage-canvas" width="1024" height="768"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div style="display:block;" id="hidden_upload">
+<form name="input_file_upload" id="input_file_upload" action="input_file_upload.php" method="post" enctype="application/x-www-form-urlencoded">      
+    <input type="file" name="input_file" id="ppt-demo-input" style="position:absolute; top:-100px;">
+</form>
+</div>
+        <div class="ppt-toolbar">
+            <span class="glyphicon glyphicon-text-size" aria-hidden="true"></span>
+            
+            <span class="glyphicon glyphicon-console" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+   <!--         <span class="glyphicon glyphicon-play" aria-hidden="true"></span>-->
+        </div>
+
+        <div class="ppt-text-edit">
+            <div>
+                <div>
+                    <div class="btn-group">
+                        <button class="btn btn-default btn-sm dropdown-toggle" id="ppt-text-size" type="button" data-toggle="dropdown" aria-expanded="false">
+                            40px <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="##" style="font-size:8px;">8px</a></li>
+                            <li class="divider"></li>
+                            <li><a href="##" style="font-size:9px;">9px</a></li>
+                            <li class="divider"></li>
+                            <li><a href="##" style="font-size:10px;">10px</a></li>
+                            <li class="divider"></li>
+                            <li><a href="##" style="font-size:12px;">12px</a></li>
+                            <li class="divider"></li>
+                            <li><a href="##" style="font-size:14px;">14px</a></li>
+                            <li class="divider"></li>
+                            <li><a href="##" style="font-size:16px;">16px</a></li>
+                            <li class="divider"></li>
+                            <li><a href="##" style="font-size:18px;">18px</a></li>
+                            <li class="divider"></li>
+                            <li><a href="##" style="font-size:20px;">20px</a></li>
+                            <li class="divider"></li>
+                            <li><a href="##" style="font-size:24px;">24px</a></li>
+                            <li class="divider"></li>
+                            <li><a href="##" style="font-size:28px;">28px</a></li>
+                            <li class="divider"></li>
+                            <li><a href="##" style="font-size:32px;">32px</a></li>
+                            <li class="divider"></li>
+                            <li><a href="##" style="font-size:36px;">36px</a></li>
+                            <li class="divider"></li>
+                            <li><a href="##" style="font-size:40px;">40px</a></li>
+                            <li class="divider"></li>
+                            <li><a href="##" style="font-size:44px;">44px</a></li>
+                            <li class="divider"></li>
+                            <li><a href="##" style="font-size:48px;">48px</a></li>
+                             <li class="divider"></li>
+                            <li><a href="##" style="font-size:54px;">54px</a></li>
+                            <li class="divider"></li>
+                            <li><a href="##" style="font-size:60px;">60px</a></li>
+                             <li class="divider"></li>
+                            <li><a href="##" style="font-size:66px;">66px</a></li>
+                            <li class="divider"></li>
+                            <li><a href="##" style="font-size:72px;">72px</a></li>
+                             <li class="divider"></li>
+                            <li><a href="##" style="font-size:80px;">80px</a></li>
+                             <li class="divider"></li>
+                            <li><a href="##" style="font-size:88px;">88px</a></li>
+                             <li class="divider"></li>
+                            <li><a href="##" style="font-size:96px;">96px</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-default btn-sm dropdown-toggle"  id="ppt-text-color" type="button" data-toggle="dropdown" aria-expanded="false">
+                            black <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a style="color:black;" href="##">black</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:green;" href="##">green</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:blue;" href="##">blue</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:red;" href="##">red</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:yellow;" href="##">yellow</a></li>
+                              <li class="divider"></li>
+                            <li><a style="color:#252525;" href="##">#252525</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:#006AC1;" href="##">#006AC1</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:#691BB8;" href="##">#691BB8</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:#F4B300;" href="##">#F4B300</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:#001E4E;" href="##">#001E4E</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:#1FAEFF;" href="##">#1FAEFF</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:#78BA00;" href="##">#78BA00</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:#008287;" href="##">#008287</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:#1B58B8;" href="##">#1B58B8</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:#2673EC;" href="##">#2673EC</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:#004D60;" href="##">#004D60</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:#56C5FF;" href="##">#56C5FF</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:#AE113D;" href="##">#AE113D</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:#119900;" href="##">#119900</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:#569CE3;" href="##">#569CE3</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:#632F00;" href="##">#632F00</a></li>
+                            <li class="divider"></li>
+                            <li><a style="color:#004A00;" href="##">#004A00</a></li>
+                              <li class="divider"></li>
+                            <li><a style="color:#00D8CC;" href="##">#00D8CC</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#2E1700;" href="##">#2E1700</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#00C13F;" href="##">#00C13F</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#00AAAA;" href="##">#00AAAA</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#B01E00;" href="##">#B01E00</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#15992A;" href="##">#15992A</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#91D100;" href="##">#91D100</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#4E0000;" href="##">#4E0000</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#FF981D;" href="##">#FF981D</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#83BA1F;" href="##">#83BA1F</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#4E0038;" href="##">#4E0038</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#E56C19;" href="##">#E56C19</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#E1B700;" href="##">#E1B700</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#C1004F;" href="##">#C1004F</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#FF2E12;" href="##">#FF2E12</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#D39DD9;" href="##">#D39DD9</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#7200AC;" href="##">#7200AC</a></li>
+
+                             <li class="divider"></li>
+                            <li><a style="color:#B81B1B;" href="##">#B81B1B</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#FF768C;" href="##">#FF768C</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#2D004E;" href="##">#2D004E</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#FF1D77;" href="##">#FF1D77</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#E064B7;" href="##">#E064B7</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#4617B4;" href="##">#4617B4</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#B81B6C;" href="##">#B81B6C</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#1F0068;" href="##">#1F0068</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#AA40FF;" href="##">#AA40FF</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#FF7D23;" href="##">#FF7D23</a></li>
+                             <li class="divider"></li>
+                            <li><a style="color:#696969;" href="##">#696969</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div>
+                    <input type="text" id="ppt-text-input" />
+                </div>
+                <div>
+                    <button type="button" class="btn btn-sm btn-primary" id="ppt-text-ok-btn">确认</button>
+                    <button type="button" class="btn btn-sm btn-danger">取消</button>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+        <div class="ppt-code-edit">
+            <div>
+                <div>
+                    <div class="btn-group">
+                        <button class="btn btn-default btn-sm dropdown-toggle" id="ppt-lan-slt" type="button" data-toggle="dropdown" aria-expanded="false">
+                            JavaScript <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" id="ppt-lan-dropdown" role="menu">
+                            <li><a href="##">JavaScript</a></li>
+                            <li class="divider"></li>
+                            <li><a href="##">C++</a></li>
+                            <li class="divider"></li>
+                            <li><a href="##">C#</a></li>
+                             <li class="divider"></li>
+                            <li><a href="##">HTML</a></li>
+                            <li class="divider"></li>
+                            <li><a href="##">Markdown</a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <textarea cols="50" rows="20"></textarea>
+                    <div>
+
+                        <button type="button" class="btn btn-sm btn-primary ppt-insert-code">确认</button>
+                        <button type="button" class="btn btn-sm btn-danger">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="alert alert-danger  ppt-image-tip" id="ppt-image-tip" role="alert">直接从电脑里【拖拽图片】到这页面</div>-->
+    </div>
+    <div class="alert alert-info ppt-tip-for-user" style="position:fixed;z-index:3000;bottom:0px;right:0px;margin-bottom:0px;font-size:10px;" role="alert">请直接【双击页面】添加文字<br/>请直接【ctrl+单击】添加代码<br/>从电脑【拖拽图片】到这页面<br/>元素可【自由拖拽】任意位置</div>
+    <div  style="position:fixed;top:0;right:0;display:none;z-index:10000;" id="ppt-export-div"><pre  id="ppt-export-textarea" style="width:400px;height:400px;overflow:scroll;" contenteditable="true"></pre><div style="text-align:center;"><button type="button" class="btn btn-sm btn-primary" id="ppt-close-export">关闭</button></div>   </div>
+     <textarea id="ppt-codearea" style="display:none; width:800px; height:600px"></textarea>
+    <script src="editor20150529.all.js"></script>
+  
+
+</body>
+</html>

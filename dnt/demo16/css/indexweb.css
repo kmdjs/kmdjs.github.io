@@ -1,0 +1,7 @@
+#panelCover{position: fixed;width:760px;height:100%;min-height:800px; z-index:90;background-color:black;filter:alpha(opacity=70); opacity:0.7; display:none;}
+#panelWaiting{position: absolute;width: 760px;;height:100%;z-index:91; display:none;}
+#createmenu,#infomessage,#infoconfirm,#gamemessage,#setmenu{position:absolute;width: 760px;height:100%; z-index:91; display:none;}
+.popup{ position:absolute  ; width:760px;; height:100%; top:130px; left:0px;z-index:90; display:none;}
+.guessface{padding-top: 15px;margin-left: -167px;}
+.guessword{position:relative;z-index:0;margin-left:40px;top:-20px;font-size:22px;color:#fff;}
+.yan2{margin-left:20px;}

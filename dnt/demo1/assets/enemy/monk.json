@@ -1,0 +1,13 @@
+﻿{
+            "frames": { "width": 64, "height": 64, "numFrames": 32, "regX": 32, "regY": 45 },
+            "animations": {
+                "walk1": [0, 7, "walk1", 5],
+                "walk4": [8, 15, "walk4", 5],
+                "walk3": [16, 23, "walk3", 5],
+                "stand1": [0, 0, "stand1", 10],
+                "stand4": [8, 8, "stand4", 10],
+                "stand3": [16, 16, "stand3", 10],
+                "win": [24, 31, "win", 10]
+            }
+        }
+

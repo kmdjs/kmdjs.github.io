@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+        <title>SCJ Framework-JSONP</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon" />
+    <style>
+        .code {
+            background: silver;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 16px;
+            margin:0px;
+            margin-top:1px;
+            margin-bottom:1px;
+        }
+
+
+
+        h1 {
+            background: none repeat scroll 0 0 darkSlateBlue;
+            border-radius: 3px 3px 3px 3px;
+            color: white;
+            font-size: 18pt;
+            font-weight: bold;
+            letter-spacing: 1px;
+           margin:0px;
+            padding-left: 20px;
+            height:40px;
+            line-height:40px;
+        }
+    </style>
+        <style>
+        body {
+            background: url(../img/topbg.png) repeat;
+        }
+    </style>
+</head>
+<body>
+     <h1 >使用方式</h1>
+   <pre class="code"><span style="background: silver; color: black">require([</span><span style="background: silver; color: #a31515">&quot;SCJ&quot;</span><span style="background: silver; color: black">, </span><span style="background: silver; color: #a31515">&quot;core/jsonp&quot;</span><span style="background: silver; color: black">], </span><span style="background: silver; color: blue">function </span><span style="background: silver; color: black">(SCJ) {
+    SCJ.createJSONP({
+        </span><span style="background: silver; color: green">//jsonp接口，callback必须设置为？,SCJ会自动生成一个全球唯一的callback名称 
+        </span><span style="background: silver; color: black">url: </span><span style="background: silver; color: #a31515">&quot;http://weibo.com/iamleizhang/Joke/getJoke.php?callback=?&amp;page=1&quot;</span><span style="background: silver; color: black">,
+        </span><span style="background: silver; color: green">//成功抓取到数据后的回调
+        </span><span style="background: silver; color: black">onSuccess: </span><span style="background: silver; color: blue">function </span><span style="background: silver; color: black">(json) {
+            </span><span style="background: silver; color: green">//可以在这里面使用json
+            //...
+        </span><span style="background: silver; color: black">}
+    });
+})</span></pre>
+
+    <div style="text-align:center;"><a href="../demo39/index.html" style="text-decoration: none; display: inline-block;*display:inline;*zoom:1;width: 130px; height: 30px; line-height: 30px; text-align: center; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; background-color: #39bedc;font-weight:bold;font-family: Verdana, Geneva, sans-serif;">Online Demo</a></div>
+</body>
+</html>

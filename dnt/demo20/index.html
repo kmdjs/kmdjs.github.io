@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>GuideBox.js</title>
+     <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon"/>
+</head>
+<body style="background-color: silver">
+    <div style="text-align: center;">
+   <h1>GuideBox.js</h1> 
+    </div>
+    <div style="display:none;"><img src="code.png" /><img src="happy.png" /></div>
+    <div class="canvasHolder" style="text-align: center;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);">
+        <canvas style="border-bottom: #222 5px solid; border-left: #222 5px solid; border-top: #222 5px solid; border-right: #222 5px solid;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);" id="ourCanvas" height="432" width="768">请使用支持HTML5 Canvas的浏览器</canvas>
+    </div>
+    <div style="text-align: center;">
+    Press A/D or ← → on the keyboard    or    Click the right side or the left side of the canvas 
+    </div>
+    
+    <div style="text-align: center;">
+        create by <a href="http://weibo.com/iamleizhang" target="_blank">当耐特</a>
+    </div>
+    <script src="js/GuideBox.js?v=2"></script>
+      <script>
+          var gb = new GuideBox("ourCanvas");
+          gb.init([
+                 { fillText: [200, 100, "Hello GuideBox.js!", 40, "red"] },
+                 { drawCircle: [385, 120, 90] },
+                 { drawImage: [560, 300, "happy.png"] }
+          ], [
+                 { fillText: [200, 40, "How to use GuideBox?", 30] },
+                 { fillText: [180, 150, "Press A/D or ← → on the keyboard！", 30, "green"] },
+                 { fillText: [230, 250, "developer?", 40, "red"] }
+          ], [
+                 { drawImage: [140, 10, "code.png"] },
+                 { fillText: [230, 250, "再举个三角形面积推导的栗子！", 40, "red"] }
+          ], [
+                 { drawRect: [200, 80, 400, 200, 6] },
+                 { drawLine: [280, 80, 200, 280, 5, "green"] },
+                 { drawLine: [280, 80, 600, 280, 5, "blue"] },
+                 { drawLine: [280, 80, 280, 280, 5, "brown"] },
+                 { fillText: [400, 100, "面积a1", 30, "red"] },
+                 { fillText: [320, 180, "面积a2", 30, "red"] },
+                 { fillText: [210, 100, "面积b1", 15, "#7fb80e"] },
+                 { fillText: [230, 230, "面积b2", 15, "#7fb80e"] },
+                 { fillText: [200, 300, "a1==a2     b1==b2", 40, "#00ae9d"] },
+                 { fillText: [140, 360, " ==>", 40, "#f15b6c"] },
+                 { fillText: [230, 340, "Area=w*h/2", 60, "#426ab3"] }
+          ], [
+                 { fillText: [150, 100, "The End!", 30] },
+                 { fillText: [150, 150, "Thanks!", 30] },
+                 { fillText: [120, 200, "mail to me:mhtml5@qq.com", 30] },
+                 { fillText: [100, 250, "my site:http://weibo.com/iamleizhang/", 30] },
+                 { fillText: [90, 300, "follow me:http://weibo.com/iamleizhang", 30] },
+                 { drawImage: [590, 300, "happy.png"] }
+          ]);
+
+
+
+    </script>
+</body>
+</html>

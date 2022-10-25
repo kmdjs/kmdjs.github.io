@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="js/noise.js"></script>
+</head>
+<body>
+    <script>
+        var x = 110, y = 110, z = 110;
+        setInterval(function () {
+
+            x += 0.01;
+            y += 0.01;
+            z += 0.01;
+            
+            console.log(noise(x, y, z));
+        }, 500)
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+﻿body {
+
+      background: url(../img/body-bg.png) repeat;
+}
+
+
+#fourPorkeCTT{
+
+    width:500px;
+    margin:0 auto;
+    height:150px;
+}
+ .logo {
+     
+     color:white;
+     text-align:center;
+     font-size:50px;
+    }
+#fourPorkeCTT .porke {
+         display:inline-block;
+    width: 115px;
+    height:150px;
+}
+.frontSide {
+    text-align:center;
+    position:absolute;
+   width:91px;
+   margin:0 auto;
+}
+.porke>div{
+
+    position:relative;width:91px;margin:0 auto;
+}
+.reverseSide {
+    text-align:center;
+    position:absolute;
+   display:none;
+}
+#controlBtn{
+
+        text-align:center;
+}
+
+#result{
+    text-align:center;
+
+}
+
+
+.btn {
+    display: inline-block;
+    padding: 0.5em 0.6em;
+    margin: 2px;
+    border: 1px solid #D2D2D2;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background-color: #fff;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    margin:15px;
+}
+/*#result canvas{
+    border-style:dashed;
+}*/

@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title></title>
+    <link rel="shortcut icon" href="dang.ico" type="image/x-icon" />
+    <link href="asset/jqtree.css" rel="stylesheet" />
+    <style>
+      body {
+        background: url(asset/topbg.png) repeat;
+        font: 14px/1.5 arial, "Microsoft Yahei", "Hiragino Sans GB", sans-serif;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav {
+        position: absolute;
+        z-index: 1000;
+        width: 250px;
+
+        border: 1px solid #ccc;
+      }
+
+      .column {
+        margin-left: 250px;
+        margin-right: 0;
+      }
+
+      .header {
+        display: inline-block;
+        *display: inline;
+        *zoom: 1;
+        height: 40px;
+        width: 100%;
+        background-color: black;
+      }
+
+      .column iframe {
+        width: 100%;
+        border: 0;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav h4 {
+        margin-left: 3px;
+        padding: 0;
+        margin-top: 10px;
+        margin-bottom: 4px;
+      }
+
+      .tree1 {
+        margin-left: 19px;
+        margin-top: -14px;
+      }
+
+      .al-ct {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- <div class="header"></div>-->
+    <div>
+      <div class="nav" id="nav">
+        <h4 class="al-ct">All In One Page</h4>
+        <div style="position: absolute; left: 2px; top: 10px"><img style="width: 20px" src="asset/logo.png" alt="" /></div>
+
+        <div class="al-ct" style="font-size: 10px">create by 当耐特<a href="https://coindataflow.com/de/aktie/RCKTF" ><img style="width: 15px; vertical-align: middle;" src="asset/cdf_logo.png" alt="coindataflow" /></a></div>
+        <div id="tree1" class="tree1"></div>
+      </div>
+      <div class="column">
+        <iframe src="dnt/index.html" width="100%" height="100%" id="iframe1" marginheight="0" frameborder="0"></iframe>
+      </div>
+    </div>
+
+    <script src="asset/jquery-1.10.2.min.js"></script>
+    <script src="asset/tree.jquery.js"></script>
+    <script>
+      (function () {
+        function initHeight() {
+          var newheight = 0;
+          var d = document.documentElement,
+            b = document.body;
+          var vp = d && d.clientWidth && d.clientWidth != 0 ? { width: d.clientWidth, height: d.clientHeight } : { width: b.clientWidth, height: b.clientHeight };
+
+          if (newheight < vp.height) newheight = vp.height - 10;
+
+          document.getElementById("iframe1").height = newheight + "px";
+          $("#nav").height(newheight);
+        }
+        initHeight();
+        $(window).bind("resize.xxx", function () {
+          initHeight();
+        });
+        var data = [
+          {
+            label: "Github",
+            children: [
+              { label: "nuclear", url: "https://github.com/AlloyTeam/Nuclear", currentWindow: true },
+              { label: "observejs", url: "https://github.com/kmdjs/observejs", currentWindow: true },
+              { label: "age", url: "https://github.com/AlloyTeam/AlloyGameEngine", currentWindow: true },
+              { label: "kmdjs", url: "https://github.com/kmdjs/kmdjs", currentWindow: true },
+              { label: "mvc", url: "https://github.com/kmdjs/astar-mvc", currentWindow: true },
+              { label: "transformjs", url: "https://github.com/kmdjs/transformjs", currentWindow: true },
+            ],
+          },
+          {
+            label: "Tool",
+            children: [
+              { label: "照片墙", url: "http://kmdjs.github.io/picture-wall/", currentWindow: true },
+              { label: "ppt编辑器", url: "http://kmdjs.github.io/ppt-editor/", currentWindow: true },
+              { label: "超分辨率", url: "http://kmdjs.github.io/zoom/" },
+              { label: "粒子编辑器", url: "http://alloyteam.github.io/ParticleEditor/" },
+              { label: "长微博", url: "http://kmdjs.github.io/cwb/", currentWindow: true },
+            ],
+          },
+
+          {
+            label: "Article",
+            children: [
+              { label: "理想的Class.js", url: "http://www.cnblogs.com/iamzhanglei/p/4440237.html" },
+              { label: "区域识别", url: "http://www.cnblogs.com/iamzhanglei/archive/2012/07/23/2604313.html" },
+              { label: "纹理映射", url: "http://www.cnblogs.com/iamzhanglei/archive/2013/03/18/2965334.html" },
+              { label: "粒子编辑器", url: "http://www.cnblogs.com/iamzhanglei/p/4245398.html" },
+              { label: "uglify依赖提取", url: "http://www.cnblogs.com/iamzhanglei/p/3841670.html" },
+            ],
+          },
+        ];
+        $tree = $("#tree1").tree({
+          data: data,
+          autoOpen: true,
+        });
+
+        $tree.bind("tree.click", function (e) {
+          var ifm = document.getElementById("iframe1");
+          if (e.node.url) {
+            if (e.node.currentWindow) {
+              window.location.href = e.node.url;
+            } else {
+              ifm.src = e.node.url;
+              ifm.focus();
+            }
+          } else {
+            $tree.tree("toggle", e.node);
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Vector2.js"></script>
+</head>
+<body style="background: url(../img/topbg.png) repeat;">
+    <canvas id="myCanvas" width="600" height="400" style="border:1px solid #c3c3c3;background-color:black;">
+Your browser does not support the canvas element.
+</canvas>
+
+    <script>
+
+        var heartPath = [160, 296, 159, 292, 155, 281, 145, 267, 129, 250, 108, 231, 85, 211, 62, 190, 45, 167, 34, 143, 33, 119, 42, 97, 58, 79, 80, 68, 103, 65, 125, 71, 142, 84, 153, 99, 159, 112, 160, 120, 161, 119, 162, 111, 168, 98, 180, 83, 197, 71, 219, 65, 242, 68, 264, 79, 280, 98, 288, 120, 286, 144, 276, 168, 258, 191, 235, 212, 212, 232, 191, 251, 176, 268, 166, 282, 161, 292, 161, 296];
+        var heartPathArr = [],lineArr=[];
+        for(var i=0,j=heartPath.length;i<j;i+=2){
+            heartPathArr.push([heartPath[i],heartPath[i+1]]);
+        }
+        var c = document.getElementById("myCanvas");
+        var cxt = c.getContext("2d");
+        cxt.strokeStyle = "red";
+   
+        for (var o = 0, q = heartPathArr.length; o < q-1; o++) {
+
+            lineArr.push({ p1: new Vector2(  heartPathArr[o][0],  heartPathArr[o][1]) , p2: new Vector2( heartPathArr[o + 1][0],  heartPathArr[o + 1][1] )} );
+        }
+  
+        //lineArr.push({ p1: { x: 100, y: 100 }, p2: { x: 200, y: 200 } })
+        //console.log(lineArr)
+
+        var balls = [], cyc=15;
+        function getRandomNumber(min, max) {
+            return (min + Math.floor(Math.random() * (max - min + 1)))
+        }
+        for (var k = 0; k < 2000; k++) {
+            var ball = {
+                position: new Vector2(160, 200),
+                r: getRandomNumber(1, 1),
+                v: new Vector2(getRandomNumber(-40, 40), getRandomNumber(-40, 40)),
+                render: function () {
+                    cxt.fillStyle = "white";
+                    cxt.beginPath();
+                    cxt.arc(this.position.x, this.position.y, this.r, 0, Math.PI * 2, true);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            };
+            balls.push(ball);
+        }        setInterval(function () {
+           // cxt.clearRect(0, 0, c.width, c.height)
+            cxt.fillStyle = "rgba(0,0,0,0.1)";
+            cxt.fillRect(0, 0, c.width, c.height);
+            //cxt.moveTo(100, 100);
+            //cxt.lineTo(200, 200);
+            //cxt.closePath();
+            //cxt.stroke()
+            cxt.beginPath();
+            for (var i = 0, j = heartPathArr.length; i < j; i++) {
+                var item = heartPathArr[i];
+                cxt.lineTo(item[0], item[1])
+            }
+            cxt.closePath();
+            cxt.stroke();
+
+            for (var i = 0, j = balls.length; i < j; i++) {
+                
+                balls[i].render();
+
+                for (var m = 0, n = lineArr.length; m < n; m++) {
+                    var item = lineArr[m];
+                    if (balls[i].position.distanceToLine(item.p1, item.p2) < balls[i].r && balls[i].position.isInLineSegment(item.p1, item.p2)) {
+                        //重叠处理
+                        balls[i].position.x -= balls[i].v.x * cyc / 1000;
+                        balls[i].position.y -= balls[i].v.y * cyc / 1000;
+                        balls[i].v.reflectionSelf(Vector2.sub(item.p1, item.p2).vertical());
+
+                    
+                    }
+                }
+             
+            
+                balls[i].position.x += balls[i].v.x * cyc / 1000;
+                balls[i].position.y += balls[i].v.y * cyc / 1000;
+              
+            }
+           
+
+        }, 15)
+        
+    </script>
+</body>
+</html>

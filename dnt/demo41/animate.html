@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+     <title>SCJ Framework-Animate</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon" />
+    <style>
+        .code {
+            background: silver;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 16px;
+            margin:0px;
+            margin-top:1px;
+            margin-bottom:1px;
+        }
+
+
+
+        h1 {
+            background: none repeat scroll 0 0 darkSlateBlue;
+            border-radius: 3px 3px 3px 3px;
+            color: white;
+            font-size: 18pt;
+            font-weight: bold;
+            letter-spacing: 1px;
+           margin:0px;
+            padding-left: 20px;
+            height:40px;
+            line-height:40px;
+        }
+    </style>
+        <style>
+        body {
+            background: url(../img/topbg.png) repeat;
+        }
+    </style>
+</head>
+<body>
+    <h1 >使用方式</h1>
+    <pre class="code"><span style="background: silver; color: black">require([</span><span style="background: silver; color: #a31515">&quot;SCJ&quot;</span><span style="background: silver; color: black">, </span><span style="background: silver; color: #a31515">&quot;core/animate&quot;</span><span style="background: silver; color: black">], </span><span style="background: silver; color: blue">function </span><span style="background: silver; color: black">(SCJ, $) {
+    SCJ.createAnimate({
+        </span><span style="background: silver; color: green">//运动的元素
+        </span><span style="background: silver; color: black">target: SCJ.createQuery(</span><span style="background: silver; color: #a31515">&quot;div&quot;</span><span style="background: silver; color: black">),
+        </span><span style="background: silver; color: green">//动画的结果
+        </span><span style="background: silver; color: black">to: {
+            left: 100,
+            top: 200
+        },
+        </span><span style="background: silver; color: green">//执行时间
+        </span><span style="background: silver; color: black">duration: 1000,
+        </span><span style="background: silver; color: green">//速率变化
+        </span><span style="background: silver; color: black">easing: </span><span style="background: silver; color: #a31515">&quot;easeInOutBounce&quot;</span><span style="background: silver; color: black">,
+        </span><span style="background: silver; color: green">//结束回调
+        </span><span style="background: silver; color: black">onAnimateEnd: </span><span style="background: silver; color: blue">function </span><span style="background: silver; color: black">() {
+            alert(</span><span style="background: silver; color: #a31515">&quot;运动结束回调&quot;</span><span style="background: silver; color: black">)
+        }
+    })
+})</span></pre>
+    <div style="text-align:center;"><a href="../demo43/index.html" style="text-decoration: none; display: inline-block;*display:inline;*zoom:1;width: 200px; height: 30px; line-height: 30px; text-align: center; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; background-color: #39bedc;font-weight:bold;font-family: Verdana, Geneva, sans-serif;">试试Ease.IOSSpring</a></div>
+    
+</body>
+</html>

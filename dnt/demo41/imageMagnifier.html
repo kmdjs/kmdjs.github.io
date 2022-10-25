@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>SCJ Framework-ImageMagnifier</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon" />
+    <style>
+        .code {
+            background: silver;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 16px;
+            margin: 0px;
+            margin-top: 1px;
+            margin-bottom: 1px;
+        }
+
+        h1 {
+            background: none repeat scroll 0 0 darkSlateBlue;
+            border-radius: 3px 3px 3px 3px;
+            color: white;
+            font-size: 18pt;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin: 0px;
+            padding-left: 20px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        body {
+            background: url(../img/topbg.png) repeat;
+        }
+    </style>
+    <style>
+        .irhc {
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #000;
+            position: absolute;
+            text-decoration: none;
+            color: #000;
+            z-index: 1002;
+            background: url(img/mmload.gif) #fff no-repeat center center;
+        }
+
+            .irhc span {
+                display: block;
+                position: relative;
+            }
+
+            .irhc img {
+                display: block;
+                position: absolute;
+                top: 10px;
+            }
+    </style>
+</head>
+<body>
+      <h1>在线演示</h1>
+    <div class="dg_u">
+        <a href="#">
+            <img src="img/th.jpg" class="magnifier" magnifier="img/big_th1.jpg" />
+        </a>
+    </div>
+    <div class="dg_u">
+        <a href="#">
+            <img src="img/th2.jpg" class="magnifier" magnifier="img/big_th2.jpg" />
+        </a>
+    </div>
+    <h1>使用方式</h1>
+    <p>HTML:</p>
+    <pre class="code"><span style="color:black;background:silver">    </span><span style="color:blue;background:silver">&lt;</span><span style="color:maroon;background:silver">div </span><span style="color:red;background:silver">class</span><span style="color:blue;background:silver">="dg_u"&gt;
+        &lt;</span><span style="color:maroon;background:silver">a </span><span style="color:red;background:silver">href</span><span style="color:blue;background:silver">="#"&gt;
+            &lt;</span><span style="color:maroon;background:silver">img </span><span style="color:red;background:silver">src</span><span style="color:blue;background:silver">="img/th.jpg" </span><span style="color:red;background:silver">class</span><span style="color:blue;background:silver">="magnifier" </span><span style="color:red;background:silver">magnifier</span><span style="color:blue;background:silver">="img/big_th1.jpg" /&gt;
+        &lt;/</span><span style="color:maroon;background:silver">a</span><span style="color:blue;background:silver">&gt;
+    &lt;/</span><span style="color:maroon;background:silver">div</span><span style="color:blue;background:silver">&gt;
+    &lt;</span><span style="color:maroon;background:silver">div </span><span style="color:red;background:silver">class</span><span style="color:blue;background:silver">="dg_u"&gt;
+        &lt;</span><span style="color:maroon;background:silver">a </span><span style="color:red;background:silver">href</span><span style="color:blue;background:silver">="#"&gt;
+            &lt;</span><span style="color:maroon;background:silver">img </span><span style="color:red;background:silver">src</span><span style="color:blue;background:silver">="img/th2.jpg" </span><span style="color:red;background:silver">class</span><span style="color:blue;background:silver">="magnifier" </span><span style="color:red;background:silver">magnifier</span><span style="color:blue;background:silver">="img/big_th2.jpg" /&gt;
+        &lt;/</span><span style="color:maroon;background:silver">a</span><span style="color:blue;background:silver">&gt;
+    &lt;/</span><span style="color:maroon;background:silver">div</span><span style="color:blue;background:silver">&gt;</span></pre>
+    <p>JS:</p>
+    <pre class="code"><span style="color:black;background:silver">require([</span><span style="color:#a31515;background:silver">"SCJ"</span><span style="color:black;background:silver">, </span><span style="color:#a31515;background:silver">"ui/imageMagnifier"</span><span style="color:black;background:silver">], </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">(SCJ) {
+    SCJ.createImageMagnifier(</span><span style="color:#a31515;background:silver">".magnifier"</span><span style="color:black;background:silver">)
+})</span></pre>
+  
+    <script src="js/main.imageMagnifier.js"></script>
+</body>
+</html>

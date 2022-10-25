@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="canvas-to-blob.js"></script>
+</head>
+<body>
+    <img src="/kmdjs.github.io/arejs-tool-sprite/tutorial-sprite.png" id="test" alt="" />
+    <canvas width="500"   height="500">
+
+    </canvas>
+
+    <script>
+        window.onload = function () {
+            var canvas = document.querySelector('canvas');
+            /* ... your canvas manipulations ... */
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(document.getElementById("test"), 0, 0, 100, 100, 100, 100, 100, 100);
+            if (canvas.toBlob) {
+                canvas.toBlob(
+                    function (blob) {           
+                        var url = window.URL.createObjectURL(blob);
+                        var dlLink = document.createElement("a");
+                        dlLink.setAttribute('href', url);
+                        dlLink.setAttribute('download', 'xx.png');
+                        dlLink.click();
+                        /* ... */
+                    },
+                    'image/png'
+                );
+            }
+        }
+        
+    </script>
+</body>
+</html>

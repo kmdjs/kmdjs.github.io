@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>当耐特-爱画爱猜</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=8" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no" />
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="../js/jquery.js"></script>
+    <script type="text/javascript" src="js/draw.js"></script>
+    <script type="text/javascript" src="js/page.js"></script>
+    <script src="js/loader.js"></script>
+    <script type="text/javascript" src="js/canvaslib.js"></script>
+    <script type="text/javascript" src="js/tween.js"></script>
+    <script>
+        var bolCanvas = true, objPage = new Page();
+        if (!document.createElement("canvas").getContext) bolCanvas = false;
+        var arrColor = ["#FFFFFF", "#000000", "#FF0000", "#F9F900", "#0000FF", "#3C3C3C", "#6C6C6C", "#9D9D9D", "#4cff00", "#ce2525", "#600030", "#BF0060", "#FF0080", "#FF79BC", "#FFD9EC", "#5E005E", "#AE00AE", "#FF00FF", "#FF8EFF", "#FFBFFA", "#3A006F", "#6F00D2", "#921AFF", "#BE77FF", "#DCB5FF", "#003D79", "#005AB5", "#0080FF", "#46A3FF", "#ACD6FF", "#007979", "#00AEAE", "#00FFFF", "#80FFFF", "#CAFFFF", "#009100", "#00BB00", "#00EC00", "#79FF79", "#BBFFBB", "#796400", "#C6A300", "#FFD306", "#FFE66F", "#FFF4C1", "#844200", "#BB5E00", "#FF8000", "#FFA042", "#FFC78E", "#613030", "#804040", "#AD5A5A", "#C48888", "#E1C4C4", "#336666", "#4F9D9D", "#6FB7B7", "#A3D1D1", "#D1E9E9", "#484891", "#7373B9", "#9999CC", "#B8B8DC", "#D8D8EB", "#6C3365", "#9F4D95", "#C07AB8", "#D2A2CC", "#E2C2DE", "#D9006C", "#FF359A", "#FF95CA", "#820041", "#FFD9EC", "#5E005E", "#AE00AE", "#FF00FF", "#FF8EFF", "#FFBFFA", "#3A006F", "#6F00D2", "#921AFF", "#BE77FF", "#DCB5FF", "#003D79", "#005AB5", "#0080FF", "#46A3FF", "#ACD6FF", "#007979", "#00AEAE", "#00FFFF", "#80FFFF", "#CAFFFF", "#009100", "#00BB00", "#00EC00", "#79FF79", "#BBFFBB", "#796400", "#C6A300", "#FFD306", "#FFE66F", "#FFF4C1", "#844200", "#BB5E00", "#FF8000", "#FFA042", "#FFC78E", "#613030", "#804040", "#AD5A5A", "#C48888", "#E1C4C4", "#336666", "#408080", "#4F9D9D", "#6FB7B7", "#95CACA", "#484891", "#7373B9", "#9999CC", "#B8B8DC", "#D8D8EB", "#6C3365", "#8F4586", "#AE57A4", "#C07AB8", "#DAB1D5"];
+    </script>
+
+</head>
+<body>
+
+    <div id='infomessage' style="z-index: 95;">
+        <div class="infomsg">
+            <div style="width: 270px; height: 20px; color: white;"></div>
+            <div id="infomsg_txt" style="color: white; font-size: 20px; padding-left: 5px; filter: Shadow(Color='black', Direction='135', Strength='2'); text-shadow: black 5px 3px 10px; width: 270px; height: 20px; text-align: center; margin-top: 10px; margin-bottom: 30px; color: white; font-size: 24px;"></div>
+            <div class="jl_sis jl_msgbgokey" onclick="objPage.HideMessage();">
+                <div class="jl_sis jl_msgokey"></div>
+            </div>
+        </div>
+    </div>
+    <div id="panelGame" style="display: block;">
+        <div id="draw_header" style="display: block;">
+            <!-- draw本局信息 -->
+            <div id="draw_info" class="bis bis-head3">
+                <!--	<div class="trunnum">
+					<div class="num">
+						<div id="draw_num" class="numdiv"></div>
+					</div>
+				</div>-->
+
+                <div style="float: left; margin-left: -10px; margin-top: -4px;">
+                    <div><a href="javascript:void(0);" onclick="objPage.Hide()" class="sisback sis sis-back"></a></div>
+
+                </div>
+                <div class="textinfo" style="margin-left: 20px;">
+                    <a href="http:s//weibo.com/iamleizhang" target="_blank">
+                        <img class="roundborder header-img" src="image/0.jpg" alt="头像" width="40" height="40"></a>
+                    <span id="draw_txt" class="headerinfotxt">当耐特<b> 炫 "摇晃" 魔法</b>!</span>
+                </div>
+            </div>
+            <!-- draw笔色 -->
+            <div id="draw_cor">
+                <div id="sel_cor">
+                    <div class="cor sis sis-colorBg1" style="background-color: #000000;" onclick="objPage.SetLineColor(1,this)"></div>
+                    <div class="cor sis sis-colorBg1" style="background-color: #FF0000;" onclick="objPage.SetLineColor(2,this)"></div>
+                    <div class="cor sis sis-colorBg1" style="background-color: #F9F900;" onclick="objPage.SetLineColor(3,this)"></div>
+                    <div class="cor sis sis-colorBg1" style="background-color: #0000FF;" onclick="objPage.SetLineColor(4,this)"></div>
+                    <div class="cor sis sis-colorBg1" style="background-color: #3C3C3C;" onclick="objPage.SetLineColor(5,this)"></div>
+                    <div class="cor sis sis-colorBg1" style="background-color: #6C6C6C;" onclick="objPage.SetLineColor(6,this)"></div>
+                    <div class="cor sis sis-colorBg1" style="background-color: #9D9D9D;" onclick="objPage.SetLineColor(7,this)"></div>
+                    <div class="cor sis sis-colorBg1" style="background-color: #4cff00;" onclick="objPage.SetLineColor(8,this)"></div>
+                    <div class="cor sis sis-colorBg1" style="background-color: #ce2525;" onclick="objPage.SetLineColor(9,this)"></div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div id="guess_header" style="display: none;">
+            <!-- guess本局信息 -->
+            <div id="guess_info" class="bis bis-head3">
+
+                <div class="sis sis-turn2" style="float: left; margin-left: 20px; margin-top: 4px;">
+                    <div id="guess_num" class="gamelistb2td2"></div>
+                </div>
+                <div class="textinfo">
+                    <img id="guess_img" class="roundborder header-img" src="" alt="头像" width="40" height="40">
+                    <span id="guess_txt" class="headerinfotxt"></span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 绘图面板 -->
+        <div style="position: relative; height: 320px; background-color: white;">
+            <canvas id="canvas" width="320" height="320" style="z-index: 5; cursor: crosshair; display: block;">不支持HTML5</canvas>
+            <canvas id="canvasMove" width="320" height="320" style="z-index: 3; display: none;"></canvas>
+            <canvas id="canvasPrev" width="320" height="320" style="position: absolute; z-index: 1; top: 0px; left: 0px; cursor: crosshair;"></canvas>
+            <img id="draw_pen" width="10" height="20" class="drawpen" style="display: none" />
+        </div>
+        <div id="draw_footer" style="display: block;">
+            <!-- draw笔 -->
+            <div id="draw_line" class="listaSelect listaSelectBig" style="display: none;">
+                <div id="linha_larg32" class="op d10 opBig" onclick="objPage.SetLinhaStyle(32)"></div>
+                <div id="linha_larg22" class="op d8 opBig" onclick="objPage.SetLinhaStyle(22)"></div>
+                <div id="linha_larg12" class="op d6 opBig" onclick="objPage.SetLinhaStyle(12)"></div>
+                <div id="linha_larg7" class="op d4 opBig" onclick="objPage.SetLinhaStyle(7)" style="background-color: #A7C964"></div>
+                <div id="linha_larg2" class="op d2 opBig" onclick="objPage.SetLinhaStyle(2)"></div>
+            </div>
+            <!-- draw橡皮 -->
+            <div id="draw_eraser" class="listaSelect" style="display: none;">
+                <div id="eraser_larg32" class="op d10 lstop" onclick="objPage.SetEraserStyle(32)"></div>
+                <div id="eraser_larg22" class="op d8" onclick="objPage.SetEraserStyle(22)"></div>
+                <div id="eraser_larg12" class="op d6" onclick="objPage.SetEraserStyle(12)"></div>
+                <div id="eraser_larg7" class="op d4" onclick="objPage.SetEraserStyle(7)" style="background-color: #A7C964"></div>
+                <div id="eraser_larg2" class="op d2" onclick="objPage.SetEraserStyle(2)"></div>
+            </div>
+            <!-- draw笔高 -->
+            <div id="draw_penheight" class="listaSelect" style="display: none;">
+                <div id="penheight_larg40" class="oppen penh40" onclick="objPage.SetPenStyle(40)" style="background-color: rgb(238, 238, 238);"></div>
+                <div id="penheight_larg30" class="oppen penh30" onclick="objPage.SetPenStyle(30)" style="background-color: rgb(238, 238, 238);"></div>
+                <div id="penheight_larg0" class="oppen penh20" onclick="objPage.SetPenStyle(0)" style="background-color: rgb(167, 201, 100);"></div>
+            </div>
+            <!-- draw下工具栏 s -->
+            <div id="draw_bar" class="bis bis-body3">
+                <div>
+                    <div class="selOp sis sis-pen selOpBig" onclick="objPage.OpenDrawWidthBar(0);" title="画笔"></div>
+                    <div class="selOp sis sis-rubber" onclick="objPage.OpenDrawWidthBar(1);" title="橡皮"></div>
+                    <!--div class="selOp op6" onclick="objPage.OpenDrawWidthBar(2);" title="笔高"></div-->
+
+                    <div id="draw_view" class="selOK sis sis-preview" onclick="if(desenho.getSequencia().split('#').length&lt;5){objPage.ShowMessage('多画点什么吧');return;};DoAction()" title="预览" style="display: block;"></div>
+
+                </div>
+            </div>
+            <!-- draw下工具栏 e -->
+        </div>
+
+    </div>
+
+
+    <!-- 动态模板 -->
+    <div id="template_animate" class="popup" style="display: block; z-index: 89;">
+        <div class="popmain">
+            <div class="bis bis-head"></div>
+
+            <div class="drawWorldbg panelhallbackg top0">
+
+                <div style="margin-left: 15px; margin-top: 20px;" id="animate_tpllist">
+                    <div class="bis bis-head8"></div>
+                    <div class="bis bis-body8"  onclick="objPage.ViewTplDrawStart(1001);">
+                        <div class="sis sis-magic" style="float: left; margin-left: 14px; margin-top: 10px;"></div>
+                        <div class="drawWordxt2" style="float: left; color: white; font-size: 25px; margin-top: 10px;" id="animate1001" title="炫一下">旋转</div>
+                        <div class="drawWordxt3 sis sis-money3" style="margin-top: 10px; float: left;"></div>
+                    </div>
+                    <div class="bis bis-body8" onclick="objPage.ViewTplDrawStart(1002);" >
+                        <div class="sis sis-magic" style="float: left; margin-left: 14px; margin-top: 10px;"></div>
+                        <div class="drawWordxt2" style="float: left; color: white; font-size: 25px; margin-top: 10px;" id="animate1002" title="炫一下">跳跃</div>
+                        <div class="drawWordxt3 sis sis-money3" style="margin-top: 10px; float: left;"></div>
+                    </div>
+                    <div class="bis bis-body8"  onclick="objPage.ViewTplDrawStart(1003);">
+                        <div class="sis sis-magic" style="float: left; margin-left: 14px; margin-top: 10px;"></div>
+                        <div class="drawWordxt2" style="float: left; color: white; font-size: 25px; margin-top: 10px;" id="animate1003" title="炫一下">摇晃</div>
+                        <div class="drawWordxt3 sis sis-money3" style="margin-top: 10px; float: left;"></div>
+                    </div>
+                    <div class="bis bis-body8" onclick="objPage.ViewTplDrawStart(1004);">
+                        <div class="sis sis-magic" style="float: left; margin-left: 14px; margin-top: 10px;"></div>
+                        <div class="drawWordxt2" style="float: left; color: white; font-size: 25px; margin-top: 10px;" id="animate1004"  title="炫一下">爆炸</div>
+                        <div class="drawWordxt3 sis sis-money3" style="margin-top: 10px; float: left;"></div>
+                    </div>
+                    <div class="bis bis-body8" onclick="objPage.ViewTplDrawStart(1005);">
+                        <div class="sis sis-magic" style="float: left; margin-left: 14px; margin-top: 10px;"></div>
+                        <div class="drawWordxt2" style="float: left; color: white; font-size: 25px; margin-top: 10px;" id="animate1005"  title="炫一下">飞行</div>
+                        <div class="drawWordxt3 sis sis-money3" style="margin-top: 10px; float: left;"></div>
+                    </div>
+                    <div class="bis bis-body8" onclick="objPage.ViewTplDrawStart(1006);">
+                        <div class="sis sis-magic" style="float: left; margin-left: 14px; margin-top: 10px;"></div>
+                        <div class="drawWordxt2" style="float: left; color: white; font-size: 25px; margin-top: 10px;" id="animate1006"  title="炫一下">摇摆</div>
+                        <div class="drawWordxt3 sis sis-money3" style="margin-top: 10px; float: left;"></div>
+                    </div>
+                    <div class="bis bis-foot8"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align:center;z-index:1000;">
+       <p>©2013-2113 create by <a href="http://weibo.com/iamleizhang" target="_blank">当耐特</a></p> 
+    
+    </div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+﻿.j-calendar {
+    width: 200px;
+    height: 181px;
+    position: absolute;
+    padding: 5px 0px;
+    left: 10px;
+    top: 48px;
+    z-index: 10000;
+    border: 1px solid #ccc;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    overflow: hidden;
+    -webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;-o-user-select:none;user-select:none;
+    background-color: #fff;
+}
+
+        .j-calendar table {
+            border-collapse: collapse;
+            
+            text-align: center;
+             background-color: #fff;
+        }
+
+            .j-calendar table td {
+                width: 38px;
+                text-align:center;
+               padding:0px;
+                vertical-align: middle;
+            }
+             .j-calendar table td:hover {
+                 background-color: #9699A0;
+                color: #fff;
+            }
+              .j-calendar table td span:hover {
+                color: #edecec;
+            }
+
+            .j-calendar .title {
+                 height:22px;
+                text-align: center;
+                font-size: 15px;
+                font-weight: bold;
+                line-height:22px;
+                 background-color: #fff;
+            }
+
+            .j-calendar th {
+                border-bottom:1px solid #ccc;
+                font-weight: 100;
+                font-size: 10px;
+                color: #999999;
+                 padding:0px;
+                 vertical-align: middle;
+            }
+
+            .j-calendar td {
+                font-weight: bold;
+                font-size: 12px;
+                color: #404040;
+                cursor: pointer;
+                border-bottom:1px solid #ccc;
+            }
+
+            .j-calendar thead {
+                background-color: #F5F5F5;
+            }
+
+                .j-calendar thead tr {
+                    height: 20px;
+                }
+
+            .j-calendar tr {
+                height: 24px;
+            }
+
+                .j-calendar tr td .today {
+                    display: block;
+                  
+                    /*background: url(../img/text.png) no-repeat 2px;*/
+                    color:#FF770D;
+                   font-size: 15px;
+                font-weight: bold;
+                }
+
+            .j-calendar .preMonth, .j-calendar .nextMonth {
+                position: absolute;
+                font-size: 20px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+
+            .j-calendar .preMonth {
+                left: 8px;
+              top: 3px;
+                color: #86898f;
+            }
+
+                .j-calendar .nextMonth {
+                    left: 181px;
+                      top:3px;
+                    color: #86898f;
+                }
+           .j-calendar .preMonth:hover,  .j-calendar .nextMonth:hover{
+
+               color: #ff6600;
+             }
+            .j-calendar .calendarMain {
+                width: 200px;
+                margin: 0 auto;
+            }
+
+            .j-calendar .pass {
+                color: #DEDCDC;
+            }
