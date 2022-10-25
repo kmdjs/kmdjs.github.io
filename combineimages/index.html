@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        #preview {
+            width: auto;
+            height: auto;
+            min-height: 300px;
+            min-width: 300px;
+            background-color: #eee;
+            padding: 22px;
+            border: 3px dashed black;
+            text-align: center;
+            font-size: 40px;
+        }
+
+        #demo {
+            text-align: center;
+        }
+
+            #demo img {
+                margin-left: 5px;
+            }
+    </style>
+</head>
+<body>
+    <a href="https://github.com/AlloyTeam/AlloyGameEngine" target="_blank" style="position: absolute; right: 0; top: 0;">
+        <img src="http://alloyteam.github.io/AlloyRenderingEngine/asset/img/github.png" alt="" />
+    </a>
+    <div style="text-align: center;">
+        <input id="rangeIpt" type="range" name="range" min="1" max="20" step="1" value="4" /></div>
+    <div id="preview">
+        <div>Drop image file here.</div>
+        <canvas id="canvas"></canvas>
+    </div>
+    <script>
+        function imgLoadHD() { this.height > MAX_HEIGHT && (this.width *= MAX_HEIGHT / this.height, this.height = MAX_HEIGHT), 0 === imgWidth && (canvas.width = this.width * len, canvas.height = this.height), imgWidth = this.width, imgHeight = this.height, ctx.drawImage(this, this.width * (this._currentSrcIndex % maxCol), imgHeight * Math.floor(this._currentSrcIndex / maxCol)), delete this._currentSrcIndex } var MAX_HEIGHT, srcs, render, readImage, dom = {}
+        dom.byId = function (e) { return document.getElementById(e) }, MAX_HEIGHT = 100, preview = dom.byId("preview"), canvas = dom.byId("canvas"), rangeIpt = dom.byId("rangeIpt"), ctx = canvas.getContext("2d"), imgWidth = 0, imgHeight = 0, maxCol = 4, srcs = [], render = function (e) {
+            var t, i, a
+            for (e && srcs.push(e), len = srcs.length, ctx.clearRect(0, 0, canvas.width, canvas.height), canvas.width = imgWidth * maxCol, canvas.height = imgHeight * Math.ceil(len / maxCol), t = 0; len > t; t++) i = srcs[t], a = new Image, a._currentSrcIndex = t, a.onload = imgLoadHD, a.src = i
+        }, readImage = function (e) {
+            if (!e.type.match(/image.*/)) return void console.log("The dropped file is not an image: ", e.type)
+            var t = new FileReader
+            t.onload = function (e) { render(e.target.result) }, t.readAsDataURL(e)
+        }, preview.addEventListener("dragover", function (e) { e.preventDefault() }, !0), preview.addEventListener("drop", function (e) { e.preventDefault(), readImage(e.dataTransfer.files[0]) }, !0), rangeIpt.addEventListener("mouseup", function () { maxCol = rangeIpt.value, render() }, !1)
+    </script>
+    <div id="demo">
+        try to combine
+        <img src="image629.png" alt="" /><img src="image632.bmp" alt="" /><img src="image606.bmp" alt="" /><img src="image666.jpg" alt="" />to<img src="result.png" alt="" />
+    </div>
+</body>
+</html>

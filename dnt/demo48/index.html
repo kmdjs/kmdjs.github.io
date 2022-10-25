@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML5 Game</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon" />
+      <style>body {
+            background: url(../img/topbg.png) repeat;
+        }</style>
+    <script src="src/cl.min.js" type="text/javascript"></script>
+    <script src="src/tw.min.js" type="text/javascript"></script>
+    <script src="src/easeljs/Constant.js" type="text/javascript"></script>
+    <script src="./src/easeljs/XNARectangle.js"></script>
+    <script src="./src/easeljs/PlatformerHelper.js"></script>
+    <script src="./src/easeljs/ContentManager.js"></script>
+    <script src="./src/easeljs/Tile.js"></script>
+    
+    <script src="./src/easeljs/Gem.js"></script>
+    <script src="src/Snail.js" type="text/javascript"></script>
+    <script src="./src/easeljs/Enemy.js"></script>
+    <script src="./src/easeljs/Player.js"></script>
+    <script src="./src/easeljs/Level.js"></script>
+    <script src="./src/easeljs/PlatformerGame.js"></script>
+  
+</head>
+<body onload="setIE9PinnedModeExperience();">
+    <div class="canvasHolder">
+        <canvas id="platformerCanvas2" width="480" height="320" style="background-color: black">
+			Your browser doesn't support canvas. Please download IE9+ on
+		</canvas>
+         <canvas id="platformerCanvas"  width="800" height="480" style="background-color: black;">
+			Your browser doesn't support canvas. Please download IE9+ on
+		</canvas>
+    </div>
+    【操作：W跳 左右AD 攻击J】
+   小地图透明度: <button id="Left" onclick="leftKey();">
+            减0.1</button>
+  
+    <button id="Right" onclick="rightKey();">
+            加0.1</button>
+			
+			重新开始:<button id="Start" onclick="restart();">
+        ReStart</button>
+		<div>原游戏地址：<a href="http://blogs.msdn.com/b/davrous/archive/2011/09/09/html5-platformer-the-complete-port-of-the-xna-game-to-lt-canvas-gt-with-easeljs.aspx">点击这里</a></div>
+     <div style="text-align:center;">
+       <p>create by <a href="http://weibo.com/iamleizhang" target="_blank">当耐特</a></p>     
+    </div>
+        <script>
+            //打怪、刷怪、怪物自动巡逻、宝物掉落、宝物拾取、树藤、楼梯、联机组队对战boss、各种菜单技能
+            //趴着爬、死、   touch控制器
+            var canvas;
+            var stage = null;
+            var contentManager;
+            var platformerGame;
+            var globalCanvasContext;
+            var enableShadows = false;
+            var enableRAF = true;
+
+            var canvas2;
+            var canvasBmp, canvasBmp2;
+            var stage2 = null;
+            // Specific IE9 pinned site experience
+            // Buttons displayed in the thumnbail preview in the taskbar
+            var ieBtnLeft, ieBtnRight, ieBtnJump;
+
+            function restart() {
+                if (stage == null) {
+                    //find canvas and load images, wait for last image to load
+                    canvas = document.getElementById("platformerCanvas");
+                    globalCanvasContext = canvas.getContext("2d");
+                    canvas2 = document.getElementById("platformerCanvas2");
+
+                    // create a new stage and point it at our canvas:
+                    stage = new Stage(canvas);
+                    stage2 = new Stage(canvas2);
+                    canvasBmp = new Bitmap(canvas);
+                    canvasBmp2 = new Bitmap(canvas);
+                    canvasBmp2.alpha = 0.7;
+                    canvasBmp2.x = 320;
+                    canvasBmp2.scaleX = canvasBmp2.scaleY = 0.2;
+                    stage2.addChild(canvasBmp, canvasBmp2);
+                    // downloading all needed images ressources and preloading sounds & music 
+                    contentManager = new ContentManager(stage2, canvas2.width, canvas2.height);
+                    contentManager.SetDownloadCompleted(startGame);
+                    contentManager.StartDownload();
+                }
+                else {
+                    platformerGame.ReloadCurrentLevel();
+                }
+            }
+            restart();
+            // Simuate keypress for touch devices & for the IE9 pinned thumbnail buttons
+            function jumpKey() {
+                platformerGame.handleKeyDown({ "keyCode": 87 });
+                setTimeout("platformerGame.handleKeyUp({ \"keyCode\": 87 })", 20);
+            }
+
+            function leftKey() {
+                 canvasBmp2.alpha-=0.1;
+				 if(canvasBmp2.alpha<0)canvasBmp2.alpha=0;
+            }
+
+            function rightKey() {
+                canvasBmp2.alpha+=0.1;
+				if(canvasBmp2.alpha>1)canvasBmp2.alpha=1;
+            }
+
+            function changeShadows() {
+                enableShadows = !enableShadows;
+            }
+
+            function changeRAF() {
+                enableRAF = !enableRAF;
+                Ticker.useRAF = enableRAF;
+            }
+
+            // Callback function once everything has been downloaded
+            function startGame() {
+                platformerGame = new PlatformerGame(stage, contentManager, canvas.width, canvas.height);
+                platformerGame.StartGame();
+            }
+
+            //********************************************************
+            // Specific code for IE9+ for the pinned mode experience
+            function setIE9PinnedModeExperience() {
+                try {
+                    document.addEventListener('msthumbnailclick', processSelection, false);
+
+                    ieBtnLeft = window.external.msSiteModeAddThumbBarButton('icons/ie9left.ico', 'Left');
+                    ieBtnJump = window.external.msSiteModeAddThumbBarButton('icons/ie9jump.ico', 'Jump');
+                    ieBtnRight = window.external.msSiteModeAddThumbBarButton('icons/ie9right.ico', 'Right');
+
+                    window.external.msSiteModeShowThumbBar();
+                }
+                catch (e) { }
+            }
+
+            function processSelection(btn) {
+                switch (btn.buttonID) {
+                    case ieBtnLeft:
+                        leftKey();
+                        break;
+
+                    case ieBtnRight:
+                        rightKey();
+                        break;
+
+                    case ieBtnJump:
+                        jumpKey();
+                        break;
+                }
+            }
+            //********************************************************
+    </script>
+</body>
+</html>

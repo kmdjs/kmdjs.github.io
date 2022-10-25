@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>超快长微博</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+             .adjust {
+                 display:inline-block;
+            position: relative;
+            width: 80px;
+        }
+        .adjust-arrow {
+            position: absolute;
+            top: 3px;
+            right: 0px;
+        }
+        .adjust-arrow-up {
+            background: url(aUp.png) no-repeat;
+            width: 21px;
+            height: 12px;
+            margin-bottom: 3px;
+            cursor: pointer;
+        }
+        .adjust-input {
+            width: 80px;
+            height: 27px;
+            text-indent:6px;
+            font-size:17px;
+            font-weight:bold;
+        }
+        .adjust-arrow-down {
+            background: url(aDown.png) no-repeat;
+            width: 21px;
+            height: 12px;
+            cursor: pointer;
+        }
+        .wbinput{
+            width:180px;
+             height: 27px;
+            text-indent:6px;
+            font-size:17px;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://github.com/AlloyTeam/AlloyGameEngine" target="_blank" style="position:absolute;right:0;top:0;">
+<img src="http://alloyteam.github.io/AlloyRenderingEngine/asset/img/github.png" alt="" />
+ </a>
+    <div style="margin:0 auto;width:740px;">
+     <div style="display:inline-block;vertical-align:top;">   <img id="show" style=" width: 320px;" alt="" /></div>
+    <div style="display:inline-block;vertical-align:top;">
+        <textarea id="contentTxa" rows="25" cols="45">                      超快长微博 
+使用步骤：
+     0：打开现代浏览器
+     1：把你想要转成长图片的文字放进这里把你想要转成长图片的文字放进这里把你想要转成长图片的文字放进这里把你想要转成长图片的文字放进这里把你想要转成长图片的文字放进这里把你想要转成长图片的文字放进这里把你想要转成长图片的文字放进这里把你想要转成长图片的文字放进这里
+     2：右键另存左边的图片
+        Over!
+    oh my god!  好棒！ 好赞！！
+            
+   【ps:当然你可以实时编辑实时预览】</textarea>
+       <div  style="margin:5px;"><input type="button" id="mybtn" style="display:none;" value="轻轻点击瞬间下载" /></div>
+       <div id="weiboCTT" style="margin:5px;"> 微博名:
+        <input type="text" id="weiboname" value="AlloyTeam" placeholder="此名加在末尾水印" class="wbinput " />     
+           </div>
+        <div id="weiboOfCTT"  style="margin:5px;" > 微　调:
+           </div>
+
+        
+       
+    </div>
+ 
+    <div style="clear:both;"></div>
+    <div style="display: none;">
+        <img src="bg.png" id="bgImg" /><img id="wblogo" src="LOGO_64x64.png" />
+        <a id="downloadLink" download="changweibo.png">changweibo</a>
+        <canvas width="640" height="960"></canvas>
+        <canvas width="640" height="960" style="position: absolute; right: 0; top: 0;"></canvas>
+    </div>
+    </div>
+    <script src="rl.js"></script>
+</body>
+</html>

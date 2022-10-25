@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>SCJ Framework-Canvas</title>
+    <link rel="shortcut icon" href="../../img/dang.ico" type="image/x-icon" />
+    <style>
+        .code {
+            background: silver;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 16px;
+            margin: 0px;
+            margin-top: 1px;
+            margin-bottom: 1px;
+        }
+
+        h1 {
+            background: none repeat scroll 0 0 darkSlateBlue;
+            border-radius: 3px 3px 3px 3px;
+            color: white;
+            font-size: 18pt;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin: 0px;
+            padding-left: 20px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        body {
+            background: url(../../img/topbg.png) repeat;
+        }
+
+        h4 {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+     <h1>在线演示</h1>   
+    <div id="canvasCTT"></div>
+   <h4>鼠标划过试试，点击画布试一试！</h4>
+    <h1>使用方式</h1>
+    <pre class="code"><span style="color:black;background:silver">require([</span><span style="color:#a31515;background:silver">"SCJ"</span><span style="color:black;background:silver">, </span><span style="color:#a31515;background:silver">"canvasComponent/pie"</span><span style="color:black;background:silver">], </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">(SCJ) {
+    </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">data = [
+        { name: </span><span style="color:#a31515;background:silver">"SCJ"</span><span style="color:black;background:silver">, value: 150, color: </span><span style="color:#a31515;background:silver">"#F7464A" </span><span style="color:black;background:silver">},
+        { name: </span><span style="color:#a31515;background:silver">"Ext"</span><span style="color:black;background:silver">, value: 100, color: </span><span style="color:#a31515;background:silver">"#46BFBD" </span><span style="color:black;background:silver">},
+        { name: </span><span style="color:#a31515;background:silver">"YUI"</span><span style="color:black;background:silver">, value: 50, color: </span><span style="color:#a31515;background:silver">"#FDB45C" </span><span style="color:black;background:silver">},
+        { name: </span><span style="color:#a31515;background:silver">"NEJ"</span><span style="color:black;background:silver">, value: 50, color: </span><span style="color:#a31515;background:silver">"#949FB1" </span><span style="color:black;background:silver">},
+        { name: </span><span style="color:#a31515;background:silver">"JET"</span><span style="color:black;background:silver">, value: 40, color: </span><span style="color:#a31515;background:silver">"#FFA07A" </span><span style="color:black;background:silver">},
+        { name: </span><span style="color:#a31515;background:silver">"DOJO"</span><span style="color:black;background:silver">, value: 100, color: </span><span style="color:#a31515;background:silver">"#EEB4B4" </span><span style="color:black;background:silver">},
+        { name: </span><span style="color:#a31515;background:silver">"MCK"</span><span style="color:black;background:silver">, value: 50, color: </span><span style="color:#a31515;background:silver">"#EEE0E5" </span><span style="color:black;background:silver">},
+        { name: </span><span style="color:#a31515;background:silver">"MT"</span><span style="color:black;background:silver">, value: 50, color: </span><span style="color:#a31515;background:silver">"#D2B48C" </span><span style="color:black;background:silver">},
+        { name: </span><span style="color:#a31515;background:silver">"PRTT"</span><span style="color:black;background:silver">, value: 130, color: </span><span style="color:#a31515;background:silver">"#7CFC00" </span><span style="color:black;background:silver">},
+        { name: </span><span style="color:#a31515;background:silver">"SPRY"</span><span style="color:black;background:silver">, value: 100, color: </span><span style="color:#a31515;background:silver">"#CD6889" </span><span style="color:black;background:silver">},
+        { name: </span><span style="color:#a31515;background:silver">"SPR"</span><span style="color:black;background:silver">, value: 50, color: </span><span style="color:#a31515;background:silver">"#CAFF70" </span><span style="color:black;background:silver">},
+        { name: </span><span style="color:#a31515;background:silver">"DHX"</span><span style="color:black;background:silver">, value: 50, color: </span><span style="color:#a31515;background:silver">"#BF3EFF" </span><span style="color:black;background:silver">}
+    ];
+    SCJ.createPie({
+        data: data,
+        radius: 150,
+        renderTo: </span><span style="color:#a31515;background:silver">"#canvasCTT"
+    </span><span style="color:black;background:silver">});
+});</span></pre>
+   
+    <script src="../js/pie.js"></script>
+</body>
+</html>

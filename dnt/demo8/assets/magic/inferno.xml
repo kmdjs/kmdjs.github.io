@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:1b4da6080125f0a8e9628b5368bf6e8a$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="inferno.png" width="1850" height="1496">
+
+  <offset  offsetX="230"  offsetY="330"/>
+  <sprite n="0-0" x="2" y="2" w="460" h="496"/>
+    <sprite n="0-1" x="464" y="2" w="460" h="496"/>
+    <sprite n="0-2" x="926" y="2" w="460" h="496"/>
+    <sprite n="0-3" x="1388" y="2" w="460" h="496"/>
+    <sprite n="0-4" x="2" y="500" w="460" h="496"/>
+    <sprite n="0-5" x="464" y="500" w="460" h="496"/>
+    <sprite n="0-6" x="926" y="500" w="460" h="496"/>
+    <sprite n="0-7" x="1388" y="500" w="460" h="496"/>
+    <sprite n="0-8" x="2" y="998" w="460" h="496"/>
+    <sprite n="0-9" x="464" y="998" w="460" h="496"/>
+    <sprite n="0" x="926" y="998" w="27" h="27"/>
+</TextureAtlas>

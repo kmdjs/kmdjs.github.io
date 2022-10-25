@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+  
+    
+</head>
+<body>
+    <div id="timerExample"></div>
+    <script src="js/react.js"></script>
+   
+    <script src="js/JSXTransformer.js"></script>
+
+     <script src="js/react_jsready.js"></script>
+     <script type="text/jsx"  src="js/react_test.js"></script>
+     <script type="text/jsx"  src="js/react_test2.js"></script>
+    <script>
+     // console.log(Timer)
+        React.jsReady(function () {
+            console.log(Timer)
+            alert("回调1")
+        })
+
+        React.jsReady(function () {
+            alert("回调2")
+        })
+
+        React.jsReady(function () {
+           alert("回调3")
+        })
+        //setTimeout(function () {
+
+        //    var aa = React.render(React.createElement(Timer, null), document.getElementById('timerExample'));
+
+        //    aa.testMethod();
+        //    console.log(aa);
+        //}, 2000)
+        //React.render(<Timer />,  document.getElementById('timerExample'));
+       
+    </script>
+</body>
+</html>

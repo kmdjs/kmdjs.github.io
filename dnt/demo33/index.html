@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head><title>SCJ-Simply Create using Javascript</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="keywords" content="javascript,简洁，美观，真正的跨平台web前端开发框架">
+    <link href="/img/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="css/index.css" rel="stylesheet" />
+</head>
+<body id="nej">
+    <div class="g-top">&nbsp;</div>
+    <div class="g-banner ">
+        <div class="m-hd g-doc f-cb"><a class="f-fl f-cb" href="/">
+        </a>
+            <ul class="m-nav f-fr">
+                       <li><a href="/case/index.html"></a><span class="f-ib w-horn">&nbsp;</span></li>
+            </ul>
+        </div>
+        <div class="m-slidecse" id="slide">
+            <div class="m-bannercse g-doc">
+                <ul class="m-imgcase ztag">
+                    <li class="m-slogan">
+                        <div class="name">    <span id="canvas1" class="hightl"></span>imply <span id="canvas2"  class="hightl"></span>reate using <span  id="canvas3"  class="hightl"></span>avascript</div>
+                        <div class="desc"><span class="hightl">create</span> Everything using <span  class="hightl">SCJ</span> Framework</div>
+                        <div><a class="f-ib w-downloadbtn downloadbtn f-fw1" href="javascript:top.location.href='http://weibo.com/iamleizhang/demo41/index.html'">Start to Create</a> </div>
+                        <div class="version" >create by<a href="http://weibo.com/iamleizhang/" target="_blank">当耐特</a> </div>
+                    </li>
+                    <li>
+                </ul>
+            </div>
+        
+        </div>
+    </div>
+    <div class="g-bd g-bd-2">
+        <div class="g-doc m-bdcse">
+            <ul class="m-futures f-cb">
+                <li class="futureitm">
+                    <h4 class="tt">依赖管理</h4>
+                    <div class="future future1">&nbsp;</div>
+                    <p class="desc">优化开发阶段脚本文件依赖关系管理，所有脚本按需打包发布，上线产品分离依赖因此无任依赖相关开销</p>
+                </li>
+                <li class="futureitm">
+                    <h4 class="tt">平台适配</h4>
+                    <div class="future future2">&nbsp;</div>
+                    <p class="desc">支持桌面及移动平台、浏览器及混合应用开发，补丁模式无缝扩展适配平台，配置方式灵活定制目标平台</p>
+                </li>
+                <li class="futureitm futureitm-1">
+                    <h4 class="tt">自由定制</h4>
+                    <div class="future future3">&nbsp;</div>
+                    <p class="desc">按实际需求定制脚本，支持多种定制方式，包括按平台定制、按功能定制、按模块定制等</p>
+                </li>
+                <li class="futureitm">
+                    <h4 class="tt">方案集成</h4>
+                    <div class="future future4">&nbsp;</div>
+                    <p class="desc">多种实践解决方案集成，包括多类型前端模板方案、按需载入模块化调度方案、多模式切换跨域数据通讯方案等等 </p>
+                </li>
+                <li class="futureitm">
+                    <h4 class="tt">控件体系</h4>
+                    <div class="future future5">&nbsp;</div>
+                    <p class="desc">支持便捷api调用，同时也支持产品自由扩展定制，集高度重用与灵活扩展于一体</p>
+                </li>
+                <li class="futureitm futureitm-1">
+                    <h4 class="tt">工具支持</h4>
+                    <div class="future future6">&nbsp;</div>
+                    <p class="desc">一键产品打包发布，优化产品输出，自动版本管理；工具支持项目迁移使用依赖系统及打包工具；</p>
+                </li>
+            </ul>
+          
+        </div>
+    </div>
+    <div class="g-ft">
+        <div class="m-ft">
+            <ul class="m-about">
+                <li><a href="http://weibo.com/iamleizhang/">关于我</a></li>
+                <li class="sep">|</li>
+                <li><a href="http://nej.netease.com/" target="_blank">Thanks to NEJ !</a></li>
+                <li class="sep">|</li>
+                <li><a >MIT开源协议</a></li>
+                
+            </ul>
+            <div class="">© 1997-2013 当耐特. All Rights Reserved.</div>
+        </div>
+    </div>
+
+    <script>
+        var PonticStar, burning_words, burning_words2, burning_words3; typeof PonticStar == "undefined" && (PonticStar = {}), PonticStar.BurningWords = function () { this.interval_id = null, this.palette = null, this.canvas = null, this.stop = function () { this.interval_id !== null && clearInterval(this.interval_id) }, this.show = function (n, t, i, r, u, f, e, o) { var h, c, l, a, s, v; if (this.stop(), this.palette === null) for (this.palette = [], h = 0; h < 64; h++) this.palette[h] = [h * 4, 0, 0], this.palette[h + 64] = [255, h * 4, 0], this.palette[h + 128] = [255, 255, h * 4], this.palette[h + 192] = [255, 255, 255]; if (this.font_string = r + "px " + i, this.text = n, this.text_color_string = "rgb(" + parseInt(t.substring(0, 2), 16) + "," + parseInt(t.substring(2, 4), 16) + "," + parseInt(t.substring(4, 6), 16) + ")", this.bg_color_r = parseInt(u.substring(0, 2), 16), this.bg_color_g = parseInt(u.substring(2, 4), 16), this.bg_color_b = parseInt(u.substring(4, 6), 16), this.bg_color_a = Math.floor(255 * f / 100), this.bg_color_a_pct = f / 100, this.bg_color_string = "rgba(" + this.bg_color_r + "," + this.bg_color_g + "," + this.bg_color_b + "," + this.bg_alpha + ")", e && !isNaN(Number(e)) && e.toString().match(/^\s+$/) === null) c = e; else switch (e) { case "x-fast": c = 10; break; case "fast": c = 25; break; case "slow": c = 100; break; case "x-slow": c = 150; break; default: case "normal": c = 50 } o || (o = "text-burning-" + this.counter), this.counter++, l = document.getElementById(o), l ? l && (l.innerHTML = '<canvas id="' + o + '-canvas" style="font-family:' + i + "; font-size:" + r + 'px;position: relative; left: 8px; top: 15px;">' + this.text + "<\/canvas>", a = o + "-canvas") : (document.write('<canvas id="' + o + '" style="font-family:' + i + "; font-size:" + r + 'px"><strong>当耐特砖家<\/strong><\/canvas>'), a = o), this.canvas = document.getElementById(a), this.canvas && this.canvas.getContext && (s = this.canvas.getContext("2d"), s.font = this.font_string, this.text_size = s.measureText(n), this.canvas.width = this.text_size.width + 10, this.canvas.height = 70, this.fire_decay = Math.floor(3 + Math.exp(3.6 - r / 7)), s.fillStyle = "rgb(0,0,0)", s.fillRect(0, 0, this.canvas.width, this.canvas.height), this.image = s.getImageData(0, 0, this.canvas.width, this.canvas.height), s.fillStyle = "rgb(0,0,0)", s.fillRect(0, 0, this.canvas.width, this.canvas.height), this.image_flame = s.getImageData(0, 0, this.canvas.width, this.canvas.height), s.fillStyle = "rgb(0,0,0)", s.fillRect(0, 0, this.canvas.width, this.canvas.height), s.fillStyle = "rgb(255,255,255)", s.font = this.font_string, s.textAlign = "center", s.textBaseline = "bottom", s.fillText(n, this.canvas.width / 2, this.canvas.height), this.image_src = s.getImageData(0, 0, this.canvas.width, this.canvas.height), s.putImageData(this.image, 0, 0), v = this, this.interval_id = setInterval(function () { v.burn() }, c)) }, this.burn = function () { for (var r = this.canvas.getContext("2d"), e = this.canvas.width * this.canvas.height * 4, t, n = 0; n < e; n += 4) this.image_src.data[n] == 255 && (this.image_flame.data[n] = Math.floor(Math.random() * 256)); for (t = this.canvas.width * 4, n = 0; n < e - t; n += 4) { var s = n % t, c = this.image_flame.data[(s == 0 ? n + t : n) - 4], l = this.image_flame.data[(s == t - 4 ? n - t : n) + 4], h = this.image_flame.data[n + t], u = Math.floor((c + l + h + h) / 4); u > 0 && (u -= this.fire_decay), u < 0 && (u = 0), this.image_flame.data[n] = u } for (n = 0; n < e; n += 4) if (this.image_flame.data[n] != 0) { var f = this.image_flame.data[n], o = this.palette, i = 1 - f / 85; i < 0 && (i = 0), i > this.bg_color_a && (i = this.bg_color_a), this.image.data[n] = Math.min(255, o[f][0] + Math.floor(this.bg_color_r * i)), this.image.data[n + 1] = Math.min(255, o[f][1] + Math.floor(this.bg_color_g * i)), this.image.data[n + 2] = Math.min(255, o[f][2] + Math.floor(this.bg_color_b * i)), this.image.data[n + 3] = Math.max(this.bg_color_a, Math.min(3 * f, 255)) } else this.image.data[n] = 0, this.image.data[n + 1] = 0, this.image.data[n + 2] = 0, this.image.data[n + 3] = 0; r.putImageData(this.image, 0, 0), r.fillStyle = this.text_color_string, r.font = this.font_string, r.textAlign = "center", r.textBaseline = "bottom" } }, burning_words = new PonticStar.BurningWords, burning_words.show("S", "fff", "Times New Roman", 60, "fff", 1, "normal", "canvas1"), burning_words2 = new PonticStar.BurningWords, burning_words2.show("C", "fff", "Times New Roman", 60, "fff", 1, "normal", "canvas2"), burning_words3 = new PonticStar.BurningWords, burning_words3.show("J", "fff", "Times New Roman", 60, "fff", 1, "normal", "canvas3")
+    </script>
+</body>
+</html>

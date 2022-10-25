@@ -1,0 +1,9 @@
+﻿{
+            "frames": { "width": 96, "height": 107,  "regX": 48, "regY": 73 },
+            "animations": {
+                "level1": [0, 2, "level1", 5],
+				"level2": [3, 5, "level2", 5],
+				"level3": [6, 8, "level3", 5]
+            }
+        }
+

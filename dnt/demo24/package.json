@@ -1,0 +1,9 @@
+{
+  "family": "release",
+  "name": "interview",
+  "version": "1.0.0",
+
+  "spm": {
+    "output": ["main.js"]
+  }
+}

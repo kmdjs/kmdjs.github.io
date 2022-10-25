@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>SCJ Framework-Button</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon" />
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="../css/function.css" rel="stylesheet" />
+    <link href="../css/scj.button.css" rel="stylesheet" />
+    <link href="../css/scj.adjust.css" rel="stylesheet" />
+    <link href="../css/scj.colorPicker.css" rel="stylesheet" />
+    <style>
+        #fontColor, #btnColor, #overColor, #pressedColor {
+            width: 60px;
+        }
+
+        .mg10 {
+            margin-top: 10px;
+        }
+
+        .resultCode .j-pop-close {
+            width: 25px;
+            height: 29px;
+            position: absolute;
+            background: url(../img/basic/x.png) no-repeat;
+            right: -7px;
+            top: -7px;
+            cursor: pointer;
+        }
+
+        body {
+            background: url(../img/topbg.png) repeat;
+        }
+
+        .ctt {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ctt">
+        <div id="btnPv" class="mg10">
+            preview:
+        </div>
+        <div id="setText" class="mg10">
+            <span>text:</span><input id="btnText" value="preview" />
+        </div>
+        <div class="mg10">
+            Font Family  :<select id="font_name" style="width: 160px">
+                <option>Arial, Helvetica, sans-serif</option>
+                <option>Verdana, Geneva, sans-serif</option>
+                <option>Georgia, "Times New Roman", Times, serif</option>
+                <option>"Courier New", Courier, monospace</option>
+                <option>Tahoma, Geneva, sans-serif</option>
+                <option>"Trebuchet MS", Arial, Helvetica, sans-serif</option>
+                <option>"Arial Black", Gadget, sans-serif</option>
+                <option>"Times New Roman", Times, serif</option>
+                <option>"Palatino Linotype", "Book Antiqua", Palatino, serif</option>
+                <option>"Lucida Sans Unicode", "Lucida Grande", sans-serif</option>
+                <option>"MS Serif", "New York", serif</option>
+                <option>"Lucida Console", Monaco, monospace</option>
+            </select>
+        </div>
+        <div id="setFontColor" class="mg10">
+            <span>text:</span><input id="fontColor" value="#ffffff" />
+        </div>
+        <div id="setFontSize" class="mg10">
+            <span>font-size:</span>
+        </div>
+        <div id="setLH" class="mg10">
+            <div>line-height: <span id="lineHeight"></span></div>
+
+        </div>
+        <div id="setPadding" class="mg10">
+            left and right padding: <span id="lrPadding"></span>
+
+        </div>
+
+        <div id="setBorderRadius" class="mg10">
+            <span>border-radius:</span> <span id="borderRadius"></span>
+        </div>
+        <div class="mg10">
+            <span>button color:</span><input id="btnColor" value="#51D266" />
+        </div>
+        <div class="mg10">
+            <span>over color:</span><input id="overColor" value="#4cc460" />
+        </div>
+        <div class="mg10">
+            <span>pressed color:</span><input id="pressedColor" value="#47b75a" />
+        </div>
+        <div class="mg10" id="gCode"></div>
+    </div>
+    <div id="resultCode" class="f-dn resultCode">
+        <textarea rows="20" cols="80"></textarea>
+        <span class="j-pop-close"></span>
+    </div>
+    <div style="text-align: center">create by <a href="http://weibo.com/iamleizhang" target="_blank">当耐特</a></div>
+    <script src="js/main.createButton.js"></script>
+</body>
+</html>

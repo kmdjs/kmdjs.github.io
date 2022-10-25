@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>SCJ Framework-Dom</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon" />
+    <style>
+        .code {
+            background: silver;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 16px;
+            margin:0px;
+            margin-top:1px;
+            margin-bottom:1px;
+        }
+
+
+
+        h1 {
+            background: none repeat scroll 0 0 darkSlateBlue;
+            border-radius: 3px 3px 3px 3px;
+            color: white;
+            font-size: 18pt;
+            font-weight: bold;
+            letter-spacing: 1px;
+           margin:0px;
+            padding-left: 20px;
+            height:40px;
+            line-height:40px;
+        }
+    </style>
+        <style>
+        body {
+            background: url(../img/topbg.png) repeat;
+        }
+    </style>
+</head>
+<body>
+<!--    <h1>dom模块</h1>-->
+    <h1 >使用方式</h1>
+    <pre class="code"><span style="background: silver; color: black">require([</span><span style="background: silver; color: #a31515">&quot;SCJ&quot;</span><span style="background: silver; color: black">, </span><span style="background: silver; color: #a31515">&quot;core/dom&quot;</span><span style="background: silver; color: black">], </span><span style="background: silver; color: blue">function </span><span style="background: silver; color: black">(SCJ, $) {
+    </span><span style="background: silver; color: green">//查找 ID 为&quot;myDiv&quot;的元素
+    </span><span style="background: silver; color: black">$(</span><span style="background: silver; color: #a31515">&quot;#myDiv&quot;</span><span style="background: silver; color: black">);
+    </span><span style="background: silver; color: green">//查找一个 DIV 元素
+    </span><span style="background: silver; color: black">$(</span><span style="background: silver; color: #a31515">&quot;div&quot;</span><span style="background: silver; color: black">);
+    </span><span style="background: silver; color: green">//查找所有类是 &quot;myClass&quot; 的元素
+    </span><span style="background: silver; color: black">$(</span><span style="background: silver; color: #a31515">&quot;.myClass&quot;</span><span style="background: silver; color: black">);
+    </span><span style="background: silver; color: green">//找到每一个元素
+    </span><span style="background: silver; color: black">$(</span><span style="background: silver; color: #a31515">&quot;*&quot;</span><span style="background: silver; color: black">)
+    </span><span style="background: silver; color: green">//找到匹配任意一个类的元素
+    </span><span style="background: silver; color: black">$(</span><span style="background: silver; color: #a31515">&quot;div,span,p.myClass&quot;</span><span style="background: silver; color: black">)
+    </span><span style="background: silver; color: green">//找到表单中所有的 input 元素
+    </span><span style="background: silver; color: black">$(</span><span style="background: silver; color: #a31515">&quot;form input&quot;</span><span style="background: silver; color: black">)
+    </span><span style="background: silver; color: green">//...
+    //...
+</span><span style="background: silver; color: black">})</span></pre>
+    <h1>其他使用方式</h1>
+    <pre class="code"><span style="background: silver; color: black">require([</span><span style="background: silver; color: #a31515">&quot;SCJ&quot;</span><span style="background: silver; color: black">, </span><span style="background: silver; color: #a31515">&quot;core/dom&quot;</span><span style="background: silver; color: black">], </span><span style="background: silver; color: blue">function </span><span style="background: silver; color: black">(SCJ) {
+    </span><span style="background: silver; color: green">//查找 ID 为&quot;myDiv&quot;的元素
+    </span><span style="background: silver; color: black">SCJ.createQuery(</span><span style="background: silver; color: #a31515">&quot;#myDiv&quot;</span><span style="background: silver; color: black">);
+    </span><span style="background: silver; color: green">//---------------or---------------
+    //查找一个 DIV 元素
+    </span><span style="background: silver; color: black">SCJ.cq(</span><span style="background: silver; color: #a31515">&quot;div&quot;</span><span style="background: silver; color: black">);
+    </span><span style="background: silver; color: green">//---------------or---------------
+    //查找所有类是 &quot;myClass&quot; 的元素
+    </span><span style="background: silver; color: blue">var </span><span style="background: silver; color: black">$ = SCJ.createQuery;
+    $(</span><span style="background: silver; color: #a31515">&quot;.myClass&quot;</span><span style="background: silver; color: black">);
+    </span><span style="background: silver; color: green">//..
+    //...
+    //...
+</span><span style="background: silver; color: black">})</span></pre>
+</body>
+</html>

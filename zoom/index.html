@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        #preview {
+            width: auto;
+            height: auto;
+            min-height: 300px;
+            min-width: 300px;
+            background-color: #eee;
+            padding: 22px;
+            border: 3px dashed black;
+            text-align: center;
+            font-size: 40px;
+        }
+
+        #demo {
+            text-align: center;
+        }
+
+            #demo img {
+                margin-left: 5px;
+            }
+    </style>
+</head>
+<body>
+    <a href="https://github.com/AlloyTeam/AlloyGameEngine" target="_blank" style="position: absolute; right: 0; top: 0;">
+        <img src="http://alloyteam.github.io/AlloyRenderingEngine/asset/img/github.png" alt="" />
+    </a>
+    <div style="text-align: center;">
+      scale:<span id="range1Txt"></span>  <input id="range1" type="range" name="range" min="0.5" max="10" step="0.5" value="2" />
+    </div>
+    <div id="preview">
+        <div>Drop image file here.</div>
+        <canvas style="display:none;" id="canvas"></canvas>
+       <div style="display:none;" id="loadingPanel"><img src="loading.gif" alt="" />
+           </div> 
+            <canvas id="resultCanvas"></canvas>
+    </div>
+    <script>
+        (function (n) { "use strict"; var t = n.HTMLCanvasElement && n.HTMLCanvasElement.prototype, r = n.Blob && function () { try { return Boolean(new Blob) } catch (n) { return !1 } }(), f = r && n.Uint8Array && function () { try { return new Blob([new Uint8Array(100)]).size === 100 } catch (n) { return !1 } }(), u = n.BlobBuilder || n.WebKitBlobBuilder || n.MozBlobBuilder || n.MSBlobBuilder, i = (r || u) && n.atob && n.ArrayBuffer && n.Uint8Array && function (n) { var i, e, o, t, s, h; for (i = n.split(",")[0].indexOf("base64") >= 0 ? atob(n.split(",")[1]) : decodeURIComponent(n.split(",")[1]), e = new ArrayBuffer(i.length), o = new Uint8Array(e), t = 0; t < i.length; t += 1) o[t] = i.charCodeAt(t); return (s = n.split(",")[0].split(":")[1].split(";")[0], r) ? new Blob([f ? o : e], { type: s }) : (h = new u, h.append(e), h.getBlob(s)) }; n.HTMLCanvasElement && !t.toBlob && (t.mozGetAsFile ? t.toBlob = function (n, r, u) { u && t.toDataURL && i ? n(i(this.toDataURL(r, u))) : n(this.mozGetAsFile("blob", r)) } : t.toDataURL && i && (t.toBlob = function (n, t, r) { n(i(this.toDataURL(t, r))) })); typeof define == "function" && define.amd ? define(function () { return i }) : n.dataURLtoBlob = i })(this), function () { function o() { canvas.width = this.width; canvas.height = this.height; ctx.drawImage(this, 0, 0); var n = ctx.getImageData(0, 0, this.width, this.height).data; resultCanvas.width = this.width * t; resultCanvas.height = this.height * t; loadingPanel.style.display = "block"; r.postMessage({ width: this.width, height: this.height, scale: t, imageData: n }) } function s(n, t) { if (window.URL.createObjectURL) { var r = window.URL.createObjectURL(n), i = document.createElement("a"); i.setAttribute("href", r); i.setAttribute("download", t); i.click() } } function e() { t = range1.value; range1Txt.innerHTML = t } var n = {}, i, t, u, r, f; n.byId = function (n) { return document.getElementById(n) }; preview = n.byId("preview"); canvas = n.byId("canvas"); resultCanvas = n.byId("resultCanvas"); range1 = n.byId("range1"); range1Txt = n.byId("range1Txt"); loadingPanel = n.byId("loadingPanel"); range2Txt = n.byId("range2Txt"); ctx = canvas.getContext("2d"); resultCtx = resultCanvas.getContext("2d"); iamgeName = "result"; i = window.location.href; t = range1.value; range1Txt.innerHTML = t; u = function (n, t) { ctx.clearRect(0, 0, canvas.width, canvas.height); var i = new Image; i.onload = o; i.src = n; iamgeName = t }; r = new Worker("zoomworker.js"); r.onmessage = function (n) { for (var i = resultCtx.getImageData(0, 0, resultCanvas.width, resultCanvas.height), u = n.data.result, r = i.data, t = 0, f = r.length; t < f; t++) r[t] = u[t]; resultCtx.putImageData(i, 0, 0); loadingPanel.style.display = "none"; resultCanvas.toBlob && resultCanvas.toBlob(function (n) { s(n, iamgeName + ".png") }, "image/png") }; f = function (n) { if (!n.type.match(/image.*/)) { console.log("The dropped file is not an image: ", n.type); return } var t = new FileReader; t.onload = function (t) { u(t.target.result, n.name.split(".")[0]) }; t.readAsDataURL(n) }; preview.addEventListener("dragover", function (n) { n.preventDefault() }, !0); preview.addEventListener("drop", function (n) { (n.preventDefault(), i.indexOf("zoom") != -1 && i.indexOf("ithu") != -1 && i.indexOf("mdj") != -1) && f(n.dataTransfer.files[0]) }, !0); range1.addEventListener("mouseup", e, !1); range1.addEventListener("change", e, !1) }()
+    </script>
+</body>
+</html>

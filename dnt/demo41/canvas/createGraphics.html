@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+         <title>SCJ Framework-Canvas</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon" />
+    <style>
+        .code {
+            background: silver;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 16px;
+            margin:0px;
+            margin-top:1px;
+            margin-bottom:1px;
+        }
+        h1 {
+            background: none repeat scroll 0 0 darkSlateBlue;
+            border-radius: 3px 3px 3px 3px;
+            color: white;
+            font-size: 18pt;
+            font-weight: bold;
+            letter-spacing: 1px;
+           margin:0px;
+            padding-left: 20px;
+            height:40px;
+            line-height:40px;
+        }
+         body {
+            background: url(../../img/topbg.png) repeat;
+        }
+        h4{margin:0;padding:0;}
+    </style>
+</head>
+<body>
+    <h1>使用方式</h1>
+<pre class="code"><span style="color:black;background:silver">require([</span><span style="color:#a31515;background:silver">"SCJ"</span><span style="color:black;background:silver">, </span><span style="color:#a31515;background:silver">"canvas/structure"</span><span style="color:black;background:silver">], </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">(SCJ) {
+    </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">graphics = SCJ.createGraphics(640, 360, </span><span style="color:#a31515;background:silver">"#canvasCTT"</span><span style="color:black;background:silver">);
+    </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">subGraphics = SCJ.createGraphics(400, 200);
+    graphics.image(subGraphics, 120, 60);
+   
+    graphics.tick(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() {        
+        graphics.fill(0, 255);
+        graphics.rect(0, 0, graphics.width, graphics.height);
+        graphics.fill(255);
+        graphics.circle(graphics.mouseX, graphics.mouseY, 30);
+   
+        subGraphics.background(51);
+        subGraphics.stroke(255);
+        subGraphics.circle(graphics.mouseX - 120, graphics.mouseY - 60, 30);
+    })
+})</span></pre>
+<h1>在线演示</h1>
+    <div id="canvasCTT"></div>
+    <h4>鼠标移入画布试试！</h4>
+    <script src="../js/createGraphics.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>SCJ Framework-Class</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon" />
+        <style>
+        .code {
+            background: silver;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 16px;
+            margin:0px;
+            margin-top:1px;
+            margin-bottom:1px;
+        }
+
+
+
+        h1 {
+            background: none repeat scroll 0 0 darkSlateBlue;
+            border-radius: 3px 3px 3px 3px;
+            color: white;
+            font-size: 18pt;
+            font-weight: bold;
+            letter-spacing: 1px;
+           margin:0px;
+            padding-left: 20px;
+            height:40px;
+            line-height:40px;
+        }
+    </style>
+        <style>
+        body {
+            background: url(../img/topbg.png) repeat;
+        }
+    </style>
+</head>
+<body>
+    <h1 >使用方式</h1>
+    <pre class="code"><span style="background: silver; color: black">require([</span><span style="background: silver; color: #a31515">&quot;SCJ&quot;</span><span style="background: silver; color: black">, </span><span style="background: silver; color: #a31515">&quot;core/class&quot;</span><span style="background: silver; color: black">], </span><span style="background: silver; color: blue">function </span><span style="background: silver; color: black">(SCJ) {
+    </span><span style="background: silver; color: blue">var </span><span style="background: silver; color: black">Person = SCJ.createClass({
+        init: </span><span style="background: silver; color: blue">function </span><span style="background: silver; color: black">(age, name) {
+            </span><span style="background: silver; color: blue">this</span><span style="background: silver; color: black">.age = age;
+            </span><span style="background: silver; color: blue">this</span><span style="background: silver; color: black">.name = name;
+        },
+        say: </span><span style="background: silver; color: blue">function </span><span style="background: silver; color: black">() {
+            console.log(</span><span style="background: silver; color: #a31515">&quot;my name is &quot; </span><span style="background: silver; color: black">+ </span><span style="background: silver; color: blue">this</span><span style="background: silver; color: black">.name);
+        }
+    });
+
+    </span><span style="background: silver; color: blue">var </span><span style="background: silver; color: black">Man = Person.extend({
+        init: </span><span style="background: silver; color: blue">function </span><span style="background: silver; color: black">(age, name, girlFriendCount) {
+            </span><span style="background: silver; color: blue">this</span><span style="background: silver; color: black">._super(age, name);
+            </span><span style="background: silver; color: blue">this</span><span style="background: silver; color: black">.girlFriendCount = girlFriendCount || 0;
+        },
+        chasingGirls: </span><span style="background: silver; color: blue">function </span><span style="background: silver; color: black">() {
+            </span><span style="background: silver; color: blue">this</span><span style="background: silver; color: black">.girlFriendCount++;
+            console.log(</span><span style="background: silver; color: blue">this</span><span style="background: silver; color: black">.girlFriendCount)
+        }
+    })
+
+    </span><span style="background: silver; color: blue">var </span><span style="background: silver; color: black">p = </span><span style="background: silver; color: blue">new </span><span style="background: silver; color: black">Person(25, </span><span style="background: silver; color: #a31515">&quot;当耐特1&quot;</span><span style="background: silver; color: black">);
+    </span><span style="background: silver; color: blue">var </span><span style="background: silver; color: black">m = </span><span style="background: silver; color: blue">new </span><span style="background: silver; color: black">Man(25, </span><span style="background: silver; color: #a31515">&quot;当耐特2&quot;</span><span style="background: silver; color: black">, 1);
+    p.say();
+    </span><span style="background: silver; color: green">//output:my name is 当耐特1 
+    </span><span style="background: silver; color: black">m.say();
+    </span><span style="background: silver; color: green">// output:my name is 当耐特2
+    </span><span style="background: silver; color: black">m.chasingGirls();
+    </span><span style="background: silver; color: green">//output:2 
+</span><span style="background: silver; color: black">})</span></pre>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<assets>
+    <bar>
+        <asset id="exp1" url="exp1.png"/>
+        <asset id="exp2" url="exp2.png"/>
+        <asset id="progressbar" url="progressbar.png"/>
+    </bar>
+    <createCharacter>
+        <asset id="boy" url="boy.png"/>
+        <asset id="create_bg" url="create_bg.png"/>
+        <asset id="create_d" url="create_d.png"/>
+        <asset id="create_join" url="create_join.png"/>
+        <asset id="create_join_d" url="create_join_d.png"/>
+        <asset id="create_nl" url="create_nl.png"/>
+        <asset id="create_nl_d" url="create_nl_d.png"/>
+        <asset id="create_random" url="create_random.png"/>
+        <asset id="create_random_d" url="create_random_d.png"/>
+        <asset id="create_sel" url="create_sel.png"/>
+        <asset id="create_xd" url="create_xd.png"/>
+        <asset id="create_zf" url="create_zf.png"/>
+        <asset id="create_zf_d" url="create_zf_d.png"/>
+        <asset id="girl" url="girl.png"/>
+        <asset id="head_1_0" url="head_1_0.png"/>
+        <asset id="head_1_1" url="head_1_1.png"/>
+        <asset id="head_2_0" url="head_2_0.png"/>
+        <asset id="head_2_1" url="head_2_1.png"/>
+        <asset id="head_3_0" url="head_3_0.png"/>
+        <asset id="head_3_1" url="head_3_1.png"/>
+        <asset id="nl" url="nl.png"/>
+        <asset id="xd" url="xd.png"/>
+        <asset id="zf" url="zf.png"/>
+    </createCharacter>
+    <toobarbutton>
+        <asset id="1" url="1.png"/>
+        <asset id="2" url="2.png"/>
+        <asset id="3" url="3.png"/>
+        <asset id="4" url="4.png"/>
+        <asset id="5" url="5.png"/>
+        <asset id="6" url="6.png"/>
+        <asset id="7" url="7.png"/>
+        <asset id="8" url="8.png"/>
+        <asset id="9" url="9.png"/>
+        <asset id="bg_714" url="bg_714.png"/>
+        <asset id="bg_717" url="bg_717.png"/>
+        <asset id="button_779_1" url="button_779_1.png"/>
+        <asset id="button_779_2" url="button_779_2.png"/>
+        <asset id="button_779_3" url="button_779_3.png"/>
+        <asset id="button_780_1" url="button_780_1.png"/>
+        <asset id="button_780_2" url="button_780_2.png"/>
+        <asset id="button_780_3" url="button_780_3.png"/>
+        <asset id="button_781_1" url="button_781_1.png"/>
+        <asset id="button_781_2" url="button_781_2.png"/>
+        <asset id="button_781_3" url="button_781_3.png"/>
+        <asset id="button_782_1" url="button_782_1.png"/>
+        <asset id="button_782_2" url="button_782_2.png"/>
+        <asset id="button_782_3" url="button_782_3.png"/>
+        <asset id="button_783_1" url="button_783_1.png"/>
+        <asset id="button_783_2" url="button_783_2.png"/>
+        <asset id="button_783_3" url="button_783_3.png"/>
+        <asset id="button_784_1" url="button_784_1.png"/>
+        <asset id="button_784_2" url="button_784_2.png"/>
+        <asset id="button_784_3" url="button_784_3.png"/>
+        <asset id="button_785_1" url="button_785_1.png"/>
+        <asset id="button_785_2" url="button_785_2.png"/>
+        <asset id="button_785_3" url="button_785_3.png"/>
+        <asset id="button_786_1" url="button_786_1.png"/>
+        <asset id="button_786_2" url="button_786_2.png"/>
+        <asset id="button_786_3" url="button_786_3.png"/>
+        <asset id="button_787_1" url="button_787_1.png"/>
+        <asset id="button_787_2" url="button_787_2.png"/>
+        <asset id="button_787_3" url="button_787_3.png"/>
+        <asset id="button_846_1" url="button_846_1.png"/>
+        <asset id="button_846_2" url="button_846_2.png"/>
+        <asset id="button_846_3" url="button_846_3.png"/>
+        <asset id="button_865_1" url="button_865_1.png"/>
+        <asset id="button_865_2" url="button_865_2.png"/>
+        <asset id="button_865_3" url="button_865_3.png"/>
+        <asset id="button_900_1" url="button_900_1.png"/>
+        <asset id="button_900_2" url="button_900_2.png"/>
+        <asset id="button_900_3" url="button_900_3.png"/>
+        <asset id="button_901_1" url="button_901_1.png"/>
+        <asset id="button_901_2" url="button_901_2.png"/>
+        <asset id="button_901_3" url="button_901_3.png"/>
+        <asset id="bg_720" url="bg_720.png"/>
+        <asset id="222" url="222.jpg"/>
+        <asset id="box" url="box.png"/>
+        <asset id="title" url="title.png"/>
+        <asset id="button2" url="button2.png"/>
+        <asset id="b1" url="b1.png"/>
+        <asset id="b2" url="b2.png"/>
+        <asset id="b3" url="b3.png"/>
+        <asset id="b4" url="b4.png"/>
+        <asset id="b5" url="b5.png"/>
+        <asset id="b6" url="b6.png"/>
+        <asset id="person" url="person.png"/>
+      <asset id="attack" url="attack.png"/>
+      <asset id="attack2" url="attack2.png"/>
+      <asset id="frie" url="frie.png"/>
+      <asset id="recover" url="recover.png"/>
+    </toobarbutton>
+
+  <player>
+    <asset id="levelup" url="levelup.png" configUrl="levelup.xml"/>
+    <asset id="role" url="role.png" configUrl="role.xml"/>
+    <asset id="player_w" url="player_w.png"/>
+    <asset id="minMapMe" url="minMapMe.png"/>
+    <asset id="player_run_3" url="player_run_3.png"  configUrl="player_run_3.xml" />
+    <asset id="player_run_4" url="player_run_4.png"  configUrl="player_run_4.xml" />
+  </player>
+  <maps>
+    <asset id="minMap1" url="min.jpg"/>
+    <asset id="minMap2" url="min.jpg"/>
+    <asset id="minMap3" url="min.jpg"/>
+  </maps>
+  <audio>
+    <asset id="magic" url="magic.mp3"/>
+    <asset id="cut" url="cut.mp3"/>
+  </audio>
+  <border>
+    <asset id="border_702@11-17-11-27" url="border_702@11-17-11-27.png"/>
+  </border>
+
+  <other>
+    <asset id="clickAnm" url="clickAnm.png"/>
+    <asset id="transport" url="transport.png"/>
+    <asset id="headToolBg" url="headToolBg.png"/>
+    <asset id="minHead1" url="minHead1.jpg"/>
+    <asset id="minHead2" url="minHead2.jpg"/>
+    <asset id="selectedAnm" url="selectedAnm.png"  configUrl="selectedAnm.xml" />
+  </other>
+  
+  
+  <tips>
+        <asset id="22" url="222.jpg"/>
+        <asset id="33" url="333.png"/>
+        <asset id="55" url="555.jpg"/>
+    </tips>
+
+  <npc>
+    <asset id="1_npc1" url="1_npc1.png"  configUrl="1_npc1.xml"/>
+  </npc>
+  <magic>
+    <asset id="blaze" url="blaze.png"  configUrl="blaze.xml" />
+    <asset id="inferno" url="inferno.png"  configUrl="inferno.xml" />
+    <asset id="iceCone" url="iceCone.png"  configUrl="iceCone.xml" />
+    </magic>
+
+  <enemy>
+    <asset id="enemy1" url="enemy1.png"  configUrl="enemy1.xml" />
+    <asset id="enemy2" url="enemy2.png"  configUrl="enemy2.xml" />
+    <asset id="boss1" url="boss1.png"   />
+  </enemy>
+
+  <bg>
+    <asset id="bg_1000" url="bg_1000.jpg"/>
+    <asset id="bg_1001" url="bg_1001.jpg"/>
+    <asset id="bg_678" url="bg_678.jpg"/>
+  </bg>
+    <equip>
+        <asset id="fazhang" url="fazhang.jpg"/>
+    </equip>
+</assets>
+
+

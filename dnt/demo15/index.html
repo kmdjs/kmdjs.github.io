@@ -1,0 +1,17 @@
+﻿<!DOCTYPE>
+<html>
+<head>
+    <title>star</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon"/>
+</head>
+<body>
+<script src="../demo13/JS/PE/easel.js"></script>
+<div style="border-bottom: #222 15px solid; border-left: #222 15px solid; background-color: #111; color: #ccc; border-top: #222 15px solid; border-right: #222 15px solid" class="canvasHolder"><canvas id="testCanvas" width="980" height="580">你的浏览器不支持html5,请用谷歌 火狐或者IE9及以上版本</canvas></div>
+    <div style="text-align:center;">
+       <p>@2013-2113 create by <a href="http://weibo.com/iamleizhang" target="_blank">当耐特</a></p>     
+    </div>
+<script>
+    function getRandomNumber(n, t) { return n + Math.floor(Math.random() * (t - n + 1)) } function PositionsProjection() { for (var t, n = 0; n < starPositions.length; n++) t = projection(starPositions[n]), starPositionsForShow.push(t) } function degToRad(n) { return n / (180 / Math.PI) } function rotate(n) { for (var i, r, t = 0; t < starPositions.length; t++) i = starPositions[t].x, r = starPositions[t].z, starPositions[t].x = starPositions[t].x * Math.cos(n) - starPositions[t].z * Math.sin(n), starPositions[t].z = starPositions[t].z * Math.cos(n) + i * Math.sin(n) } function PositionsProjection() { for (var t, n = 0; n < starPositions.length; n++) t = projection(starPositions[n]), starPositionsForShow.push(t) } function projection(n) { var t = new Vector3; return t.x = n.x * distance / Math.abs(cameraPosition.z - n.z), t.y = n.y * distance / Math.abs(cameraPosition.z - n.z), t.z = n.z, t } function init() { var n, t; for (PositionsProjection(), canvas = document.getElementById("testCanvas"), stage = new Stage(canvas), n = 0; n < starPositionsForShow.length; n++) t = new Bitmap("star.png"), t.x = centreOfCirclePosition.x + starPositionsForShow[n].x, t.y = centreOfCirclePosition.x + starPositionsForShow[n].y, t.scaleX = t.scaleY = .5 * distance / Math.abs(cameraPosition.z - starPositionsForShow[n].z), starPositionsForShow[n].z > 50 && (t.alpha = 1), starPositionsForShow[n].z < 50 && (t.alpha = .5), stage.addChild(t); Ticker.setFPS(60), Ticker.addListener(window) } function tick() { var n, t; for (starPositionsForShow.length = 0, rotate(degToRad(currentAngle)), PositionsProjection(), n = 0; n < starPositionsForShow.length; n++) t = stage.getChildAt(n), t.x = centreOfCirclePosition.x + starPositionsForShow[n].x, t.y = centreOfCirclePosition.x + starPositionsForShow[n].y, t.scaleX = t.scaleY = .5 * distance / Math.abs(cameraPosition.z - starPositionsForShow[n].z), starPositionsForShow[n].z > 50 && (t.alpha = 1), starPositionsForShow[n].z < 50 && (t.alpha = .5), stage.addChild(t); stage.update() } var i, xTemp, yTemp, zTemp, starPositionsForShow, currentAngle, tempStar; Vector3 = function (n, t, i) { this.x = n || 0, this.y = t || 0, this.z = i || 0 }; var canvas, stage, centreOfCirclePosition = new Vector3(300, 300, 0), cameraPosition = new Vector3(300, 300, 400), r = 250, distance = 300, starPositions = [], j = -1; for (i = 0; i < 440; i++) xTemp = getRandomNumber(-250, 250), yTemp = getRandomNumber(-250, 250), j *= -1, xTemp * xTemp + yTemp * yTemp <= r * r && (zTemp = j * Math.sqrt(Math.abs(r * r - xTemp * xTemp - yTemp * yTemp)), starPositions.push(new Vector3(xTemp, yTemp, zTemp))); starPositionsForShow = [], currentAngle = Math.PI / 60, init()
+    </script>
+</body>
+</html>

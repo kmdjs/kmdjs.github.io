@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:1b6776b813070b8baa7ce9dbbb82d5ef$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="123.png" width="512" height="512">
+    <sprite n="1-1-1" x="380" y="368" w="58" h="48" oX="27" oY="12" oW="140" oH="170"/>
+    <sprite n="1-1-10" x="408" y="114" w="58" h="50" oX="47" oY="23" oW="140" oH="170"/>
+    <sprite n="1-1-11" x="448" y="218" w="58" h="48" oX="36" oY="16" oW="140" oH="170"/>
+    <sprite n="1-1-2" x="134" y="256" w="60" h="42" oX="27" oY="12" oW="140" oH="170"/>
+    <sprite n="1-1-3" x="196" y="256" w="58" h="42" oX="41" oY="19" oW="140" oH="170"/>
+    <sprite n="1-1-4" x="346" y="166" w="64" h="50" oX="53" oY="22" oW="140" oH="170"/>
+    <sprite n="1-1-5" x="388" y="218" w="58" h="50" oX="40" oY="25" oW="140" oH="170"/>
+    <sprite n="1-1-6" x="336" y="272" w="58" h="50" oX="33" oY="17" oW="140" oH="170"/>
+    <sprite n="1-1-7" x="396" y="318" w="58" h="48" oX="31" oY="17" oW="140" oH="170"/>
+    <sprite n="1-1-8" x="448" y="268" w="58" h="48" oX="47" oY="23" oW="140" oH="170"/>
+    <sprite n="1-1-9" x="412" y="166" w="58" h="50" oX="58" oY="27" oW="140" oH="170"/>
+    <sprite n="2-1-1" x="382" y="2" w="94" h="52" oX="13" oY="46" oW="140" oH="170"/>
+    <sprite n="2-1-10" x="290" y="58" w="82" h="50" oX="41" oY="58" oW="140" oH="170"/>
+    <sprite n="2-1-11" x="290" y="2" w="86" h="54" oX="27" oY="50" oW="140" oH="170"/>
+    <sprite n="2-1-2" x="124" y="460" w="86" h="50" oX="22" oY="48" oW="140" oH="170"/>
+    <sprite n="2-1-3" x="382" y="56" w="82" h="56" oX="37" oY="50" oW="140" oH="170"/>
+    <sprite n="2-1-4" x="256" y="110" w="74" h="54" oX="53" oY="56" oW="140" oH="170"/>
+    <sprite n="2-1-5" x="214" y="166" w="66" h="54" oX="41" oY="60" oW="140" oH="170"/>
+    <sprite n="2-1-6" x="282" y="166" w="62" h="52" oX="33" oY="52" oW="140" oH="170"/>
+    <sprite n="2-1-7" x="256" y="222" w="62" h="52" oX="30" oY="50" oW="140" oH="170"/>
+    <sprite n="2-1-8" x="320" y="220" w="66" h="50" oX="49" oY="58" oW="140" oH="170"/>
+    <sprite n="2-1-9" x="332" y="114" w="74" h="50" oX="56" oY="63" oW="140" oH="170"/>
+    <sprite n="3-1-1" x="2" y="2" w="58" h="100" oX="22" oY="70" oW="140" oH="170"/>
+    <sprite n="3-1-10" x="64" y="406" w="58" h="88" oX="47" oY="82" oW="140" oH="170"/>
+    <sprite n="3-1-11" x="2" y="104" w="50" h="100" oX="36" oY="70" oW="140" oH="170"/>
+    <sprite n="3-1-2" x="2" y="206" w="44" h="100" oX="33" oY="70" oW="140" oH="170"/>
+    <sprite n="3-1-3" x="54" y="104" w="56" h="94" oX="37" oY="76" oW="140" oH="170"/>
+    <sprite n="3-1-4" x="62" y="2" w="66" h="90" oX="56" oY="80" oW="140" oH="170"/>
+    <sprite n="3-1-5" x="88" y="302" w="80" h="86" oX="28" oY="84" oW="140" oH="170"/>
+    <sprite n="3-1-6" x="48" y="206" w="84" h="94" oX="15" oY="76" oW="140" oH="170"/>
+    <sprite n="3-1-7" x="2" y="308" w="84" h="96" oX="12" oY="74" oW="140" oH="170"/>
+    <sprite n="3-1-8" x="2" y="406" w="60" h="90" oX="42" oY="80" oW="140" oH="170"/>
+    <sprite n="3-1-9" x="112" y="94" w="44" h="86" oX="58" oY="84" oW="140" oH="170"/>
+    <sprite n="4-1-1" x="210" y="2" w="78" h="72" oX="4" oY="70" oW="140" oH="170"/>
+    <sprite n="4-1-10" x="134" y="182" w="78" h="72" oX="30" oY="83" oW="140" oH="170"/>
+    <sprite n="4-1-11" x="130" y="2" w="78" h="72" oX="15" oY="75" oW="140" oH="170"/>
+    <sprite n="4-1-2" x="158" y="76" w="78" h="72" oX="11" oY="74" oW="140" oH="170"/>
+    <sprite n="4-1-3" x="296" y="434" w="84" h="64" oX="27" oY="81" oW="140" oH="170"/>
+    <sprite n="4-1-4" x="294" y="368" w="84" h="64" oX="42" oY="87" oW="140" oH="170"/>
+    <sprite n="4-1-5" x="212" y="438" w="82" h="66" oX="29" oY="89" oW="140" oH="170"/>
+    <sprite n="4-1-6" x="170" y="300" w="80" h="68" oX="22" oY="79" oW="140" oH="170"/>
+    <sprite n="4-1-7" x="252" y="300" w="82" h="66" oX="21" oY="78" oW="140" oH="170"/>
+    <sprite n="4-1-8" x="124" y="390" w="82" h="68" oX="36" oY="84" oW="140" oH="170"/>
+    <sprite n="4-1-9" x="208" y="370" w="84" h="66" oX="43" oY="89" oW="140" oH="170"/>
+</TextureAtlas>

@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>图片在线换颜色</title>
+    
+     <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon"/>
+    <style>
+        .center {
+            text-align: center;
+        }
+
+        .boxcenter {
+            -webkit-box-pack: center;
+            -moz-box-pack: center;
+            box-pack: center;
+        }
+
+        .vbox {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-box-align: stretch;
+            display: -moz-box;
+            -moz-box-orient: vertical;
+            -moz-box-align: stretch;
+            display: box;
+            box-orient: vertical;
+            box-align: stretch;
+        }
+
+        #dropzone {
+            height: 150px;
+            width: 100%;
+            -webkit-border-radius: 10px;
+            -khtml-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            border: 2px dashed #0687FF;
+        }
+
+            #dropzone.rounded {
+                -webkit-box-shadow: inset 0px 0px 50px #777;
+                -moz-box-shadow: inset 0px 0px 50px #777;
+                -o-box-shadow: inset 0px 0px 50px #777;
+                box-shadow: inset 0px 0px 50px #777;
+            }
+
+        #dnd-thumbnails {
+            height: 125px;
+            margin-top: 10px;
+        }
+
+            #dnd-thumbnails img {
+                width: 75px;
+                height: 75px;
+                border: 1px solid black;
+                margin-right: 10px;
+                -webkit-transition: -webkit-transform 0.2s ease-in, margin-left 0.7s ease-in-out, margin-right 0.7s ease-in-out;
+                -moz-transition: -moz-transform 1s ease-in-out, margin-left 0.7s ease-in-out, margin-right 0.7s ease-in-out;
+                -o-transition: -o-transform 1s ease-in-out, margin-left 1s ease-in-out, margin-left 0.7s ease-in-out, margin-right 0.7s ease-in-out;
+            }
+
+                #dnd-thumbnails img:hover {
+                    -webkit-transform: scale(3.0) rotate(10deg);
+                    -webkit-transform-origin: 50% 75px;
+                    -moz-transform: scale(3.0) rotate(10deg);
+                    -moz-transform-origin: 50% 75px;
+                    margin: 0 100px;
+                }
+    </style>
+    <link rel="stylesheet" href="css/colorpicker.css" type="text/css" />
+    <link rel="stylesheet" media="screen" type="text/css" href="css/layout.css" />
+</head>
+<body>
+    <h1>图片在线换颜色</h1>
+    <div id="customWidget">
+        <div id="colorSelector2">
+            <div style="background-color: rgb(0, 255, 0);"></div>
+        </div>
+        <div id="colorpickerHolder2" style="height: 0px; display: block;">
+        </div>
+    </div>
+    <div class="example">
+        <div id="dropzone" class="vbox boxcenter center">
+            Drop in images from your computer
+        </div>
+    </div>
+    <div id="dnd-thumbnails" style="display: none;" class="center"></div>
+    <h3>步骤如下:</h3>
+    <p>1.使用现代浏览器打开本网页（如：必须支持Desktop Drag-In ）</p>
+    <p>2.选择你需要转换的目标颜色</p>
+    <p>3.拖拽需要转换的图片至上面的圆角矩形区域</p>
+    <p>4.这个时候自动下载了一个没有后缀的文件，自己重命名并且添加.png的后缀</p>
+    <p>5.现在就可以放心使用该png图片</p>
+    <canvas style="display: none"></canvas>
+    
+    <div style="text-align:center"> create by <a href="http://weibo.com/iamleizhang" target="_blank">当耐特</a></div>
+    <script src="js/release.js"></script>
+
+</body>
+</html>

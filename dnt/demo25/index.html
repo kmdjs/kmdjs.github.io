@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Spriter</title>
+	<link rel="stylesheet" href="assets/8/style/all.css">
+	  <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon" />
+    <link href="css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="css/redmond/jquery-ui-1.8.19.custom.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    
+	<div class="container intro">
+				<div class="canvas-view">
+			<div class="canvas-cell">
+				<div class="canvas-inner"  style="margin-top:160px;"></div>
+			</div>
+		</div>
+	</div>
+	<div class="feature-test">
+		<h1>Sorry, it isn't working out between us</h1>
+		<p>
+			It's not you, I just can't get along with your browser.
+			Maybe if things change in the future... maybe if you bring
+			<a href="http://www.google.com/chrome/">Chrome</a>,
+			<a href="http://www.mozilla.com/en-US/firefox/new/">Firefox</a>,
+			<a href="http://www.opera.com/">Opera</a> or even
+			<a href="http://ie.microsoft.com/testdrive/Info/Downloads/Default.html">IE10</a>
+			to the party... not promising anything, but give me a call.
+		</p>
+	</div>
+      <div id="mainpanel" style="display:none;">
+              <div style="text-align: center;">
+        create by <a href="http://weibo.com/iamleizhang" target="_blank">当耐特.</a>  Thanks to <a href="http://www.spritecow.com/" target="_blank">spritecow'ImgInput</a> which is used in the demo
+    </div>
+    <div style="height:30px;">
+       <input checked="checked" name="clipModel"  value="0" type="radio" />ClickSelection
+<input name="clipModel"  value="1" type="radio" />RectangularSelection</div>
+    <div style="position: relative;">
+        <div style="float: left;">
+      <!--  <div id="canvasDiv" style="border: #0983FB 2px solid;  padding-right:10px; OVERFLOW-Y:auto;padding-left:10px;SCROLLBAR-FACE-COLOR:#ffffff;PADDING-BOTTOM:0px;SCROLLBAR-HIGHLIGHT-COLOR:#6FA7D1;overflow:auto;SCROLLBAR-SHADOW-COLOR:#6FA7D1;SCROLLBAR-3DLIGHT-COLOR:#ffffff;LINE-HEIGHT:100%;SCROLLBAR-ARROW-COLOR:#919192;PADDING-TOP:0px;SCROLLBAR-TRACK-COLOR:#cde6c7;SCROLLBAR-DARKSHADOW-COLOR:#6FA7D1;LETTER-SPACING:1pt;width:800px;height:600px;text-align:left">
+           </div>-->
+            <canvas width="400" height="400" id="testCanvas" style="border: #0983FB 2px solid; ">
+            </canvas>
+           
+        
+            
+            <div style="position:fixed;top:10px;left:440px" id="mouseMeg">
+            </div>
+            
+        </div>
+        <div style="float: left;">
+            <canvas width="300" height="300" id="anmCanvas" style="border: 2px solid #0983FB;">
+            </canvas>
+              <span style="position: relative;">
+                <img onclick="upCurrentFrameRegY()" style="position: absolute; margin-top: 114px; margin-left: 40px" src="image/up.png" />
+                <img  onclick="leftCurrentFrameRegX()" style="position: absolute; margin-top: 142px;margin-left: 10px"" src="image/left.png" />
+                <img  onclick="rightCurrentFrameRegX()" style="position: absolute; margin-top: 142px; margin-left: 70px" src="image/right.png" />
+                <img  onclick="downCurrentFrameRegY()" style="position: absolute; margin-top: 170px; margin-left: 40px" src="image/down.png" />
+            </span>
+            <br />
+            <button style="width:50px" onclick="play()"> Play</button>
+            <button style="width:50px" onclick="stop()">stop</button>
+            <button onclick="goToPreFrame()">PreFrame</button>
+            <button onclick="goToNextFrame()">  NextFrame</button> 
+            <button onclick="clearFrame()">  ClearFrames</button>
+            <button id="exportBtn" onclick="exportCode()" >  Export</button>
+            <table style="width: 300px" id="frameInfo">
+                <thead>
+                    <tr>
+                        <th>
+                            FrameNum
+                        </th>
+                        <th>
+                            StartPoint
+                        </th>
+                        <th>
+                            Rect
+                        </th>
+                        <th>
+                            RegX
+                        </th>
+                        <th>
+                            RegY
+                        </th>
+                        <th>
+                            Operate
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="dialog" title="Code">
+
+			<textarea id="codeTxa" cols="78" rows="20"></textarea>
+
+		</div>
+      
+   
+        </div>
+	   <script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+	<script src="assets/8/script/jquery.easing.js"></script>
+	<script src="assets/8/script/jquery.transition.js"></script>
+	<script src="assets/8/script/jquery.fileClickjack.js"></script>
+	<script src="assets/8/script/intro.js"></script>
+	<script src="assets/8/script/MicroEvent.js"></script>
+	<script src="assets/8/script/ImgInput.js"></script>
+	<script src="assets/8/script/FeatureTest.js"></script>
+	<script src="assets/8/script/featureTests.js"></script>	
+    <script src="js/jquery-ui-1.8.19.custom.min.js" type="text/javascript"></script>
+    <script src="js/release.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Config>
+  <Magics>
+    <Magic ID="blaze" Type="fly" >
+     
+    </Magic>
+    <Magic ID="inferno" Type="area" LongRange="false">
+
+    </Magic>
+    <Magic ID="iceCone" Type="area" LongRange="true" >
+
+    </Magic>
+  </Magics>
+  <AdditionalEffects>
+    <Item Value="0" Src="/Image/Icon/0.png" Name="麻痹" Description="效果:移动速度减慢" />
+    <Item Value="1" Src="/Image/Icon/1.png" Name="混乱" Description="效果:乱跑" />
+    <Item Value="2" Src="/Image/Icon/2.png" Name="冰冻" Description="效果:无法动弹" />
+    <Item Value="3" Src="/Image/Icon/3.png" Name="中毒" Description="效果:持续伤血" />
+    <Item Value="4" Src="/Image/Icon/4.png" Name="燃烧" Description="效果:所有防御属性值降低" />
+    <Item Value="5" Src="/Image/Icon/5.png" Name="虚弱" Description="效果:所有攻击属性值降低" />
+  </AdditionalEffects>
+  <Items>
+    <Item Code="0" Categoriy="1" IconCode="45" EquipCode="2" Name="恶魔之翼" CanFly="true" Description="插上翅膀无视障碍飞翔~" Value="0,0,0,0,0,-20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="1" Categoriy="1" IconCode="46" EquipCode="0" Name="剑影风纱" CanFly="false" Description="很漂亮哦，防御很高" Value="0,0,0,0,0,0,0,0,0,200,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="2" Categoriy="0" IconCode="47" EquipCode="0" AttackRange="70" LongDistanceAttack="false" OffsetX ="0" OffsetY ="0" Name="灭神之刃" Description="小心，很容易秒杀" Value="0,1450,8044,10,10,0,0,0,0,0,0,0,0,0,0,20,0,0,0,0,0"></Item>
+    <Item Code="3" Categoriy="0" IconCode="48" EquipCode="1" AttackRange="70" LongDistanceAttack="false" OffsetX ="0" OffsetY ="0" Name="幻影狂刀" Description="速度极快，杀人无数" Value="0,300,400,10,10,0,-200,0,0,0,0,0,0,0,0,20,0,0,0,0,0"></Item>
+    <Item Code="4" Categoriy="2" IconCode="49" EquipCode="0" Name="腰带1" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="5" Categoriy="2" IconCode="50" EquipCode="1" Name="腰带2" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="6" Categoriy="2" IconCode="51" EquipCode="2" Name="腰带3" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="7" Categoriy="6" IconCode="52" EquipCode="0" Name="鞋子1" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="8" Categoriy="6" IconCode="53" EquipCode="1" Name="鞋子2" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="9" Categoriy="7" IconCode="54" EquipCode="0" Name="手镯1" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="10" Categoriy="7" IconCode="55" EquipCode="1" Name="手镯2" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="11" Categoriy="5" IconCode="56" EquipCode="0" Name="头饰1" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="12" Categoriy="5" IconCode="57" EquipCode="1" Name="头饰2" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="13" Categoriy="5" IconCode="58" EquipCode="2" Name="头饰3" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="14" Categoriy="4" IconCode="59" EquipCode="0" Name="帽子1" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="15" Categoriy="4" IconCode="60" EquipCode="1" Name="帽子2" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="16" Categoriy="4" IconCode="61" EquipCode="2" Name="帽子3" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="17" Categoriy="3" IconCode="62" EquipCode="0" Name="项链1" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="18" Categoriy="3" IconCode="63" EquipCode="1" Name="项链2" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="19" Categoriy="8" IconCode="64" EquipCode="0" Name="戒指1" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="20" Categoriy="8" IconCode="65" EquipCode="1" Name="戒指2" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="21" Categoriy="100" IconCode="66" EquipCode="-1" Name="万能药水" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="22" Categoriy="100" IconCode="67" EquipCode="-1" Name="生命药水" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="23" Categoriy="100" IconCode="68" EquipCode="-1" Name="魔力药水" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="24" Categoriy="100" IconCode="69" EquipCode="-1" Name="活力药水" Description="作者无敌懒" Value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"></Item>
+    <Item Code="25" Categoriy="0" IconCode="70" EquipCode="2" AttackRange="400" LongDistanceAttack="true" OffsetX ="50" OffsetY ="50" Name="深渊行者" Description="传说中的幻影之弓，于英雄之手埋藏与岩浆最深处    攻击距离400" Value="0,300,400,10,10,0,0,0,0,0,0,0,0,0,0,20,0,0,0,0,0"></Item>
+  </Items>
+</Config>

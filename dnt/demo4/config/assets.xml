@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<assets>
+<map>
+  <asset id="map1" url="map1.png" />
+  <asset id="map2" url="map2.png" />
+  <asset id="map3" url="map3.png" />
+  </map>
+
+  <ship>
+    <asset id="ship1JSON" url="ship1.json" />
+    <asset id="ship1" url="ship1.png" />
+
+    <asset id="ship2JSON" url="ship2.json" />
+    <asset id="ship2" url="ship2.png" />
+    <asset id="pirate1JSON" url="pirate1.json" />
+    <asset id="pirate1" url="pirate1.png" />
+
+    <asset id="pirate2JSON" url="pirate2.json" />
+    <asset id="pirate2" url="pirate2.png" />
+    
+    <asset id="sell" url="sell.png" />
+    <asset id="up" url="up.png" />
+    <asset id="repair" url="repair.png" />
+  </ship>
+  <num>
+    <asset id="-" url="-.png" />
+    <asset id="0" url="0.png" />
+    <asset id="1" url="1.png" />
+    <asset id="2" url="2.png" />
+    <asset id="3" url="3.png" />
+    <asset id="4" url="4.png" />
+    <asset id="5" url="5.png" />
+    <asset id="6" url="6.png" />
+    <asset id="7" url="7.png" />
+    <asset id="8" url="8.png" />
+    <asset id="9" url="9.png" />
+  </num>
+<other>
+    <asset id="bullet" url="bullet.png" />
+    <asset id="explode1JSON" url="explode1.json" />
+    <asset id="explode1" url="explode1.png" />
+  <asset id="explode2JSON" url="explode2.json" />
+  <asset id="explode2" url="explode2.png" />
+    <asset id="warn" url="warn.png" />
+  <asset id="target" url="target.png" />
+  <asset id="choosePirate" url="choosePirate.png" />
+
+  <asset id="fire" url="fire.png" />
+  <asset id="fireJSON" url="fire.json" />
+  <asset id="coin" url="coin.png" />
+  <asset id="popupBase" url="popupBase.png" />
+  <asset id="pauseTitle" url="pauseTitle.png" />
+  <asset id="pauseExitButton" url="pauseExitButton.png" />
+  <asset id="pausePlayButton" url="pausePlayButton.png" />
+  <asset id="pauseRestartButton" url="pauseRestartButton.png" />
+  <asset id="pauseRestartEnergy" url="pauseRestartEnergy.png" />
+  <asset id="xButton" url="xButton.png" />
+  
+</other>
+
+  <levelPanel>
+    <asset id="ButtonBase0" url="ButtonBase0.jpg" />
+    <asset id="levelnumbers" url="levelnumbers.png" />
+    <asset id="padlock" url="padlock.png" />
+  </levelPanel>
+
+  <menu>
+
+    <asset id="gold_bg" url="gold_bg.png" />
+    <asset id="diamond_bg" url="diamond_bg.png" />
+    <asset id="number_bg" url="number_bg.png" />
+
+
+    <asset id="pause" url="pause.png" />
+    <asset id="play" url="play.png" />
+    <asset id="set" url="set.png" />
+  </menu>
+</assets>
+
+

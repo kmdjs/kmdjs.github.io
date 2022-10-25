@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>SCJ Framework-Compile With Statement </title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon"/>
+    <style>
+        h1 {
+            background: none repeat scroll 0 0 darkSlateBlue;
+            border-radius: 3px 3px 3px 3px;
+            color: white;
+            font-size: 18pt;
+            font-weight: bold;
+            letter-spacing: 1px;
+           margin:0px;
+            padding-left: 20px;
+            height:40px;
+            line-height:40px;
+        }
+         body {
+            background: url(../img/topbg.png) repeat;
+        }
+
+    </style>
+      
+</head>
+<body>
+    <h1>SCJ Framework-Compile With Statement</h1>
+    <div>property and method:<input id="propInput" style="width: 400px;" value="canvas,stage,TWO_PI,HALF_PI,container,stroke_weight,font,fontSize,width,height,strokeStyle,currentAction,fillStyle,tickFn,graphicsArr,colorNames,image,background,createGraphics,stroke,point,line,fill,rect,roundRect,ellipse,circle,frameRate,noLoop,loop,nextTick,tick,mousePressed,mouseMove,toInt,random,randomInt,sin,cos,loadImage,map,sector,textFont,text,update,rgbToHex,hexToRgb,reverseColor,strokeWeight,clear,hour,minute,second,logger,Logging,_,modules,binders,builders,define,parse,runSync,BuilderBase,Async" /> <input type="button" id="cpBtn" value="compile" style="width:100px;" /></div>
+    <textarea id="code" rows="20" cols="60">with (graphics) {
+        background(151);
+        noLoop();
+        var draw_target = function(xloc, yloc, size, num) {
+            var grayvalues = 255 / num;
+            var steps = size / num;
+            for (var i = 0; i < num; i++) {
+                fill(i * grayvalues);
+                ellipse(xloc, yloc, size - i * steps, size - i * steps);
+            }
+        };
+        tick(function () {
+            draw_target(68, 34, 200, 10);
+            draw_target(152, 16, 100, 3);
+            draw_target(100, 144, 80, 5);
+        });   
+    }; </textarea>
+    <textarea id="cpCode" rows="20" cols="60"></textarea>
+     <div style="text-align:center;">
+       <p> create by <a href="http://weibo.com/iamleizhang" target="_blank">当耐特</a></p>  
+    </div>
+    <script>
+        (function () {
+            var code = document.getElementById('code');
+            var cpCode = document.getElementById('cpCode');
+            var ipt = document.getElementById("propInput");
+            var btn = document.getElementById("cpBtn");
+            btn.onclick = function () {
+                var codeArr = code.value.toString().split("\n");
+                var propArr = ipt.value.replace(/\s*/g, "").split(",");
+                var mStr = codeArr[0].match(/\(\s*\w*\s*\)/)[0];
+                var instanceName = mStr.substr(1, mStr.length - 2).replace(/(^\s*)|(\s*$)/g, "");
+                var result = [];
+                for (var i = 1, j = codeArr.length - 1; i < j; i++) {
+                    var resultCode = codeArr[i];
+                    for (var m = 0, n = propArr.length; m < n; m++) {
+                        resultCode = resultCode.replace(new RegExp("\\b" + propArr[m] + "\\b", "g"), function(a,b){
+                            if (resultCode[b - 1] == ".") return propArr[m];
+                            return instanceName + "." + propArr[m];
+                        });
+                    }
+                    result.push(resultCode);
+                }
+                cpCode.value = result.join("\n");
+            }
+        })(); 
+    </script>
+</body>
+</html>

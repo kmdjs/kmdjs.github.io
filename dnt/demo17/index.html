@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>当耐特的游戏世界</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon" />
+</head>
+<body style="background-color: silver">
+    <div class="canvasHolder" style="text-align: center">
+        <canvas style="border-bottom: #222 5px solid; border-left: #222 5px solid; border-top: #222 5px solid; border-right: #222 5px solid" id="testCanvas" height="432" width="768">请使用支持HTML5 Canvas的浏览器</canvas>
+    </div>
+    <div style="text-align: center">create by <a href="http://weibo.com/iamleizhang" target="_blank">当耐特</a></div>
+    <script src="js/easeljs-0.6.1.min.js"></script>
+    <script src="js/Spring.js"></script>
+    <script src="js/RectSpring.js"></script>
+    <script src="js/Ball.js"></script>
+    <script src="js/Vector2.js"></script>
+    <script>
+        var stage = new createjs.Stage("testCanvas")
+        var ball1 = new Ball(new Vector2(2, 1), new Vector2(10, 10));
+        var ball2 = new Ball(new Vector2(0.2, 1), new Vector2(110, 10));
+        var ball3 = new Ball(new Vector2(2, 1), new Vector2(110, 110));
+        var ball4 = new Ball(new Vector2(2, 1), new Vector2(10, 110));
+        var spring1 = new Spring(0.08, 100);
+        var spring2 = new Spring(0.1, 100*Math.sqrt(2));
+        new RectSpring(spring1,spring2, ball1, ball2, ball3,ball4);
+
+        var ball1 = new Ball(new Vector2(12, 1), new Vector2(310, 10));
+        var ball2 = new Ball(new Vector2(10.2, 1), new Vector2(410, 10));
+        var ball3 = new Ball(new Vector2(12, 1), new Vector2(410, 110));
+        var ball4 = new Ball(new Vector2(14, 1), new Vector2(310, 110));
+        var spring1 = new Spring(0.08, 100);
+        var spring2 = new Spring(0.1, 100 * Math.sqrt(2));
+        new RectSpring(spring1, spring2, ball1, ball2, ball3, ball4,true);
+        createjs.Ticker.addListener(stage, "tick");
+        createjs.Ticker.setFPS(60);
+    </script>
+</body>
+</html>

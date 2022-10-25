@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>五子棋</title>
+    <style>
+        body {
+            background-color: black;
+        }
+
+        .gameBg {
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+            position: relative;
+            background-image: url(img/shape11.png);
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            margin-left: -53px;
+        }
+
+        .btnBG {
+            cursor: pointer;
+            z-index: 10;
+            background-image: url(img/shape53.png);
+            width: 133px;
+            height: 38px;
+        }
+
+        #overBtns {
+            display: none;
+        }
+
+            #overBtns .restart {
+                position: absolute;
+                left: -111px;
+            }
+
+            #overBtns .back {
+                position: absolute;
+                left: 40px;
+            }
+
+        .PVC {
+            position: absolute;
+            left: 80px;
+        }
+
+        .PVP {
+            position: absolute;
+            left: 220px;
+        }
+
+        #gamePanel canvas {
+            position: absolute;
+            left: 200px;
+            top: 40px;
+            display: block;
+        }
+
+        #gamePanel {
+            display: none;
+        }
+
+        #gameBottom {
+            position: absolute;
+            left: 390px;
+            top: 500px;
+        }
+
+        #beginPanel {
+            position: relative;
+            left: 220px;
+            top: 40px;
+            width: 411px;
+        }
+
+        #overBtns .restart span, #overBtns .back span, .PVC span, .PVP span {
+            position: relative;
+            left: 33px;
+            top: 10px;
+        }
+
+        .footer span {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="gameBg">
+        <div id="gamePanel">
+            <canvas width="449" height="449"></canvas>
+            <div id="gameBottom">
+
+                <div id="trunMsg">轮到<img src="img/black.png" />方下棋</div>
+                <div id="overBtns">
+                    <a class="restart btnBG"><span>重新开始</span> </a>
+                    <a class="back btnBG"><span>返回主页</span> </a>
+                </div>
+            </div>
+        </div>
+        <div id="beginPanel">
+            <img src="img/history.png" />
+            <div>
+                <a class="PVC btnBG"><span>人机对战</span> </a>
+                <a class="PVP btnBG"><span>双人对战</span> </a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        create by <a href="http://weibo.com/iamleizhang" target="_blank"><span>当耐特</span></a>
+    </div>
+    <script src="sea-modules/sea.js"></script>
+    <script>
+
+        seajs.use("release/gobang/1.0.0/main");
+    </script>
+
+</body>
+
+
+</html>
+
+

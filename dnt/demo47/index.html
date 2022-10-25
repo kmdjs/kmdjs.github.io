@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+        <title>SCJ Framework-Canvas</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon" />
+    <style>
+        .code {
+            background: silver;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 16px;
+            margin:0px;
+            margin-top:1px;
+            margin-bottom:1px;
+        }
+        h1 {
+            background: none repeat scroll 0 0 darkSlateBlue;
+            border-radius: 3px 3px 3px 3px;
+            color: white;
+            font-size: 18pt;
+            font-weight: bold;
+            letter-spacing: 1px;
+           margin:0px;
+            padding-left: 20px;
+            height:40px;
+            line-height:40px;
+        }
+         body {
+            background: url(../img/topbg.png) repeat;
+        }
+        h4{margin:0;padding:0;}
+    </style>
+</head>
+<body>
+    <h1>在线演示</h1>
+    <div id="canvasCTT"></div>
+    <h1>示例代码</h1>
+<pre class="code"><span style="color:black;background:silver">require([</span><span style="color:#a31515;background:silver">"SCJ"</span><span style="color:black;background:silver">, </span><span style="color:#a31515;background:silver">"canvas/structure"</span><span style="color:black;background:silver">], </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">(SCJ) {
+    </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">graphics = SCJ.createGraphics(450, 370, </span><span style="color:#a31515;background:silver">"#canvasCTT"</span><span style="color:black;background:silver">);  
+    </span><span style="color:blue;background:silver">with </span><span style="color:black;background:silver">(graphics) {
+        frameRate(60);
+        </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">yoff = 0,img = loadImage(</span><span style="color:#a31515;background:silver">"../img/bg.png"</span><span style="color:black;background:silver">);
+        tick(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() {
+            image(img, 0, 0)  
+            fps(0, 0);
+            </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">prevXY = [], path = [], xoff = 0;      
+            </span><span style="color:blue;background:silver">for </span><span style="color:black;background:silver">(</span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">x = 103; x &lt;= 290; x += 5) {
+                </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">y = map(noise(xoff, yoff), 0, 1, 190, 260);
+                prevXY[0] = x;
+                prevXY[1] = y;
+                path.push([prevXY[0], prevXY[1]]);
+                xoff += 0.05;            
+            }
+            yoff += 0.01;         
+            path.push([(width / 2) - 100, height - 77, </span><span style="color:#a31515;background:silver">"bezier"</span><span style="color:black;background:silver">]);
+            path.push([path[0][0], path[0][1]]);
+            fill(39, 255, 255, 0.8);
+            polygon(path);
+            stroke(255, 255, 255, 0.8);
+            strokeWeight(2);
+            </span><span style="color:blue;background:silver">for </span><span style="color:black;background:silver">(</span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">i = 0, j = path.length - 3; i &lt; j; i++) {
+                </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">item = path[i];
+                </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">next = path[i + 1];
+                line(item[0], item[1], next[0], next[1]);
+            }
+        })
+    }
+})</span></pre>
+    <div style="text-align:center;">
+       <p>create by <a href="http://weibo.com/iamleizhang" target="_blank">当耐特</a></p>     
+    </div>
+        <script src="water.js"></script>
+</body>
+</html>

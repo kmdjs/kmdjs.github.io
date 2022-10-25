@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+         <title>SCJ Framework-Canvas</title>
+    <link rel="shortcut icon" href="../img/dang.ico" type="image/x-icon" />
+    <style>
+        .code {
+            background: silver;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 16px;
+            margin:0px;
+            margin-top:1px;
+            margin-bottom:1px;
+        }
+        h1 {
+            background: none repeat scroll 0 0 darkSlateBlue;
+            border-radius: 3px 3px 3px 3px;
+            color: white;
+            font-size: 18pt;
+            font-weight: bold;
+            letter-spacing: 1px;
+           margin:0px;
+            padding-left: 20px;
+            height:40px;
+            line-height:40px;
+        }
+         body {
+            background: url(../../img/topbg.png) repeat;
+        }
+        h4{margin:0;padding:0;}
+    </style>
+</head>
+<body>
+    <h1>使用方式</h1>
+<pre class="code"><span style="color:black;background:silver">require([</span><span style="color:#a31515;background:silver">"SCJ"</span><span style="color:black;background:silver">, </span><span style="color:#a31515;background:silver">"canvas/structure"</span><span style="color:black;background:silver">], </span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">(SCJ) {
+    </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">graphics = SCJ.createGraphics(200, 200, </span><span style="color:#a31515;background:silver">"#canvasCTT"</span><span style="color:black;background:silver">);
+    graphics.stroke(255);     
+    graphics.frameRate(30);
+    graphics.noLoop();
+
+    </span><span style="color:blue;background:silver">var </span><span style="color:black;background:silver">y = 100;
+    graphics.tick(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() {
+        graphics.background(0);   
+        y = y - 1;
+        </span><span style="color:blue;background:silver">if </span><span style="color:black;background:silver">(y &lt; 0) { y = graphics.height; }
+        graphics.line(0, y, graphics.width, y);
+    })
+
+    graphics.mousePressed(</span><span style="color:blue;background:silver">function </span><span style="color:black;background:silver">() {
+        graphics.loop();
+    })
+})</span></pre>
+<h1>在线演示</h1>
+    <div id="canvasCTT"></div>
+    <h4>点击画布试试！</h4>
+    <script src="../js/loop.js"></script>
+</body>
+</html>
